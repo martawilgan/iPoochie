@@ -21,6 +21,19 @@
 		850904B6171F704A009F125C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85090497171F704A009F125C /* Foundation.framework */; };
 		850904BE171F704A009F125C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 850904BC171F704A009F125C /* InfoPlist.strings */; };
 		850904C1171F704A009F125C /* iPoochieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904C0171F704A009F125C /* iPoochieTests.m */; };
+		850904DD171F7323009F125C /* TabBarController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904DC171F7323009F125C /* TabBarController.xib */; };
+		850904DF171F75D9009F125C /* closet_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 850904DE171F75D9009F125C /* closet_icon.png */; };
+		850904E2171F75E4009F125C /* games_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 850904E0171F75E4009F125C /* games_icon.png */; };
+		850904E3171F75E4009F125C /* interact_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 850904E1171F75E4009F125C /* interact_icon.png */; };
+		850904E5171F75ED009F125C /* stores_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 850904E4171F75ED009F125C /* stores_icon.png */; };
+		850904E9171F7869009F125C /* InteractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904E7171F7869009F125C /* InteractViewController.m */; };
+		850904EA171F7869009F125C /* InteractViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904E8171F7869009F125C /* InteractViewController.xib */; };
+		850904EE171F789E009F125C /* ClosetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904EC171F789E009F125C /* ClosetViewController.m */; };
+		850904EF171F789E009F125C /* ClosetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904ED171F789E009F125C /* ClosetViewController.xib */; };
+		850904F3171F78BE009F125C /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904F1171F78BE009F125C /* GamesViewController.m */; };
+		850904F4171F78BE009F125C /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F2171F78BE009F125C /* GamesViewController.xib */; };
+		850904F8171F78D3009F125C /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904F6171F78D3009F125C /* StoreViewController.m */; };
+		850904F9171F78D3009F125C /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F7171F78D3009F125C /* StoreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +66,23 @@
 		850904BD171F704A009F125C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		850904BF171F704A009F125C /* iPoochieTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iPoochieTests.h; sourceTree = "<group>"; };
 		850904C0171F704A009F125C /* iPoochieTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iPoochieTests.m; sourceTree = "<group>"; };
+		850904DC171F7323009F125C /* TabBarController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabBarController.xib; path = ../TabBarController.xib; sourceTree = "<group>"; };
+		850904DE171F75D9009F125C /* closet_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = closet_icon.png; path = ../../images/closet_icon.png; sourceTree = "<group>"; };
+		850904E0171F75E4009F125C /* games_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = games_icon.png; path = ../../images/games_icon.png; sourceTree = "<group>"; };
+		850904E1171F75E4009F125C /* interact_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = interact_icon.png; path = ../../images/interact_icon.png; sourceTree = "<group>"; };
+		850904E4171F75ED009F125C /* stores_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stores_icon.png; path = ../../images/stores_icon.png; sourceTree = "<group>"; };
+		850904E6171F7869009F125C /* InteractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractViewController.h; sourceTree = "<group>"; };
+		850904E7171F7869009F125C /* InteractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InteractViewController.m; sourceTree = "<group>"; };
+		850904E8171F7869009F125C /* InteractViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InteractViewController.xib; sourceTree = "<group>"; };
+		850904EB171F789E009F125C /* ClosetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClosetViewController.h; path = ../ClosetViewController.h; sourceTree = "<group>"; };
+		850904EC171F789E009F125C /* ClosetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClosetViewController.m; path = ../ClosetViewController.m; sourceTree = "<group>"; };
+		850904ED171F789E009F125C /* ClosetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClosetViewController.xib; path = ../ClosetViewController.xib; sourceTree = "<group>"; };
+		850904F0171F78BD009F125C /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GamesViewController.h; path = ../GamesViewController.h; sourceTree = "<group>"; };
+		850904F1171F78BE009F125C /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GamesViewController.m; path = ../GamesViewController.m; sourceTree = "<group>"; };
+		850904F2171F78BE009F125C /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GamesViewController.xib; path = ../GamesViewController.xib; sourceTree = "<group>"; };
+		850904F5171F78D3009F125C /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreViewController.h; path = ../StoreViewController.h; sourceTree = "<group>"; };
+		850904F6171F78D3009F125C /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = ../StoreViewController.m; sourceTree = "<group>"; };
+		850904F7171F78D3009F125C /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = ../StoreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +142,9 @@
 		8509049B171F704A009F125C /* iPoochie */ = {
 			isa = PBXGroup;
 			children = (
+				850904CE171F713E009F125C /* Images */,
+				850904CF171F7149009F125C /* Sounds */,
+				850904CD171F7127009F125C /* View Controllers */,
 				850904A4171F704A009F125C /* AppDelegate.h */,
 				850904A5171F704A009F125C /* AppDelegate.m */,
 				8509049C171F704A009F125C /* Supporting Files */,
@@ -122,6 +155,7 @@
 		8509049C171F704A009F125C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				850904DC171F7323009F125C /* TabBarController.xib */,
 				8509049D171F704A009F125C /* iPoochie-Info.plist */,
 				8509049E171F704A009F125C /* InfoPlist.strings */,
 				850904A1171F704A009F125C /* main.m */,
@@ -150,6 +184,43 @@
 				850904BC171F704A009F125C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		850904CD171F7127009F125C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				850904EB171F789E009F125C /* ClosetViewController.h */,
+				850904EC171F789E009F125C /* ClosetViewController.m */,
+				850904ED171F789E009F125C /* ClosetViewController.xib */,
+				850904F0171F78BD009F125C /* GamesViewController.h */,
+				850904F1171F78BE009F125C /* GamesViewController.m */,
+				850904F2171F78BE009F125C /* GamesViewController.xib */,
+				850904E6171F7869009F125C /* InteractViewController.h */,
+				850904E7171F7869009F125C /* InteractViewController.m */,
+				850904E8171F7869009F125C /* InteractViewController.xib */,
+				850904F5171F78D3009F125C /* StoreViewController.h */,
+				850904F6171F78D3009F125C /* StoreViewController.m */,
+				850904F7171F78D3009F125C /* StoreViewController.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		850904CE171F713E009F125C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				850904E4171F75ED009F125C /* stores_icon.png */,
+				850904DE171F75D9009F125C /* closet_icon.png */,
+				850904E0171F75E4009F125C /* games_icon.png */,
+				850904E1171F75E4009F125C /* interact_icon.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		850904CF171F7149009F125C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +298,15 @@
 				850904A8171F704A009F125C /* Default.png in Resources */,
 				850904AA171F704A009F125C /* Default@2x.png in Resources */,
 				850904AC171F704A009F125C /* Default-568h@2x.png in Resources */,
+				850904DD171F7323009F125C /* TabBarController.xib in Resources */,
+				850904DF171F75D9009F125C /* closet_icon.png in Resources */,
+				850904E2171F75E4009F125C /* games_icon.png in Resources */,
+				850904E3171F75E4009F125C /* interact_icon.png in Resources */,
+				850904E5171F75ED009F125C /* stores_icon.png in Resources */,
+				850904EA171F7869009F125C /* InteractViewController.xib in Resources */,
+				850904EF171F789E009F125C /* ClosetViewController.xib in Resources */,
+				850904F4171F78BE009F125C /* GamesViewController.xib in Resources */,
+				850904F9171F78D3009F125C /* StoreViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +343,10 @@
 			files = (
 				850904A2171F704A009F125C /* main.m in Sources */,
 				850904A6171F704A009F125C /* AppDelegate.m in Sources */,
+				850904E9171F7869009F125C /* InteractViewController.m in Sources */,
+				850904EE171F789E009F125C /* ClosetViewController.m in Sources */,
+				850904F3171F78BE009F125C /* GamesViewController.m in Sources */,
+				850904F8171F78D3009F125C /* StoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
