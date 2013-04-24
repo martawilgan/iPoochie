@@ -34,6 +34,10 @@
 		850904F4171F78BE009F125C /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F2171F78BE009F125C /* GamesViewController.xib */; };
 		850904F8171F78D3009F125C /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904F6171F78D3009F125C /* StoreViewController.m */; };
 		850904F9171F78D3009F125C /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F7171F78D3009F125C /* StoreViewController.xib */; };
+		850904FD171F9F86009F125C /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850904FC171F9F86009F125C /* icon@2x.png */; };
+		8509050C17259EA6009F125C /* items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8509050B17259EA6009F125C /* items.plist */; };
+		850905171727DBEA009F125C /* chow.png in Resources */ = {isa = PBXBuildFile; fileRef = 850905151727DBEA009F125C /* chow.png */; };
+		850905181727DBEA009F125C /* treat.png in Resources */ = {isa = PBXBuildFile; fileRef = 850905161727DBEA009F125C /* treat.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		850904F5171F78D3009F125C /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreViewController.h; path = ../StoreViewController.h; sourceTree = "<group>"; };
 		850904F6171F78D3009F125C /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = ../StoreViewController.m; sourceTree = "<group>"; };
 		850904F7171F78D3009F125C /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = ../StoreViewController.xib; sourceTree = "<group>"; };
+		850904FC171F9F86009F125C /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../../images/icon@2x.png"; sourceTree = "<group>"; };
+		8509050B17259EA6009F125C /* items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = items.plist; path = ../items.plist; sourceTree = "<group>"; };
+		850905151727DBEA009F125C /* chow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chow.png; path = ../../images/smaller/chow.png; sourceTree = "<group>"; };
+		850905161727DBEA009F125C /* treat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treat.png; path = ../../images/smaller/treat.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +163,7 @@
 		8509049C171F704A009F125C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8509050B17259EA6009F125C /* items.plist */,
 				850904DC171F7323009F125C /* TabBarController.xib */,
 				8509049D171F704A009F125C /* iPoochie-Info.plist */,
 				8509049E171F704A009F125C /* InfoPlist.strings */,
@@ -208,6 +217,8 @@
 		850904CE171F713E009F125C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				85090502171FD337009F125C /* Pet Items */,
+				850904FC171F9F86009F125C /* icon@2x.png */,
 				850904E4171F75ED009F125C /* stores_icon.png */,
 				850904DE171F75D9009F125C /* closet_icon.png */,
 				850904E0171F75E4009F125C /* games_icon.png */,
@@ -221,6 +232,15 @@
 			children = (
 			);
 			name = Sounds;
+			sourceTree = "<group>";
+		};
+		85090502171FD337009F125C /* Pet Items */ = {
+			isa = PBXGroup;
+			children = (
+				850905151727DBEA009F125C /* chow.png */,
+				850905161727DBEA009F125C /* treat.png */,
+			);
+			name = "Pet Items";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +327,10 @@
 				850904EF171F789E009F125C /* ClosetViewController.xib in Resources */,
 				850904F4171F78BE009F125C /* GamesViewController.xib in Resources */,
 				850904F9171F78D3009F125C /* StoreViewController.xib in Resources */,
+				850904FD171F9F86009F125C /* icon@2x.png in Resources */,
+				8509050C17259EA6009F125C /* items.plist in Resources */,
+				850905171727DBEA009F125C /* chow.png in Resources */,
+				850905181727DBEA009F125C /* treat.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +543,7 @@
 				850904C6171F704A009F125C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		850904C7171F704A009F125C /* Build configuration list for PBXNativeTarget "iPoochieTests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +552,7 @@
 				850904C9171F704A009F125C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

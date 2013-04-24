@@ -9,18 +9,32 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
-@synthesize window = _window;
+@synthesize window;
 @synthesize rootController;
+@synthesize itemsData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     // Override point for customization after application launch.
+    
+    // Create path for plist
+    NSString *itemsPath = [[NSBundle mainBundle] bundlePath];
+	NSString *itemsDataPath = [itemsPath stringByAppendingPathComponent:@"items.plist"];
+
+    // Load data from plist
+    itemsData = [[NSDictionary alloc] initWithContentsOfFile:itemsDataPath];
+    
+    
+    // Add subview rootController to the TabBarController
     [[NSBundle mainBundle] loadNibNamed:@"TabBarController" owner:self options:nil];
-    [self.window addSubview:rootController.view];
+    //[self.window addSubview:rootController.view];
+    [self.window setRootViewController:rootController];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
