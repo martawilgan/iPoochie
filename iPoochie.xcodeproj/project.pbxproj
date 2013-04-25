@@ -38,6 +38,9 @@
 		8509050C17259EA6009F125C /* items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8509050B17259EA6009F125C /* items.plist */; };
 		850905171727DBEA009F125C /* chow.png in Resources */ = {isa = PBXBuildFile; fileRef = 850905151727DBEA009F125C /* chow.png */; };
 		850905181727DBEA009F125C /* treat.png in Resources */ = {isa = PBXBuildFile; fileRef = 850905161727DBEA009F125C /* treat.png */; };
+		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
+		85A4A434172949CB0034EED6 /* brightGreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A433172949CB0034EED6 /* brightGreenButton.png */; };
+		85A4A43917294AEE0034EED6 /* paws.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A43817294AEE0034EED6 /* paws.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,9 @@
 		8509050B17259EA6009F125C /* items.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = items.plist; path = ../items.plist; sourceTree = "<group>"; };
 		850905151727DBEA009F125C /* chow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chow.png; path = ../../images/smaller/chow.png; sourceTree = "<group>"; };
 		850905161727DBEA009F125C /* treat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = treat.png; path = ../../images/smaller/treat.png; sourceTree = "<group>"; };
+		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
+		85A4A433172949CB0034EED6 /* brightGreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = brightGreenButton.png; path = ../../buttons/brightGreenButton.png; sourceTree = "<group>"; };
+		85A4A43817294AEE0034EED6 /* paws.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paws.png; path = ../../images/paws.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				8509050B17259EA6009F125C /* items.plist */,
+				85A4A42F172911FD0034EED6 /* game.plist */,
 				850904DC171F7323009F125C /* TabBarController.xib */,
 				8509049D171F704A009F125C /* iPoochie-Info.plist */,
 				8509049E171F704A009F125C /* InfoPlist.strings */,
@@ -217,12 +224,10 @@
 		850904CE171F713E009F125C /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A43517294A200034EED6 /* Backgrounds */,
+				85A4A432172949B50034EED6 /* Buttons */,
+				85A4A431172949A00034EED6 /* Icons */,
 				85090502171FD337009F125C /* Pet Items */,
-				850904FC171F9F86009F125C /* icon@2x.png */,
-				850904E4171F75ED009F125C /* stores_icon.png */,
-				850904DE171F75D9009F125C /* closet_icon.png */,
-				850904E0171F75E4009F125C /* games_icon.png */,
-				850904E1171F75E4009F125C /* interact_icon.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -241,6 +246,34 @@
 				850905161727DBEA009F125C /* treat.png */,
 			);
 			name = "Pet Items";
+			sourceTree = "<group>";
+		};
+		85A4A431172949A00034EED6 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				850904FC171F9F86009F125C /* icon@2x.png */,
+				850904E4171F75ED009F125C /* stores_icon.png */,
+				850904DE171F75D9009F125C /* closet_icon.png */,
+				850904E0171F75E4009F125C /* games_icon.png */,
+				850904E1171F75E4009F125C /* interact_icon.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
+		85A4A432172949B50034EED6 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				85A4A433172949CB0034EED6 /* brightGreenButton.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		85A4A43517294A200034EED6 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				85A4A43817294AEE0034EED6 /* paws.png */,
+			);
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +364,9 @@
 				8509050C17259EA6009F125C /* items.plist in Resources */,
 				850905171727DBEA009F125C /* chow.png in Resources */,
 				850905181727DBEA009F125C /* treat.png in Resources */,
+				85A4A430172911FD0034EED6 /* game.plist in Resources */,
+				85A4A434172949CB0034EED6 /* brightGreenButton.png in Resources */,
+				85A4A43917294AEE0034EED6 /* paws.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

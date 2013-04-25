@@ -14,6 +14,11 @@
 @property (strong, nonatomic) IBOutlet UIPickerView *itemPicker;
 @property (strong, nonatomic) NSArray *items;
 @property (strong, nonatomic) NSArray *prices;
+@property (strong, nonatomic) NSMutableArray *amounts;
 @property (strong, nonatomic) NSArray *pickerData;
+@property (strong, nonatomic) NSNumber *points;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+
+-(IBAction)buttonPressed;
 
 @end

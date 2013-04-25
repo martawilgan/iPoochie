@@ -17,7 +17,11 @@
 @end
 
 @implementation ClosetViewController
-@synthesize itemImageNames, itemAmounts, imageNames, amounts;
+@synthesize itemImageNames;
+@synthesize itemAmounts;
+@synthesize imageNames;
+@synthesize amounts;
+@synthesize closet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,10 +36,45 @@
 - (void)viewDidLoad
 {
 
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     // Do any additional setup after loading the view from its nib.
     
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
+
+-(void) viewDidAppear: (BOOL) animated
+{    
+    [super viewDidAppear:animated];
+    
+    [self currentData];
+    [closet reloadData];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    self.itemImageNames = nil;
+    self.itemAmounts = nil;
+    self.imageNames = nil;
+    self.amounts = nil;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void) currentData
+{
     // Create temp array
     NSArray *tempArray = [[NSArray alloc] init];
     self.itemImageNames = tempArray;
@@ -43,8 +82,10 @@
     
     // Grab data from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.itemImageNames = [appDelegate.itemsData objectForKey:@"imageNames"];
-    self.itemAmounts = [appDelegate.itemsData objectForKey:@"amounts"];
+    NSMutableDictionary *itemsData = [[NSMutableDictionary alloc]
+                                      initWithContentsOfFile: [appDelegate itemsDataPath]];
+    self.itemImageNames = [itemsData objectForKey:@"imageNames"];
+    self.itemAmounts = [itemsData objectForKey:@"amounts"];
     
     // Create the arrays to display
     NSMutableArray *theImageNames = [[NSMutableArray alloc] init];
@@ -69,53 +110,27 @@
     
     self.imageNames = theImageNames;
     self.amounts = theAmounts;
-    
-   /* for(int i = 0; i < [imageNames count]; i++)
-    {
-        NSLog(@" %@", imageNames[i]);
-        NSLog(@" %@", amounts[i]);
-    }*/
-}
-
--(void) viewDidAppear: (BOOL) animated
-{    
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.itemImageNames = nil;
-    self.itemAmounts = nil;
-    self.imageNames = nil;
-    self.amounts = nil;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
 }
 
 #pragma mark - 
 #pragma mark Table View Data Source Methods
 
-// Return the number of rows in each table view for the Delegate
+// Return number of sections in table
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+// Return number of rows in each table view for the Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.imageNames count];
 }
 
 
-// Customize the appearance of table view cells.
+// Customize the appearance of table view cells
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{    
     // Create the empty cell
     static NSString *CellIdentifier = @"Cell";
     
@@ -136,6 +151,7 @@
     // Add text to cell
     NSString *amount = [[self.amounts objectAtIndex:indexPath.row] stringValue];
 	cell.textLabel.text = amount;
+    cell.textLabel.font = [UIFont fontWithName:@"Chalkboard SE" size:27];
     
     return cell;
 }

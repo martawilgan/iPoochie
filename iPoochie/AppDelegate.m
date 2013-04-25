@@ -12,6 +12,9 @@
 @synthesize window;
 @synthesize rootController;
 @synthesize itemsData;
+@synthesize gameData;
+@synthesize itemsDataPath;
+@synthesize gameDataPath;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -19,14 +22,15 @@
     
     // Override point for customization after application launch.
     
-    // Create path for plist
-    NSString *itemsPath = [[NSBundle mainBundle] bundlePath];
-	NSString *itemsDataPath = [itemsPath stringByAppendingPathComponent:@"items.plist"];
+    // Create paths for plists    
+    itemsDataPath = [self pathForName:@"items.plist"];
+    gameDataPath = [self pathForName:@"game.plist"];
+    
 
-    // Load data from plist
+    // Load data from plists
     itemsData = [[NSDictionary alloc] initWithContentsOfFile:itemsDataPath];
-    
-    
+    gameData = [[NSDictionary alloc] initWithContentsOfFile:gameDataPath];
+        
     // Add subview rootController to the TabBarController
     [[NSBundle mainBundle] loadNibNamed:@"TabBarController" owner:self options:nil];
     //[self.window addSubview:rootController.view];
@@ -62,6 +66,17 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+// return full pathname for filename 
+- (NSString *) pathForName : (NSString *) fileName
+{
+    /*NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+     NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:fileName];*/
+    
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    return[path stringByAppendingPathComponent:fileName];
 }
 
 @end

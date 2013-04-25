@@ -20,6 +20,7 @@
     NSArray *amounts;
 }*/
 
+@property (strong, nonatomic) IBOutlet UITableView *closet;
 @property (nonatomic, retain) NSArray *itemImageNames;
 @property (nonatomic, retain) NSArray *itemAmounts;
 @property (nonatomic, retain) NSArray *imageNames;
