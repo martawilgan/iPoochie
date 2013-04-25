@@ -20,8 +20,10 @@
 @synthesize itemImageNames;
 @synthesize itemAmounts;
 @synthesize imageNames;
+@synthesize itemDescriptions;
 @synthesize amounts;
 @synthesize closet;
+@synthesize descriptions;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,8 +65,10 @@
     // e.g. self.myOutlet = nil;
     self.itemImageNames = nil;
     self.itemAmounts = nil;
+    self.itemDescriptions = nil;
     self.imageNames = nil;
     self.amounts = nil;
+    self.descriptions = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -79,6 +83,7 @@
     NSArray *tempArray = [[NSArray alloc] init];
     self.itemImageNames = tempArray;
     self.itemAmounts = tempArray;
+    self.itemDescriptions = tempArray;
     
     // Grab data from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -86,10 +91,12 @@
                                       initWithContentsOfFile: [appDelegate itemsDataPath]];
     self.itemImageNames = [itemsData objectForKey:@"imageNames"];
     self.itemAmounts = [itemsData objectForKey:@"amounts"];
+    self.itemDescriptions = [itemsData objectForKey:@"descriptions"];
     
     // Create the arrays to display
     NSMutableArray *theImageNames = [[NSMutableArray alloc] init];
     NSMutableArray *theAmounts = [[NSMutableArray alloc] init];
+    NSMutableArray *theDescriptions = [[NSMutableArray alloc] init];
     
     int nextIndex = 0;
     
@@ -100,9 +107,11 @@
         {
             NSString *name = [itemImageNames objectAtIndex:i];
             NSNumber *amount = [itemAmounts objectAtIndex:i];
+            NSString *description = [itemDescriptions objectAtIndex:i];
             
             [theImageNames insertObject:name atIndex: nextIndex];
             [theAmounts insertObject:amount atIndex: nextIndex];
+            [theDescriptions insertObject:description atIndex:nextIndex];
             
             nextIndex++; // update index
         }
@@ -110,6 +119,7 @@
     
     self.imageNames = theImageNames;
     self.amounts = theAmounts;
+    self.descriptions = theDescriptions;
 }
 
 #pragma mark - 
@@ -149,9 +159,16 @@
 	cell.imageView.image = myImage;
     
     // Add text to cell
-    NSString *amount = [[self.amounts objectAtIndex:indexPath.row] stringValue];
-	cell.textLabel.text = amount;
+    //NSString *amount = [[self.amounts objectAtIndex:indexPath.row] stringValue];
+	cell.textLabel.text = [NSString stringWithFormat: @"  %@ %@",
+        [[self.amounts objectAtIndex:indexPath.row] stringValue],
+        [self.descriptions objectAtIndex:indexPath.row]];
+    
+    // Update appearence of cell
     cell.textLabel.font = [UIFont fontWithName:@"Chalkboard SE" size:27];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    //cell.contentView.backgroundColor = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:230/255.0f alpha:1.0f];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

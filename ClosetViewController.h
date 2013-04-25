@@ -23,8 +23,10 @@
 @property (strong, nonatomic) IBOutlet UITableView *closet;
 @property (nonatomic, retain) NSArray *itemImageNames;
 @property (nonatomic, retain) NSArray *itemAmounts;
+@property (nonatomic, retain) NSArray *itemDescriptions;
 @property (nonatomic, retain) NSArray *imageNames;
 @property (nonatomic, retain) NSArray *amounts;
+@property (nonatomic, retain) NSArray *descriptions;
 
 //-(NSString*) dataFilePath;
 
