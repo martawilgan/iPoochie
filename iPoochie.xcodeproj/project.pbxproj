@@ -63,6 +63,9 @@
 		85A4A4AF172D70790034EED6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4AE172D70790034EED6 /* icon.png */; };
 		85A4A4B1172D749C0034EED6 /* chewtoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4B0172D749C0034EED6 /* chewtoy.png */; };
 		85A4A4B3172D76170034EED6 /* squeakytoy.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4B2172D76170034EED6 /* squeakytoy.png */; };
+		85A4A4B5172D78150034EED6 /* store.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4B4172D78150034EED6 /* store.png */; };
+		85A4A4B7172D78220034EED6 /* closet.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4B6172D78220034EED6 /* closet.png */; };
+		85A4A4B9172D782E0034EED6 /* park.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4B8172D782E0034EED6 /* park.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +144,9 @@
 		85A4A4AE172D70790034EED6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		85A4A4B0172D749C0034EED6 /* chewtoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chewtoy.png; sourceTree = "<group>"; };
 		85A4A4B2172D76170034EED6 /* squeakytoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squeakytoy.png; sourceTree = "<group>"; };
+		85A4A4B4172D78150034EED6 /* store.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = store.png; sourceTree = "<group>"; };
+		85A4A4B6172D78220034EED6 /* closet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closet.png; sourceTree = "<group>"; };
+		85A4A4B8172D782E0034EED6 /* park.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = park.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,7 +329,10 @@
 		85A4A43517294A200034EED6 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A4B6172D78220034EED6 /* closet.png */,
+				85A4A4B4172D78150034EED6 /* store.png */,
 				85A4A4AC172D6FBF0034EED6 /* backyard.png */,
+				85A4A4B8172D782E0034EED6 /* park.png */,
 				85A4A487172D3AE00034EED6 /* paws.png */,
 			);
 			name = Backgrounds;
@@ -471,6 +480,9 @@
 				85A4A4AF172D70790034EED6 /* icon.png in Resources */,
 				85A4A4B1172D749C0034EED6 /* chewtoy.png in Resources */,
 				85A4A4B3172D76170034EED6 /* squeakytoy.png in Resources */,
+				85A4A4B5172D78150034EED6 /* store.png in Resources */,
+				85A4A4B7172D78220034EED6 /* closet.png in Resources */,
+				85A4A4B9172D782E0034EED6 /* park.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
