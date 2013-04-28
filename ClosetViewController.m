@@ -24,6 +24,8 @@
 @synthesize amounts;
 @synthesize closet;
 @synthesize descriptions;
+@synthesize points;
+@synthesize pointsLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +55,16 @@
 -(void) viewDidAppear: (BOOL) animated
 {    
     [super viewDidAppear:animated];
+    
+    // Grab points from plist through app delegate
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    points = [gameData objectForKey:@"points"];
+    
+    // Update the points label text
+    pointsLabel.text =
+    [NSString stringWithFormat:@"Points: %@", points];
     
     [self currentData];
     [closet reloadData];

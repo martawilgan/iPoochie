@@ -10,4 +10,23 @@
 
 @interface InteractViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (strong, nonatomic) NSNumber *points;
+@property (weak, nonatomic) IBOutlet UILabel *healthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *energyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *happinessLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *healthImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *energryImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *happinessImageView;
+
+
+
+
+
+- (void) updateHealth;
+- (void) updateEnergy;
+- (void) updateHappiness;
+- (NSString*) barsImageName: (int)number;
+
 @end

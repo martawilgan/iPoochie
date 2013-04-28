@@ -11,16 +11,9 @@
 @interface ClosetViewController : UIViewController
     <UITableViewDelegate, UITableViewDataSource>
 
-/*{
-    NSDictionary *items;
-    IBOutlet UITableView *myTableView;
-    NSArray *itemImageNames;
-    NSArray *itemAmounts;
-    NSArray *imageNames;
-    NSArray *amounts;
-}*/
-
 @property (strong, nonatomic) IBOutlet UITableView *closet;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (strong, nonatomic) NSNumber *points;
 @property (nonatomic, retain) NSArray *itemImageNames;
 @property (nonatomic, retain) NSArray *itemAmounts;
 @property (nonatomic, retain) NSArray *itemDescriptions;
@@ -28,6 +21,6 @@
 @property (nonatomic, retain) NSArray *amounts;
 @property (nonatomic, retain) NSArray *descriptions;
 
-//-(NSString*) dataFilePath;
+- (void) currentData;
 
 @end

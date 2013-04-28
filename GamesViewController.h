@@ -10,4 +10,7 @@
 
 @interface GamesViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (strong, nonatomic) NSNumber *points;
+
 @end
