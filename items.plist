@@ -7,6 +7,7 @@
 		<string>bags of chow</string>
 		<string>bones</string>
 		<string>squeaky toys</string>
+		<string>chew toys</string>
 		<string>treats</string>
 		<string>balls</string>
 	</array>
@@ -15,6 +16,7 @@
 		<string>chow.png</string>
 		<string>bone.png</string>
 		<string>squeakytoy.png</string>
+		<string>chewtoy.png</string>
 		<string>treat.png</string>
 		<string>ball.png</string>
 	</array>
@@ -23,11 +25,13 @@
 		<integer>15</integer>
 		<integer>20</integer>
 		<integer>25</integer>
+		<integer>25</integer>
 		<integer>30</integer>
 		<integer>50</integer>
 	</array>
 	<key>amounts</key>
 	<array>
+		<integer>1</integer>
 		<integer>1</integer>
 		<integer>1</integer>
 		<integer>1</integer>
