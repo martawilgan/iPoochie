@@ -61,6 +61,8 @@
 		85A4A49F172D5BFF0034EED6 /* backyard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A49E172D5BFF0034EED6 /* backyard2.png */; };
 		85A4A4A1172D60410034EED6 /* backyard4.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A0172D60410034EED6 /* backyard4.png */; };
 		85A4A4A3172D61190034EED6 /* backyard5.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A2172D61190034EED6 /* backyard5.png */; };
+		85A4A4A6172D676D0034EED6 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A4172D676D0034EED6 /* ball.png */; };
+		85A4A4A7172D676D0034EED6 /* bone.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A5172D676D0034EED6 /* bone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,8 @@
 		85A4A49E172D5BFF0034EED6 /* backyard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard2.png; sourceTree = "<group>"; };
 		85A4A4A0172D60410034EED6 /* backyard4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard4.png; sourceTree = "<group>"; };
 		85A4A4A2172D61190034EED6 /* backyard5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard5.png; sourceTree = "<group>"; };
+		85A4A4A4172D676D0034EED6 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		85A4A4A5172D676D0034EED6 /* bone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bone.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +288,8 @@
 		85090502171FD337009F125C /* Pet Items */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A4A4172D676D0034EED6 /* ball.png */,
+				85A4A4A5172D676D0034EED6 /* bone.png */,
 				85A4A47D172D3A650034EED6 /* chow.png */,
 				85A4A47B172D3A540034EED6 /* treat.png */,
 			);
@@ -463,6 +469,8 @@
 				85A4A49F172D5BFF0034EED6 /* backyard2.png in Resources */,
 				85A4A4A1172D60410034EED6 /* backyard4.png in Resources */,
 				85A4A4A3172D61190034EED6 /* backyard5.png in Resources */,
+				85A4A4A6172D676D0034EED6 /* ball.png in Resources */,
+				85A4A4A7172D676D0034EED6 /* bone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
