@@ -65,7 +65,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">backyard2.png</string>
+							<string key="NSResourceName">backyard5.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="876771611">
@@ -1907,7 +1907,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="backyard2.png">{800, 1200}</string>
+			<string key="backyard5.png">{390, 570}</string>
 			<string key="brightGreenButton.png">{602, 86}</string>
 			<string key="notAminated.gif">{200, 200}</string>
 			<string key="paws.png">{640, 960}</string>

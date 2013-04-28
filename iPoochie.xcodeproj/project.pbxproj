@@ -59,6 +59,8 @@
 		85A4A49B172D485C0034EED6 /* backyard.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A49A172D485C0034EED6 /* backyard.png */; };
 		85A4A49D172D4EB80034EED6 /* purpleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A49C172D4EB80034EED6 /* purpleButton.png */; };
 		85A4A49F172D5BFF0034EED6 /* backyard2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A49E172D5BFF0034EED6 /* backyard2.png */; };
+		85A4A4A1172D60410034EED6 /* backyard4.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A0172D60410034EED6 /* backyard4.png */; };
+		85A4A4A3172D61190034EED6 /* backyard5.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A2172D61190034EED6 /* backyard5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,8 @@
 		85A4A49A172D485C0034EED6 /* backyard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard.png; sourceTree = "<group>"; };
 		85A4A49C172D4EB80034EED6 /* purpleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleButton.png; sourceTree = "<group>"; };
 		85A4A49E172D5BFF0034EED6 /* backyard2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard2.png; sourceTree = "<group>"; };
+		85A4A4A0172D60410034EED6 /* backyard4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard4.png; sourceTree = "<group>"; };
+		85A4A4A2172D61190034EED6 /* backyard5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +314,8 @@
 		85A4A43517294A200034EED6 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A4A2172D61190034EED6 /* backyard5.png */,
+				85A4A4A0172D60410034EED6 /* backyard4.png */,
 				85A4A49E172D5BFF0034EED6 /* backyard2.png */,
 				85A4A49A172D485C0034EED6 /* backyard.png */,
 				85A4A487172D3AE00034EED6 /* paws.png */,
@@ -455,6 +461,8 @@
 				85A4A49B172D485C0034EED6 /* backyard.png in Resources */,
 				85A4A49D172D4EB80034EED6 /* purpleButton.png in Resources */,
 				85A4A49F172D5BFF0034EED6 /* backyard2.png in Resources */,
+				85A4A4A1172D60410034EED6 /* backyard4.png in Resources */,
+				85A4A4A3172D61190034EED6 /* backyard5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
