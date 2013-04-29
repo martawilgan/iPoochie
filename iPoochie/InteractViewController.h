@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) NSNumber *points;
+@property (strong, nonatomic) NSString *state;
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *energyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *happinessLabel;

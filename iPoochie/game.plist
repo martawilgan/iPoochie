@@ -11,6 +11,6 @@
 	<key>points</key>
 	<integer>100</integer>
 	<key>petState</key>
-	<string>none</string>
+	<string>awake</string>
 </dict>
 </plist>
