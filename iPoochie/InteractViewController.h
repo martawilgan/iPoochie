@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *healthImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *energryImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *happinessImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 
 
 
@@ -28,5 +29,6 @@
 - (void) updateEnergy;
 - (void) updateHappiness;
 - (NSString*) barsImageName: (int)number;
+-(IBAction)buttonPressed: (id)sender;
 
 @end

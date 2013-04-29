@@ -175,5 +175,37 @@
     return name;
 }
 
+-(IBAction) buttonPressed:(id)sender
+{    
+    // grab button title
+    NSString *buttonType = [sender titleForState:UIControlStateNormal];
+    
+    if ([buttonType isEqualToString: @"play"])
+    {
+        
+    }
+    if ([buttonType isEqualToString: @"eat"])
+    {
+        
+    }
+    if ([buttonType isEqualToString: @"sleep"])
+    {
+        
+    }
+    if ([buttonType isEqualToString: @"pet"])
+    {
+        
+    }
+    if ([buttonType isEqualToString: @"walk"])
+    {
+    
+    }
+    if ([buttonType isEqualToString: @"wake up"])
+    {
+        
+    }
+
+}
+
 
 @end
