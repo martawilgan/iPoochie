@@ -43,6 +43,9 @@
     [super viewDidLoad];    
     // Do any additional setup after loading the view from its nib.
     
+    // Make the tableView scrollable
+    //[self.closet setScrollEnabled:YES];
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -186,10 +189,11 @@
 }
 
 // Define the height for each row
-- (CGFloat) tableView:(UITableView *)tableView
+/*-(CGFloat) tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 80;
-}
+}*/
+
 
 @end
