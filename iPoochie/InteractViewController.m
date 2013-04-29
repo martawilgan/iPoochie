@@ -193,8 +193,9 @@
 //
 -(IBAction) buttonPressed:(id)sender
 {    
-    // grab button title
+    // Grab button title
     NSString *buttonType = [sender titleForState:UIControlStateNormal];
+    
     
     // Find the state of the pet in plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -225,6 +226,7 @@
         }
         else
         {
+            [self setAngry:[NSNumber numberWithInt:1]];
             [self animateAngry]; // already asleep!
         }
         
@@ -251,6 +253,7 @@
         }
         else
         {
+            [self setAngry:[NSNumber numberWithInt:1]];
             [self animateAngry]; // already awake! 
         }
         
@@ -446,7 +449,15 @@
     [inTimer invalidate];
     inTimer = nil;
     
-    [self animateAwake];
+    // If not angry wake up otherwise stop being angry
+    if ([[self angry] isEqualToNumber:[NSNumber numberWithInt:1]])
+    {
+        [self animateAwake];
+    }
+    else
+    {
+        [self setAngry:[NSNumber numberWithInt:0]];
+    }
 }
 
 // Wait then animate the puppy being asleep
@@ -455,7 +466,15 @@
     [inTimer invalidate];
     inTimer = nil;
     
-    [self animateSleeping];
+    // If not angry sleep otherwise stop being angry
+    if ([[self angry] isEqualToNumber:[NSNumber numberWithInt:1]])
+    {
+        [self animateSleeping];
+    }
+    else
+    {
+        [self setAngry:[NSNumber numberWithInt:0]];
+    }
 }
 
 // Update state variable and plist
@@ -475,6 +494,34 @@
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
 
 }
+
+-(id) angry
+{
+    // Create the app delegate
+    AppDelegate *appDelegate =
+    (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+
+    return [gameData objectForKey:@"angry"];
+}
+
+
+// Set angry variable in plist
+-(void) setAngry : (NSNumber*) number
+{
+    // Create the app delegate
+    AppDelegate *appDelegate =
+    (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    // Update the plist
+    [gameData setObject: number
+                forKey:@"angry"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+
+}
+
 
 
 @end

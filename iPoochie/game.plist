@@ -12,5 +12,7 @@
 	<integer>100</integer>
 	<key>petState</key>
 	<string>awake</string>
+	<key>angry</key>
+	<integer>0</integer>
 </dict>
 </plist>
