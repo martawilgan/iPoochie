@@ -7,6 +7,10 @@
 //
 
 #import "InteractViewController.h"
+#import "EatViewController.h"
+#import "PetViewController.h"
+#import "PlayViewController.h"
+#import "WalkViewController.h"
 #import "AppDelegate.h"
 
 @interface InteractViewController ()
@@ -206,14 +210,6 @@
     state = [gameData objectForKey: @"petState"];
     
     // Perform action based on button pressed
-    if ([buttonType isEqualToString: @"play"])
-    {
-        
-    }
-    if ([buttonType isEqualToString: @"eat"])
-    {
-        
-    }
     if ([buttonType isEqualToString: @"sleep"])
     {
         // Animate sleeping after timer
@@ -234,14 +230,6 @@
             talkImageView.image = [UIImage imageNamed:@"talkBubble.png"];
         }
         
-    }
-    if ([buttonType isEqualToString: @"pet"])
-    {
-        
-    }
-    if ([buttonType isEqualToString: @"walk"])
-    {
-    
     }
     if ([buttonType isEqualToString: @"wake up"])
     {
@@ -265,6 +253,30 @@
         
     }
 
+}
+
+-(IBAction)goToEatView: (id)sender
+{
+    EatViewController *eatViewController = [[EatViewController alloc] init];
+    [self presentViewController:eatViewController animated:YES completion:NULL];
+}
+
+-(IBAction)goToPetView: (id)sender
+{
+    PetViewController *petViewController = [[PetViewController alloc] init];
+    [self presentViewController:petViewController animated:YES completion:NULL];
+}
+
+-(IBAction)goToPlayView: (id)sender
+{
+    PlayViewController *playViewController = [[PlayViewController alloc] init];
+    [self presentViewController:playViewController animated:YES completion:NULL];
+}
+
+-(IBAction)goToWalkView: (id)sender
+{
+    WalkViewController *walkViewController = [[WalkViewController alloc] init];
+    [self presentViewController:walkViewController animated:YES completion:NULL];
 }
 
 // Create animation for puppy to appear to be awake

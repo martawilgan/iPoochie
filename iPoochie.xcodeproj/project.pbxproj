@@ -52,7 +52,6 @@
 		85A4A48A172D3B140034EED6 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A489172D3B140034EED6 /* icon@2x.png */; };
 		85A4A48C172D3B5B0034EED6 /* brightGreenButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A48B172D3B5B0034EED6 /* brightGreenButton.png */; };
 		85A4A499172D42200034EED6 /* notAminated.gif in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A498172D42200034EED6 /* notAminated.gif */; };
-		85A4A49D172D4EB80034EED6 /* purpleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A49C172D4EB80034EED6 /* purpleButton.png */; };
 		85A4A4A6172D676D0034EED6 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A4172D676D0034EED6 /* ball.png */; };
 		85A4A4A7172D676D0034EED6 /* bone.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4A5172D676D0034EED6 /* bone.png */; };
 		85A4A4AD172D6FBF0034EED6 /* backyard.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A4AC172D6FBF0034EED6 /* backyard.png */; };
@@ -102,6 +101,16 @@
 		85A4A50A172E59C60034EED6 /* angry1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A508172E59C60034EED6 /* angry1.png */; };
 		85A4A50B172E59C60034EED6 /* angry2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A509172E59C60034EED6 /* angry2.png */; };
 		85A4A50F172F4B720034EED6 /* talkBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A50E172F4B720034EED6 /* talkBubble.png */; };
+		85A4A513172F5B020034EED6 /* EatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A511172F5B010034EED6 /* EatViewController.m */; };
+		85A4A514172F5B020034EED6 /* EatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A512172F5B010034EED6 /* EatViewController.xib */; };
+		85A4A51D172F63B70034EED6 /* WalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A51B172F63AB0034EED6 /* WalkViewController.m */; };
+		85A4A51E172F63B70034EED6 /* WalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A51C172F63AF0034EED6 /* WalkViewController.xib */; };
+		85A4A522172F640A0034EED6 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A520172F64090034EED6 /* PlayViewController.m */; };
+		85A4A523172F640A0034EED6 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A521172F64090034EED6 /* PlayViewController.xib */; };
+		85A4A527172F643A0034EED6 /* PetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A525172F642D0034EED6 /* PetViewController.m */; };
+		85A4A528172F643A0034EED6 /* PetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A526172F64310034EED6 /* PetViewController.xib */; };
+		85A4A530172F6DB50034EED6 /* purpleBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A52F172F6DB50034EED6 /* purpleBar.png */; };
+		85A4A534172F6FF80034EED6 /* purpleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A533172F6FF80034EED6 /* purpleButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,7 +178,6 @@
 		85A4A489172D3B140034EED6 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		85A4A48B172D3B5B0034EED6 /* brightGreenButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brightGreenButton.png; sourceTree = "<group>"; };
 		85A4A498172D42200034EED6 /* notAminated.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = notAminated.gif; sourceTree = "<group>"; };
-		85A4A49C172D4EB80034EED6 /* purpleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleButton.png; sourceTree = "<group>"; };
 		85A4A4A4172D676D0034EED6 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 		85A4A4A5172D676D0034EED6 /* bone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bone.png; sourceTree = "<group>"; };
 		85A4A4AC172D6FBF0034EED6 /* backyard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard.png; sourceTree = "<group>"; };
@@ -219,6 +227,20 @@
 		85A4A508172E59C60034EED6 /* angry1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angry1.png; sourceTree = "<group>"; };
 		85A4A509172E59C60034EED6 /* angry2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = angry2.png; sourceTree = "<group>"; };
 		85A4A50E172F4B720034EED6 /* talkBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talkBubble.png; sourceTree = "<group>"; };
+		85A4A510172F5B010034EED6 /* EatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EatViewController.h; sourceTree = "<group>"; };
+		85A4A511172F5B010034EED6 /* EatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EatViewController.m; sourceTree = "<group>"; };
+		85A4A512172F5B010034EED6 /* EatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EatViewController.xib; sourceTree = "<group>"; };
+		85A4A51A172F63A90034EED6 /* WalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkViewController.h; sourceTree = "<group>"; };
+		85A4A51B172F63AB0034EED6 /* WalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkViewController.m; sourceTree = "<group>"; };
+		85A4A51C172F63AF0034EED6 /* WalkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkViewController.xib; sourceTree = "<group>"; };
+		85A4A51F172F64090034EED6 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
+		85A4A520172F64090034EED6 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
+		85A4A521172F64090034EED6 /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
+		85A4A524172F642B0034EED6 /* PetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetViewController.h; sourceTree = "<group>"; };
+		85A4A525172F642D0034EED6 /* PetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetViewController.m; sourceTree = "<group>"; };
+		85A4A526172F64310034EED6 /* PetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PetViewController.xib; sourceTree = "<group>"; };
+		85A4A52F172F6DB50034EED6 /* purpleBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleBar.png; sourceTree = "<group>"; };
+		85A4A533172F6FF80034EED6 /* purpleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,9 +358,21 @@
 				850904E6171F7869009F125C /* InteractViewController.h */,
 				850904E7171F7869009F125C /* InteractViewController.m */,
 				850904E8171F7869009F125C /* InteractViewController.xib */,
+				85A4A510172F5B010034EED6 /* EatViewController.h */,
+				85A4A511172F5B010034EED6 /* EatViewController.m */,
+				85A4A512172F5B010034EED6 /* EatViewController.xib */,
 				850904F5171F78D3009F125C /* StoreViewController.h */,
 				850904F6171F78D3009F125C /* StoreViewController.m */,
 				850904F7171F78D3009F125C /* StoreViewController.xib */,
+				85A4A51A172F63A90034EED6 /* WalkViewController.h */,
+				85A4A51B172F63AB0034EED6 /* WalkViewController.m */,
+				85A4A51C172F63AF0034EED6 /* WalkViewController.xib */,
+				85A4A51F172F64090034EED6 /* PlayViewController.h */,
+				85A4A520172F64090034EED6 /* PlayViewController.m */,
+				85A4A521172F64090034EED6 /* PlayViewController.xib */,
+				85A4A524172F642B0034EED6 /* PetViewController.h */,
+				85A4A525172F642D0034EED6 /* PetViewController.m */,
+				85A4A526172F64310034EED6 /* PetViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -394,8 +428,8 @@
 		85A4A432172949B50034EED6 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A533172F6FF80034EED6 /* purpleButton.png */,
 				85A4A4BE172E1CC00034EED6 /* pawprint.png */,
-				85A4A49C172D4EB80034EED6 /* purpleButton.png */,
 				85A4A48B172D3B5B0034EED6 /* brightGreenButton.png */,
 			);
 			name = Buttons;
@@ -422,6 +456,7 @@
 				85A4A465172D2A030034EED6 /* bars1.png */,
 				85A4A466172D2A030034EED6 /* bars2.png */,
 				85A4A467172D2A030034EED6 /* bars3.png */,
+				85A4A52F172F6DB50034EED6 /* purpleBar.png */,
 				85A4A468172D2A030034EED6 /* bars4.png */,
 				85A4A469172D2A030034EED6 /* bars5.png */,
 				85A4A46A172D2A030034EED6 /* bars6.png */,
@@ -609,7 +644,6 @@
 				85A4A48A172D3B140034EED6 /* icon@2x.png in Resources */,
 				85A4A48C172D3B5B0034EED6 /* brightGreenButton.png in Resources */,
 				85A4A499172D42200034EED6 /* notAminated.gif in Resources */,
-				85A4A49D172D4EB80034EED6 /* purpleButton.png in Resources */,
 				85A4A4A6172D676D0034EED6 /* ball.png in Resources */,
 				85A4A4A7172D676D0034EED6 /* bone.png in Resources */,
 				85A4A4AD172D6FBF0034EED6 /* backyard.png in Resources */,
@@ -659,6 +693,12 @@
 				85A4A50A172E59C60034EED6 /* angry1.png in Resources */,
 				85A4A50B172E59C60034EED6 /* angry2.png in Resources */,
 				85A4A50F172F4B720034EED6 /* talkBubble.png in Resources */,
+				85A4A514172F5B020034EED6 /* EatViewController.xib in Resources */,
+				85A4A51E172F63B70034EED6 /* WalkViewController.xib in Resources */,
+				85A4A523172F640A0034EED6 /* PlayViewController.xib in Resources */,
+				85A4A528172F643A0034EED6 /* PetViewController.xib in Resources */,
+				85A4A530172F6DB50034EED6 /* purpleBar.png in Resources */,
+				85A4A534172F6FF80034EED6 /* purpleButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +739,10 @@
 				850904EE171F789E009F125C /* ClosetViewController.m in Sources */,
 				850904F3171F78BE009F125C /* GamesViewController.m in Sources */,
 				850904F8171F78D3009F125C /* StoreViewController.m in Sources */,
+				85A4A513172F5B020034EED6 /* EatViewController.m in Sources */,
+				85A4A51D172F63B70034EED6 /* WalkViewController.m in Sources */,
+				85A4A522172F640A0034EED6 /* PlayViewController.m in Sources */,
+				85A4A527172F643A0034EED6 /* PetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
