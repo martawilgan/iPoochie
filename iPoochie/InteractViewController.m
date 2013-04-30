@@ -215,7 +215,7 @@
     if ([buttonType isEqualToString: @"sleep"])
     {
         // Animate sleeping after timer
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
                                        selector:@selector(goingToSleep:)
                                        userInfo:nil repeats:NO];
         // Check to see if awake
@@ -242,7 +242,7 @@
     if ([buttonType isEqualToString: @"wake up"])
     {
         // Animate awake after timer
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self
                                        selector:@selector(wakingUp:)
                                        userInfo:nil repeats:NO];
         // Check to see if asleep
@@ -427,18 +427,10 @@
                                      [UIImage imageNamed:@"angry2.png"],
                                      [UIImage imageNamed:@"angry1.png"],
                                      [UIImage imageNamed:@"angry2.png"],
-                                     [UIImage imageNamed:@"angry1.png"],
-                                     [UIImage imageNamed:@"angry2.png"],
-                                     [UIImage imageNamed:@"angry1.png"],
-                                     [UIImage imageNamed:@"angry2.png"],
-                                     [UIImage imageNamed:@"angry1.png"],
-                                     [UIImage imageNamed:@"angry2.png"],
-                                     [UIImage imageNamed:@"angry1.png"],
-                                     [UIImage imageNamed:@"angry2.png"],
                                      nil];
     
     
-    petImageView.animationDuration = 3.0;
+    petImageView.animationDuration = 1.0;
     petImageView.animationRepeatCount = 1;
     [petImageView startAnimating];
 }
