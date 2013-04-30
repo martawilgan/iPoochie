@@ -16,11 +16,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *energyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *happinessLabel;
+@property (weak, nonatomic) IBOutlet UILabel *talkLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *healthImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *energryImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *happinessImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+
 
 
 

@@ -20,10 +20,12 @@
 @synthesize healthLabel;
 @synthesize energyLabel;
 @synthesize happinessLabel;
+@synthesize talkLabel;
 @synthesize healthImageView;
 @synthesize energryImageView;
 @synthesize happinessImageView;
 @synthesize petImageView;
+@synthesize talkImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,7 +91,7 @@
     
     // Update the health label text
     healthLabel.text =
-    [NSString stringWithFormat:@"%@ %@", health, @"%"];
+    [NSString stringWithFormat:@"%@%@", health, @"%"];
     
     
     
@@ -109,7 +111,7 @@
     
     // Update the health label text
     energyLabel.text =
-    [NSString stringWithFormat:@"%@ %@", energy, @"%"];
+    [NSString stringWithFormat:@"%@%@", energy, @"%"];
     
     // Update the energy image view
     NSString *imageName = [self barsImageName: [energy intValue]];
@@ -126,7 +128,7 @@
     
     // Update the health label text
     happinessLabel.text =
-    [NSString stringWithFormat:@"%@ %@", happiness, @"%"];
+    [NSString stringWithFormat:@"%@%@", happiness, @"%"];
     
     // Update the happiness image view
     NSString *imageName = [self barsImageName: [happiness intValue]];
@@ -226,8 +228,10 @@
         }
         else
         {
-            [self setAngry:[NSNumber numberWithInt:1]];
             [self animateAngry]; // already asleep!
+            talkLabel.text = @"I AM ASLEEP!";
+            talkImageView.hidden = NO;
+            talkImageView.image = [UIImage imageNamed:@"talkBubble.png"];
         }
         
     }
@@ -253,8 +257,10 @@
         }
         else
         {
-            [self setAngry:[NSNumber numberWithInt:1]];
-            [self animateAngry]; // already awake! 
+            [self animateAngry]; // already awake!
+            talkLabel.text = @"I AM AWAKE!";
+            talkImageView.hidden = NO;
+            talkImageView.image = [UIImage imageNamed:@"talkBubble.png"];
         }
         
     }
@@ -441,15 +447,11 @@
     [inTimer invalidate];
     inTimer = nil;
     
-    // If not angry wake up otherwise stop being angry
-    if ([[self angry] isEqualToNumber:[NSNumber numberWithInt:1]])
-    {
-        [self animateAwake];
-    }
-    else
-    {
-        [self setAngry:[NSNumber numberWithInt:0]];
-    }
+    // Wake up and stop being angry if angry
+    [self animateAwake];
+    talkLabel.text = @" ";
+    talkImageView.hidden = YES;
+    
 }
 
 // Wait then animate the puppy being asleep
@@ -458,15 +460,10 @@
     [inTimer invalidate];
     inTimer = nil;
     
-    // If not angry sleep otherwise stop being angry
-    if ([[self angry] isEqualToNumber:[NSNumber numberWithInt:1]])
-    {
-        [self animateSleeping];
-    }
-    else
-    {
-        [self setAngry:[NSNumber numberWithInt:0]];
-    }
+    // Sleep and stop being angry if angry
+    [self animateSleeping];
+    talkLabel.text = @" ";
+    talkImageView.hidden = YES;
 }
 
 // Update state variable and plist
@@ -486,34 +483,5 @@
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
 
 }
-
--(id) angry
-{
-    // Create the app delegate
-    AppDelegate *appDelegate =
-    (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
-
-    return [gameData objectForKey:@"angry"];
-}
-
-
-// Set angry variable in plist
--(void) setAngry : (NSNumber*) number
-{
-    // Create the app delegate
-    AppDelegate *appDelegate =
-    (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
-    // Update the plist
-    [gameData setObject: number
-                forKey:@"angry"];
-    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-
-}
-
-
 
 @end
