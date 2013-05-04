@@ -16,7 +16,9 @@
 @implementation PetViewController
 @synthesize points;
 @synthesize pointsLabel;
+@synthesize talkLabel;
 @synthesize petImageView;
+@synthesize talkImageView;
 @synthesize wagging1;
 @synthesize wagging2;
 
@@ -172,6 +174,8 @@ int gCurrentArray = 0; // current wagging array
         NSLog(@"\nTouches began");
         gCurrentIndex = 0;  // index starts at 0
         gCurrentArray = 1;
+        talkLabel.text = @" ";
+        talkImageView.hidden = YES;
     }
 }
 

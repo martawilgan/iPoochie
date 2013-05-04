@@ -11,9 +11,11 @@
 @interface PetViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *talkLabel;
 @property (strong, nonatomic) NSNumber *points;
 
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 
 @property (strong, nonatomic) NSArray *wagging1;
