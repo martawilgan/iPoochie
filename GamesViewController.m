@@ -7,6 +7,7 @@
 //
 
 #import "GamesViewController.h"
+#import "MatchingViewController.h"
 #import "AppDelegate.h"
 
 @interface GamesViewController ()
@@ -51,6 +52,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)goToCardMatch: (id)sender
+{
+    MatchingViewController *matchingViewController = [[MatchingViewController alloc] init];
+    [self presentViewController:matchingViewController animated:YES completion:NULL];
 }
 
 @end

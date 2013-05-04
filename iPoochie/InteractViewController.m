@@ -12,6 +12,7 @@
 #import "PlayViewController.h"
 #import "WalkViewController.h"
 #import "AppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface InteractViewController ()
 
@@ -85,6 +86,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Update health on screen to reflect current values in plist
 - (void) updateHealth
 {
     // Grab health from plist through app delegate
@@ -105,6 +107,7 @@
 
 }
 
+// Update energy on screen to reflect current values in plist
 - (void) updateEnergy
 {
     // Grab health from plist through app delegate
@@ -122,6 +125,7 @@
     energryImageView.image = [UIImage imageNamed:imageName];
 }
 
+// Update happiness on screen to reflect current values in plist
 - (void) updateHappiness
 {
     // Grab health from plist through app delegate
@@ -139,6 +143,7 @@
     happinessImageView.image = [UIImage imageNamed:imageName];
 }
 
+// Return appropriate bar image name for percentage
 - (NSString*) barsImageName: (int) number
 {
     NSString *name;
@@ -434,6 +439,13 @@
 // Create animation for puppy to appear to be angry
 -(void) animateAngry
 {
+    // Play angry barking sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"angry_bark" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+    
+    // Create the animation
     petImageView.animationImages =  [NSArray arrayWithObjects:
                                      [UIImage imageNamed:@"angry1.png"],
                                      [UIImage imageNamed:@"angry2.png"],

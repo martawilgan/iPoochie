@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) NSNumber *points;
 
+-(IBAction)goToCardMatch: (id)sender;
+
 @end

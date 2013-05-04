@@ -14,7 +14,15 @@
 @property (strong, nonatomic) NSNumber *points;
 
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIImageView *petImageView;
+
+@property (strong, nonatomic) NSArray *wagging1;
+@property (strong, nonatomic) NSArray *wagging2;
 
 -(IBAction)goBack: (id)sender;
+-(NSString*) nextImageName;
+-(void) updateIndex;
+-(void)petting:(NSTimer*)inTimer;
+-(void)stopped:(NSTimer*)inTimer;
 
 @end
