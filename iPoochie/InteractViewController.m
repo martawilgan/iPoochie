@@ -134,7 +134,7 @@
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
     
-    // Update the health label text
+    // Update the happiness label text
     happinessLabel.text =
     [NSString stringWithFormat:@"%@%@", happiness, @"%"];
     

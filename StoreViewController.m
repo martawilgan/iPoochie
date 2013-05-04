@@ -147,15 +147,6 @@
                      forKey:@"amounts"];
         [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
 
-        // Create the alert of success
-        /*NSString *message =
-            [NSString stringWithFormat:@"an item for %@ points", prices[theRow]];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You have purchased: "
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Done"
-                                              otherButtonTitles: nil];
-        [alert show];*/
     }
     else
     {

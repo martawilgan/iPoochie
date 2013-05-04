@@ -57,6 +57,11 @@
 		856BBAF917354EC600CFA485 /* redBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAF517354EC600CFA485 /* redBubble.png */; };
 		856BBAFA17354EC600CFA485 /* yellowBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAF617354EC600CFA485 /* yellowBubble.png */; };
 		856BBAFC17354F6800CFA485 /* talkBubble2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAFB17354F6800CFA485 /* talkBubble2.png */; };
+		856BBB00173575ED00CFA485 /* purpleArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAFF173575ED00CFA485 /* purpleArrow.png */; };
+		856BBB051735790700CFA485 /* redArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB011735790600CFA485 /* redArrow.png */; };
+		856BBB061735790700CFA485 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB021735790600CFA485 /* blueArrow.png */; };
+		856BBB071735790700CFA485 /* purpleArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB031735790600CFA485 /* purpleArrow.png */; };
+		856BBB081735790700CFA485 /* magentaArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB041735790600CFA485 /* magentaArrow.png */; };
 		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
 		85A4A46F172D2A030034EED6 /* bars1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A465172D2A030034EED6 /* bars1.png */; };
 		85A4A470172D2A030034EED6 /* bars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A466172D2A030034EED6 /* bars2.png */; };
@@ -232,6 +237,11 @@
 		856BBAF517354EC600CFA485 /* redBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redBubble.png; sourceTree = "<group>"; };
 		856BBAF617354EC600CFA485 /* yellowBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBubble.png; sourceTree = "<group>"; };
 		856BBAFB17354F6800CFA485 /* talkBubble2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talkBubble2.png; sourceTree = SOURCE_ROOT; };
+		856BBAFF173575ED00CFA485 /* purpleArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleArrow.png; sourceTree = SOURCE_ROOT; };
+		856BBB011735790600CFA485 /* redArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redArrow.png; sourceTree = SOURCE_ROOT; };
+		856BBB021735790600CFA485 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = SOURCE_ROOT; };
+		856BBB031735790600CFA485 /* purpleArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleArrow.png; sourceTree = SOURCE_ROOT; };
+		856BBB041735790600CFA485 /* magentaArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magentaArrow.png; sourceTree = SOURCE_ROOT; };
 		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
 		85A4A465172D2A030034EED6 /* bars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars1.png; sourceTree = "<group>"; };
 		85A4A466172D2A030034EED6 /* bars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars2.png; sourceTree = "<group>"; };
@@ -557,6 +567,11 @@
 		856BBAF217354E6000CFA485 /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB011735790600CFA485 /* redArrow.png */,
+				856BBB021735790600CFA485 /* blueArrow.png */,
+				856BBB031735790600CFA485 /* purpleArrow.png */,
+				856BBB041735790600CFA485 /* magentaArrow.png */,
+				856BBAFF173575ED00CFA485 /* purpleArrow.png */,
 				856BBAFB17354F6800CFA485 /* talkBubble2.png */,
 				856BBAF317354EC600CFA485 /* orangeBubble.png */,
 				856BBAF417354EC600CFA485 /* greenBubble.png */,
@@ -930,6 +945,11 @@
 				856BBAF917354EC600CFA485 /* redBubble.png in Resources */,
 				856BBAFA17354EC600CFA485 /* yellowBubble.png in Resources */,
 				856BBAFC17354F6800CFA485 /* talkBubble2.png in Resources */,
+				856BBB00173575ED00CFA485 /* purpleArrow.png in Resources */,
+				856BBB051735790700CFA485 /* redArrow.png in Resources */,
+				856BBB061735790700CFA485 /* blueArrow.png in Resources */,
+				856BBB071735790700CFA485 /* purpleArrow.png in Resources */,
+				856BBB081735790700CFA485 /* magentaArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

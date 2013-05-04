@@ -15,15 +15,24 @@
 
 @implementation PetViewController
 @synthesize points;
+@synthesize wagging1;
+@synthesize wagging2;
+@synthesize timingDate;
 @synthesize pointsLabel;
 @synthesize talkLabel;
 @synthesize petImageView;
 @synthesize talkImageView;
-@synthesize wagging1;
-@synthesize wagging2;
+@synthesize numberLabel;
+@synthesize happinessLabel;
+@synthesize bubbleImageView;
+@synthesize arrowImageView;
+@synthesize happinessStatLabel;
+@synthesize happinessBarImageView;
 
 int gCurrentIndex = 0; // current index for wagging array
 int gCurrentArray = 0; // current wagging array
+int gTenSeconds = 0;   // number of ten seconds spent petting
+double gTotalTime = 0; // total time spent petting
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,10 +87,24 @@ int gCurrentArray = 0; // current wagging array
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
-    
+    NSNumber *happiness = [gameData objectForKey:@"happiness"];
+
     // Update the points label text
     pointsLabel.text =
     [NSString stringWithFormat:@"Points: %@", points];
+    
+    // Update the happiness label text
+    happinessStatLabel.text =
+    [NSString stringWithFormat:@"%@%@", happiness, @"%"];
+    
+    // Update the happiness image view
+    NSString *imageName = [self barsImageName: [happiness intValue]];
+    happinessBarImageView.image = [UIImage imageNamed:imageName];
+    
+    // Set to defaults
+    gTotalTime = 0;
+    gTenSeconds = 0;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +163,107 @@ int gCurrentArray = 0; // current wagging array
     }
 }
 
+// Increase happiness if not already 100, and alert user
+-(void) updateHappiness
+{
+    // Grab health from plist through app delegate
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *happiness = [gameData objectForKey:@"happiness"];
+    int happinessInt = [happiness intValue];
+    
+    // If not already 100% increase happiness by 5%
+    if((happinessInt+5) <= 100)
+    {
+        happinessInt+=5;
+        
+        // Alert user happiness is increasing
+        numberLabel.text = @"5%";
+        happinessLabel.text = @"Happiness Up";
+        bubbleImageView.hidden = NO;
+        bubbleImageView.image = [UIImage imageNamed:@"greenBubble.png"];
+        arrowImageView.hidden = NO;
+        arrowImageView.image = [UIImage imageNamed:@"magentaArrow.png"];
+        
+        // Update health and write back to plist
+        happiness = [NSNumber numberWithInt:happinessInt];
+        [gameData setObject:happiness forKey:@"happiness"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+        
+        // Update the happiness label text
+        happinessStatLabel.text =
+        [NSString stringWithFormat:@"%@%@", happiness, @"%"];
+        
+        // Update the happiness image view
+        NSString *imageName = [self barsImageName: [happiness intValue]];
+        happinessBarImageView.image = [UIImage imageNamed:imageName];
+        
+        // After time interval hide alert to user
+        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+                                       selector:@selector(hideBubble:)
+                                       userInfo:nil repeats:NO];
+    }
+}
+
+// Return appropriate bar image name for percentage
+- (NSString*) barsImageName: (int) number
+{
+    NSString *name;
+    
+    if(number >= 0 && number < 11)
+    {
+        name = @"bars1.png";
+    }
+    
+    if(number > 10 && number < 21)
+    {
+        name = @"bars2.png";
+    }
+    
+    if(number > 20 && number < 31)
+    {
+        name = @"bars3.png";
+    }
+    
+    if(number > 30 && number < 41)
+    {
+        name = @"bars4.png";
+    }
+    
+    if(number > 40 && number < 51)
+    {
+        name = @"bars5.png";
+    }
+    
+    if(number > 50 && number < 61)
+    {
+        name = @"bars6.png";
+    }
+    
+    if(number > 60 && number < 71)
+    {
+        name = @"bars7.png";
+    }
+    
+    if(number > 70 && number < 81)
+    {
+        name = @"bars8.png";
+    }
+    
+    if(number > 80 && number < 91)
+    {
+        name = @"bars9.png";
+    }
+    
+    if(number > 90 && number < 101)
+    {
+        name = @"bars10.png";
+    }
+    
+    return name;
+}
+
 // Wait then change image in petImageView
 -(void)petting:(NSTimer*)inTimer
 {
@@ -152,7 +276,7 @@ int gCurrentArray = 0; // current wagging array
     [self updateIndex]; // update the array index
 }
 
-// Wait then complete animation
+// Wait then change image
 -(void)stopped:(NSTimer*)inTimer
 {
     [inTimer invalidate];
@@ -160,6 +284,19 @@ int gCurrentArray = 0; // current wagging array
     
     // Wake up and stop being angry if angry
     petImageView.image = [UIImage imageNamed:@"blinking4A.png"];
+}
+
+// Wait then hide happiness message
+-(void)hideBubble:(NSTimer*)inTimer
+{
+    [inTimer invalidate];
+    inTimer = nil;
+    
+    // Clear happiness message
+    numberLabel.text = @"";
+    happinessLabel.text = @"";
+    bubbleImageView.hidden = YES;
+    arrowImageView.hidden = YES;
 }
 
 #pragma mark -
@@ -172,10 +309,12 @@ int gCurrentArray = 0; // current wagging array
 	if ([touch view] == petImageView)
     {
         NSLog(@"\nTouches began");
-        gCurrentIndex = 0;  // index starts at 0
-        gCurrentArray = 1;
-        talkLabel.text = @" ";
-        talkImageView.hidden = YES;
+        
+        timingDate = [NSDate date]; // set start date
+        gCurrentIndex = 0;          // Index starts at 0
+        gCurrentArray = 1;          // Current array wagging1
+        talkLabel.text = @" ";      // Clear talk label
+        talkImageView.hidden = YES; // Make talk bubble hidden
     }
 }
 
@@ -193,11 +332,17 @@ int gCurrentArray = 0; // current wagging array
     {
         NSLog(@"\nTouches ended");
         
+        // Find how much time petting lasted
+        NSNumber *time = [NSNumber numberWithDouble:
+                          [[NSDate date] timeIntervalSinceDate:self.timingDate]];
+        gTotalTime += [time doubleValue]; // Update total time
+        
         // Wait then change image for petImageView twice
         [NSTimer scheduledTimerWithTimeInterval:.3 target:self
                                        selector:@selector(stopped:)
                                        userInfo:nil repeats:NO];
         petImageView.image = [UIImage imageNamed:@"blinking4C.png"];
+        
     }
 }
 
@@ -208,7 +353,19 @@ int gCurrentArray = 0; // current wagging array
     // Touch Action for petImageView
 	if ([touch view] == petImageView)
     {
-        NSLog(@"\nTouches moved");
+        //NSLog(@"\nTouches moved");
+        
+        // Find how much time petting
+        NSNumber *time = [NSNumber numberWithDouble:
+                          [[NSDate date] timeIntervalSinceDate:self.timingDate]];        
+        int totalTimeInt = (int)gTotalTime + [time intValue];
+        
+        // For every ten seconds, happiness goes up 5% unless already 100%
+        if( (totalTimeInt/10) > gTenSeconds)
+        {
+            [self updateHappiness];
+            gTenSeconds++;
+        }
         
         // Wait then change image for petImageView
         [NSTimer scheduledTimerWithTimeInterval:.1 target:self
