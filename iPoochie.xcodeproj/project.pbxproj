@@ -62,6 +62,8 @@
 		856BBB061735790700CFA485 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB021735790600CFA485 /* blueArrow.png */; };
 		856BBB071735790700CFA485 /* purpleArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB031735790600CFA485 /* purpleArrow.png */; };
 		856BBB081735790700CFA485 /* magentaArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB041735790600CFA485 /* magentaArrow.png */; };
+		856BBB0B173621A100CFA485 /* down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB09173621A100CFA485 /* down.wav */; };
+		856BBB0C173621A100CFA485 /* up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB0A173621A100CFA485 /* up.wav */; };
 		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
 		85A4A46F172D2A030034EED6 /* bars1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A465172D2A030034EED6 /* bars1.png */; };
 		85A4A470172D2A030034EED6 /* bars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A466172D2A030034EED6 /* bars2.png */; };
@@ -242,6 +244,8 @@
 		856BBB021735790600CFA485 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = SOURCE_ROOT; };
 		856BBB031735790600CFA485 /* purpleArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleArrow.png; sourceTree = SOURCE_ROOT; };
 		856BBB041735790600CFA485 /* magentaArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magentaArrow.png; sourceTree = SOURCE_ROOT; };
+		856BBB09173621A100CFA485 /* down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = down.wav; sourceTree = SOURCE_ROOT; };
+		856BBB0A173621A100CFA485 /* up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = up.wav; sourceTree = SOURCE_ROOT; };
 		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
 		85A4A465172D2A030034EED6 /* bars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars1.png; sourceTree = "<group>"; };
 		85A4A466172D2A030034EED6 /* bars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars2.png; sourceTree = "<group>"; };
@@ -509,6 +513,8 @@
 		850904CF171F7149009F125C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB09173621A100CFA485 /* down.wav */,
+				856BBB0A173621A100CFA485 /* up.wav */,
 				85A4A539172F83C90034EED6 /* angry_bark.wav */,
 				85A4A537172F83BF0034EED6 /* whimper.wav */,
 				85A4A535172F83B00034EED6 /* happy_bark.wav */,
@@ -950,6 +956,8 @@
 				856BBB061735790700CFA485 /* blueArrow.png in Resources */,
 				856BBB071735790700CFA485 /* purpleArrow.png in Resources */,
 				856BBB081735790700CFA485 /* magentaArrow.png in Resources */,
+				856BBB0B173621A100CFA485 /* down.wav in Resources */,
+				856BBB0C173621A100CFA485 /* up.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,11 +26,17 @@
 @synthesize energyLabel;
 @synthesize happinessLabel;
 @synthesize talkLabel;
+@synthesize infoPercLabel;
+@synthesize infoTypeLabel;
 @synthesize healthImageView;
 @synthesize energryImageView;
 @synthesize happinessImageView;
 @synthesize petImageView;
 @synthesize talkImageView;
+@synthesize infoArrowImageView;
+@synthesize infoBubbleImageView;
+@synthesize timingDate;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -78,6 +84,8 @@
     {
         [self animateSleeping];
     }
+    
+    timingDate = [NSDate date]; // set start date
 }
 
 - (void)didReceiveMemoryWarning
@@ -224,6 +232,8 @@
         // Check to see if awake
         if([state isEqualToString:@"awake"])
         {
+            // Update energy and put to sleep
+            [self levelForTimeInState:@"awake" andType:@"energy"];
             [self animateGoingToSleep];
             [self changeStateTo:@"asleep"];
         }
@@ -233,6 +243,12 @@
             talkLabel.text = @"I AM ASLEEP!";
             talkImageView.hidden = NO;
             talkImageView.image = [UIImage imageNamed:@"talkBubble.png"];
+            
+            // Show changes made to happiness if any
+            [self levelForType:@"happiness"
+                     direction:@"down"
+                 intervalStart:10
+                   intervalEnd:30];
         }
         
     }
@@ -245,6 +261,8 @@
         // Check to see if asleep
         if([state isEqualToString:@"asleep"])
         {
+            // Update energy and wake up
+            [self levelForTimeInState:@"asleep" andType:@"energy"];
             [self animateWakingUp];
             [self changeStateTo:@"awake"];
         }
@@ -254,6 +272,12 @@
             talkLabel.text = @"I AM AWAKE!";
             talkImageView.hidden = NO;
             talkImageView.image = [UIImage imageNamed:@"talkBubble.png"];
+            
+            // Show changes made to happiness if any
+            [self levelForType:@"happiness"
+                     direction:@"down"
+                 intervalStart:10
+                   intervalEnd:20];
         }
         
     }
@@ -490,6 +514,19 @@
     talkImageView.hidden = YES;
 }
 
+// Wait then clear the level type info
+-(void)clearInfo:(NSTimer*)inTimer
+{
+    [inTimer invalidate];
+    inTimer = nil;
+    
+    // Clear the info
+    infoTypeLabel.text = @"";
+    infoPercLabel.text = @"";
+    infoBubbleImageView.hidden = YES;
+    infoArrowImageView.hidden = YES;
+}
+
 // Update state variable and plist
 -(void) changeStateTo:(NSString*) theState
 {
@@ -506,6 +543,190 @@
                  forKey:@"petState"];
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
 
+}
+
+-(void) levelForType:(NSString*) type
+           direction:(NSString*) direction
+       intervalStart:(int) start
+         intervalEnd:(int) end
+{
+    // Create the app delegate
+    AppDelegate *appDelegate =
+    (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *percentage = [gameData objectForKey:type];
+    int percentageInt = [percentage intValue];
+    
+    Boolean showChange = YES;   // change to false if no change is possible
+    
+    // Calculate random on interval
+    int change = (arc4random() % (end - start)) + start;
+    
+    NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i Plus Change: %i",
+          type, direction, start, end, change, percentageInt, (percentageInt + change));
+    
+    // Do checks for up
+    if([direction isEqualToString:@"up"])
+    {
+        // Percentage is already at 100
+        if(percentageInt == 100)
+        {
+            NSLog(@"\nPercentage already 100");
+            showChange = NO;
+        }
+        
+        // Make sure percentage + change does not go over 100
+        if((percentageInt + change) > 100)
+        {
+            NSLog(@"\nPercentage + change > 100");
+            change = 100 - percentageInt;
+            percentageInt = 100;
+        }
+        else
+        {
+            percentageInt += change;
+        }
+    }
+
+    // Do checks for down
+    if([direction isEqualToString:@"down"])
+    {
+        // Percentage is already 0
+        if(percentageInt == 0)
+        {
+            NSLog(@"Percentage already 0");
+            showChange = NO;
+        }
+        
+        // Make sure percentage - change does not go below 0
+        if((percentageInt - change) < 0)
+        {
+            NSLog(@"\nPercentage - change < 0");
+            change = percentageInt;
+            percentageInt = 0;
+        }
+        else
+        {
+            percentageInt -= change;
+        }
+    }
+    
+    // Show changes made and update plist
+    if(showChange == YES)
+    {
+        // Show labels
+        infoTypeLabel.text =
+            [NSString stringWithFormat:@"%@", type];
+        infoPercLabel.text =
+            [NSString stringWithFormat:@"%i%@", change, @"%"];
+    
+        /*
+         * Bubble for direction, green for up, red for down
+         * Arrow for direction, purple for up, red for down
+         */
+        if([direction isEqualToString:@"up"])
+        {
+            infoBubbleImageView.image =
+                [UIImage imageNamed:@"greenBubble.png"];
+            infoArrowImageView.image =
+            [UIImage imageNamed:@"purpleArrow.png"];
+        }
+        else if([direction isEqualToString:@"down"])
+        {
+            infoBubbleImageView.image =
+                [UIImage imageNamed:@"redBubble.png"];
+            infoArrowImageView.image =
+                [UIImage imageNamed:@"redArrow.png"];
+        }
+    
+        // Show image views
+        infoBubbleImageView.hidden = NO;
+        infoArrowImageView.hidden = NO;
+        
+        // Play sound
+        [self soundForDirection:direction];
+    
+        // Update the plist values
+        percentage = [NSNumber numberWithInt:percentageInt];
+        [gameData setObject:percentage
+                     forKey:type];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+        
+        
+        // Update stat information
+        if([type isEqualToString:@"health"])
+        {
+            [self updateHealth];
+        }
+        if([type isEqualToString:@"energy"])
+        {
+            [self updateEnergy];
+        }
+        if([type isEqualToString:@"happiness"])
+        {
+            [self updateHappiness];
+        }
+        
+        // Clear labels and imageViews after timer
+        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+                                       selector:@selector(clearInfo:)
+                                       userInfo:nil repeats:NO];
+    }
+}
+
+// Play sound for direction up or down
+-(void) soundForDirection: (NSString *)direction
+{
+    NSString *path; // path for sound
+    
+    // Set the path for direction
+    if([direction isEqualToString:@"up"])
+    {
+        // Path for up
+        path = [ [NSBundle mainBundle] pathForResource:@"up" ofType:@"wav"];
+    }
+    if([direction isEqualToString:@"down"])
+    {
+        // Path for down
+        path = [ [NSBundle mainBundle] pathForResource:@"down" ofType:@"wav"];
+    }
+    
+    // Play sound
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+}
+
+-(void) levelForTimeInState:(NSString *) theState andType:(NSString *) type
+{
+    // Find how much time pet was in state
+    NSNumber *time = [NSNumber numberWithDouble:
+                      [[NSDate date] timeIntervalSinceDate:self.timingDate]];
+    
+    if([theState isEqualToString:@"awake"])
+    {
+        int end  = [time intValue] + 5; // end on interval
+        
+        // Show changes made to type if any
+        [self levelForType:type
+                 direction:@"down"
+             intervalStart:0
+               intervalEnd:end];
+    }
+    
+    if([theState isEqualToString:@"asleep"])
+    {
+        int end  = [time intValue] + 10; // end on interval
+
+        // Show changes made to type if any
+        [self levelForType:type
+                 direction:@"up"
+             intervalStart:0
+               intervalEnd:end];
+    }
+    
+    timingDate = [NSDate date]; // set start date for next state
 }
 
 @end

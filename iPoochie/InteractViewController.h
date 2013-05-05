@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) NSNumber *points;
 @property (strong, nonatomic) NSString *state;
+@property (strong, nonatomic) NSDate *timingDate;
 
 // Labels
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *energyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *happinessLabel;
 @property (weak, nonatomic) IBOutlet UILabel *talkLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *infoPercLabel;
 
 // ImageViews
 @property (weak, nonatomic) IBOutlet UIImageView *healthImageView;
@@ -26,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *happinessImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *petImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *infoBubbleImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *infoArrowImageView;
 
 // Buttons
 @property (weak, nonatomic) IBOutlet UIButton *eatButton;
