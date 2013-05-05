@@ -177,7 +177,7 @@ double gTotalTime = 0; // total time spent petting
     Boolean showChange = NO;   // change to true if change is possible
     
     // Calculate random number for change on interval
-    int change = (arc4random() % ((time + 5) - 2)) + 2;
+    int change = (arc4random() % ((time + 5) - 2)) + 3;
     
     
     // Make sure percentage does not go over 100

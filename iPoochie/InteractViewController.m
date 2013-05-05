@@ -630,7 +630,7 @@
             infoBubbleImageView.image =
                 [UIImage imageNamed:@"greenBubble.png"];
             infoArrowImageView.image =
-            [UIImage imageNamed:@"purpleArrow.png"];
+            [UIImage imageNamed:@"magentaArrow.png"];
         }
         else if([direction isEqualToString:@"down"])
         {
@@ -711,7 +711,7 @@
         // Show changes made to type if any
         [self levelForType:type
                  direction:@"down"
-             intervalStart:0
+             intervalStart:2
                intervalEnd:end];
     }
     
@@ -722,7 +722,7 @@
         // Show changes made to type if any
         [self levelForType:type
                  direction:@"up"
-             intervalStart:0
+             intervalStart:2
                intervalEnd:end];
     }
     
