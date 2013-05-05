@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define itemsFileName          @"items.plist"
+#define gameFileName           @"game.plist"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     UIWindow *window;

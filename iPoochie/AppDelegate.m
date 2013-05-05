@@ -22,11 +22,10 @@
     
     // Override point for customization after application launch.
     
-    // Create paths for plists    
-    itemsDataPath = [self pathForName:@"items.plist"];
-    gameDataPath = [self pathForName:@"game.plist"];
+    // copy plist to documents and set their paths
+    [self pathForComponent:itemsFileName];
+    [self pathForComponent:gameFileName];
     
-
     // Load data from plists
     itemsData = [[NSDictionary alloc] initWithContentsOfFile:itemsDataPath];
     gameData = [[NSDictionary alloc] initWithContentsOfFile:gameDataPath];
@@ -68,15 +67,52 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-// return full pathname for filename 
-- (NSString *) pathForName : (NSString *) fileName
+-(void) pathForComponent: (NSString *) fileName
 {
-    /*NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-     NSString *documentsDirectory = [paths objectAtIndex:0];
-    return [documentsDirectory stringByAppendingPathComponent:fileName];*/
+    BOOL success;
+    NSError *error;
+
+    // See if file is present in documents folder
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+    success = [fileManager fileExistsAtPath:filePath];
     
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    return[path stringByAppendingPathComponent:fileName];
+    if (success)
+    {
+        if([fileName isEqualToString:@"items.plist"])
+        {
+            itemsDataPath = filePath;
+        }
+        else if([fileName isEqualToString:@"game.plist"])
+        {
+            gameDataPath = filePath;
+        }
+        
+        return;
+    }
+
+    // Otherwise copy the file over
+    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName];
+    success = [fileManager copyItemAtPath:path toPath:filePath error:&error];
+    
+    if(success)
+    {
+        if([fileName isEqualToString:@"items.plist"])
+        {
+            itemsDataPath = filePath;
+        }
+        else if([fileName isEqualToString:@"game.plist"])
+        {
+            gameDataPath = filePath;
+        }
+    }
+
+    if (!success)
+    {
+        NSAssert1(0, @"Failed to copy Plist. Error %@", [error localizedDescription]);
+    }
 }
 
 @end

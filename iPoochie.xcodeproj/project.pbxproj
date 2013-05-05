@@ -384,7 +384,6 @@
 		85090489171F7049009F125C = {
 			isa = PBXGroup;
 			children = (
-				85A4A53B172F84B50034EED6 /* AudioToolbox.framework */,
 				8509049B171F704A009F125C /* iPoochie */,
 				850904B9171F704A009F125C /* iPoochieTests */,
 				85090494171F7049009F125C /* Frameworks */,
@@ -404,6 +403,7 @@
 		85090494171F7049009F125C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85A4A53B172F84B50034EED6 /* AudioToolbox.framework */,
 				85090495171F704A009F125C /* UIKit.framework */,
 				85090497171F704A009F125C /* Foundation.framework */,
 				85090499171F704A009F125C /* CoreGraphics.framework */,
