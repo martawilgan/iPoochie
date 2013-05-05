@@ -8,6 +8,7 @@
 
 #import "PetViewController.h"
 #import "AppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface PetViewController ()
 
@@ -31,7 +32,7 @@
 
 int gCurrentIndex = 0; // current index for wagging array
 int gCurrentArray = 0; // current wagging array
-int gTenSeconds = 0;   // number of ten seconds spent petting
+int gTwoSeconds = 0;   // number of two seconds spent petting
 double gTotalTime = 0; // total time spent petting
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -103,7 +104,7 @@ double gTotalTime = 0; // total time spent petting
     
     // Set to defaults
     gTotalTime = 0;
-    gTenSeconds = 0;
+    gTwoSeconds = 0;
     
 }
 
@@ -164,7 +165,7 @@ double gTotalTime = 0; // total time spent petting
 }
 
 // Increase happiness if not already 100, and alert user
--(void) updateHappiness
+-(void) updateHappinessForTime:(int)time
 {
     // Grab health from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -173,20 +174,45 @@ double gTotalTime = 0; // total time spent petting
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
     int happinessInt = [happiness intValue];
     
-    // If not already 100% increase happiness by 5%
-    if((happinessInt+5) <= 100)
+    Boolean showChange = NO;   // change to true if change is possible
+    
+    // Calculate random number for change on interval
+    int change = (arc4random() % ((time + 5) - 2)) + 2;
+    
+    
+    // Make sure percentage does not go over 100
+    if(happinessInt < 100 && (happinessInt + change) > 100)
     {
-        happinessInt+=5;
+        showChange = YES;
+        change = 100 - happinessInt;
+        happinessInt = 100;
+    }
+    else if(happinessInt < 100 && (happinessInt + change) <= 100)
+    {
+        showChange = YES;
+        happinessInt += change;
+    }
+
+    
+    // If change possible increase happiness by change%
+    if(showChange == YES)
+    {
         
         // Alert user happiness is increasing
-        numberLabel.text = @"5%";
+        numberLabel.text = [NSString stringWithFormat:@"%i%@",change,@"%"];
         happinessLabel.text = @"Happiness Up";
         bubbleImageView.hidden = NO;
         bubbleImageView.image = [UIImage imageNamed:@"greenBubble.png"];
         arrowImageView.hidden = NO;
         arrowImageView.image = [UIImage imageNamed:@"magentaArrow.png"];
         
-        // Update health and write back to plist
+        // Play sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"up" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
+        
+        // Update happiness and write back to plist
         happiness = [NSNumber numberWithInt:happinessInt];
         [gameData setObject:happiness forKey:@"happiness"];
         [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
@@ -199,8 +225,8 @@ double gTotalTime = 0; // total time spent petting
         NSString *imageName = [self barsImageName: [happiness intValue]];
         happinessBarImageView.image = [UIImage imageNamed:imageName];
         
-        // After time interval hide alert to user
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+        // After time interval to hide alert to user
+        [NSTimer scheduledTimerWithTimeInterval:2.0 target:self
                                        selector:@selector(hideBubble:)
                                        userInfo:nil repeats:NO];
     }
@@ -360,11 +386,11 @@ double gTotalTime = 0; // total time spent petting
                           [[NSDate date] timeIntervalSinceDate:self.timingDate]];        
         int totalTimeInt = (int)gTotalTime + [time intValue];
         
-        // For every ten seconds, happiness goes up 5% unless already 100%
-        if( (totalTimeInt/10) > gTenSeconds)
+        // For every 2 seconds, happiness goes up unless already 100%
+        if( (totalTimeInt/2) > gTwoSeconds)
         {
-            [self updateHappiness];
-            gTenSeconds++;
+            [self updateHappinessForTime:[time intValue]];
+            gTwoSeconds++;
         }
         
         // Wait then change image for petImageView

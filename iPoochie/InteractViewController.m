@@ -558,9 +558,9 @@
     NSNumber *percentage = [gameData objectForKey:type];
     int percentageInt = [percentage intValue];
     
-    Boolean showChange = YES;   // change to false if no change is possible
+    Boolean showChange = YES;   // change to false if no change is not possible
     
-    // Calculate random on interval
+    // Calculate random number for change on interval
     int change = (arc4random() % (end - start)) + start;
     
     NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i Plus Change: %i",
@@ -702,7 +702,7 @@
 {
     // Find how much time pet was in state
     NSNumber *time = [NSNumber numberWithDouble:
-                      [[NSDate date] timeIntervalSinceDate:self.timingDate]];
+        [[NSDate date] timeIntervalSinceDate:self.timingDate]];
     
     if([theState isEqualToString:@"awake"])
     {
