@@ -102,6 +102,12 @@ BOOL match;
     }
     
     num_matches_left = 6;
+    
+    // Play card shuffle sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"card_shuffle" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
 
 }
 
@@ -182,6 +188,8 @@ BOOL match;
     // On second click check for matches
     if(num_clicks == 2)
     {
+        NSString *path; // Will hold path for sound
+        
         // Match found
         if((cardArray[current_button] == (cardArray[previous_button] - 6))
            || (cardArray[current_button] == (cardArray[previous_button] + 6)))
@@ -208,6 +216,10 @@ BOOL match;
             
             if(num_matches_left > 0)
                 num_matches_left--;
+            
+            // Set path for chime up sound
+            path = [[NSBundle mainBundle] pathForResource:@"chime_up" ofType:@"wav"];
+            
         }
         // No match
         else if((cardArray[current_button] != (cardArray[previous_button] - 6)) && (cardArray[current_button] != (cardArray[previous_button] + 6)))
@@ -215,6 +227,8 @@ BOOL match;
             NSLog(@"no match");
             match = NO;
             
+            // Set path for down sound
+            path = [ [NSBundle mainBundle] pathForResource:@"down" ofType:@"wav"];
         }
         
         if(num_matches_left == 0){
@@ -227,11 +241,8 @@ BOOL match;
                                                   otherButtonTitles: nil];
             [alert show];
             
-            // Play drumroll sound
-            NSString *path = [ [NSBundle mainBundle] pathForResource:@"drum_roll" ofType:@"wav"];
-            SystemSoundID theSound;
-            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-            AudioServicesPlaySystemSound (theSound);
+            // Path for drumroll sound
+            path = [[NSBundle mainBundle] pathForResource:@"tada" ofType:@"wav"];
             
             //Set points
             points = [NSNumber numberWithInt: [points intValue] + 100];
@@ -243,6 +254,11 @@ BOOL match;
 
             
         }
+        
+        // Play the sound for path
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
     }
 }
 

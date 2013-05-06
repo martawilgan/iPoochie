@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface ClosetViewController : UIViewController
     <UITableViewDelegate, UITableViewDataSource>

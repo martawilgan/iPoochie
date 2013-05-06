@@ -60,12 +60,17 @@
 {    
     [super viewDidAppear:animated];
     
-    closetImageView.hidden = NO;
+    //closetImageView.hidden = NO;
+    closetImageView.alpha = 100;
+    
+    // Play door sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"door" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
     
     // Hide the closet image
-    [self performSelector:@selector(hideCloset)
-               withObject:nil
-               afterDelay:1.0];
+    [self hideCloset];
     
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -145,9 +150,14 @@
     self.descriptions = theDescriptions;
 }
 
+// Fade the closet out
 -(void) hideCloset
-{
-    closetImageView.hidden = YES;
+{    
+    // Fade image out
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:2.0];
+    [closetImageView setAlpha:0];
+    [UIView commitAnimations];
 }
 
 #pragma mark - 

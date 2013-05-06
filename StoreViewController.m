@@ -87,12 +87,16 @@
 {
     [super viewDidAppear:animated];
     
-    shopImageView.hidden = NO;
+    // Play cash register sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"register1" ofType:@"mp3"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+    
+    shopImageView.alpha = 100;
     
     // Hide the shop image
-    [self performSelector:@selector(hideShop)
-               withObject:nil
-               afterDelay:1.0];
+    [self hideShop];
     
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -155,8 +159,8 @@
                      forKey:@"amounts"];
         [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
         
-        // Play happy bark sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"happy_bark" ofType:@"wav"];
+        // Play cash register sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"register2" ofType:@"mp3"];
         SystemSoundID theSound;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);
@@ -187,7 +191,11 @@
 
 -(void) hideShop
 {
-    shopImageView.hidden = YES;
+    // Fade image out
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:2.0];
+    [shopImageView setAlpha:0];
+    [UIView commitAnimations];
 }
 
 #pragma mark -
