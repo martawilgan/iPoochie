@@ -60,6 +60,8 @@
 {    
     [super viewDidAppear:animated];
     
+    closetImageView.hidden = NO;
+    
     // Hide the closet image
     [self performSelector:@selector(hideCloset)
                withObject:nil

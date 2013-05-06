@@ -87,6 +87,8 @@
 {
     [super viewDidAppear:animated];
     
+    shopImageView.hidden = NO;
+    
     // Hide the shop image
     [self performSelector:@selector(hideShop)
                withObject:nil
