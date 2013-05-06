@@ -65,18 +65,18 @@ BOOL match;
     [NSString stringWithFormat:@"Points: %@", points];
     
     //Setting tags of buttons
-    [_card1 setTag:0];
-    [_card2 setTag:1];
-    [_card3 setTag:2];
-    [_card4 setTag:3];
-    [_card5 setTag:4];
-    [_card6 setTag:5];
-    [_card7 setTag:6];
-    [_card8 setTag:7];
-    [_card9 setTag:8];
-    [_card10 setTag:9];
-    [_card11 setTag:10];
-    [_card12 setTag:11];
+    [_card1 setTag:100];
+    [_card2 setTag:101];
+    [_card3 setTag:102];
+    [_card4 setTag:103];
+    [_card5 setTag:104];
+    [_card6 setTag:105];
+    [_card7 setTag:106];
+    [_card8 setTag:107];
+    [_card9 setTag:108];
+    [_card10 setTag:109];
+    [_card11 setTag:110];
+    [_card12 setTag:111];
     
     //Array of image names
     stringArray = [NSArray arrayWithObjects: @"card1.png", @"card2.png", @"card3.png", @"card4.png", @"card5.png", @"card6.png", @"card7.png", @"card8.png", @"card9.png",@"card10.png", @"card11.png", @"card12.png", nil];
@@ -122,10 +122,16 @@ BOOL match;
     {
         if(match == NO)
         {
-            UIButton *firstClick = (UIButton *)[self.view viewWithTag:previous_button];
+            int previous_tag = (int)(previous_button + 100);
+            int current_tag = (int)(current_button + 100);
+            
+            NSLog(@"Clearing buttons");
+            NSLog(@"Previous tag: %i", previous_tag);
+             NSLog(@"Current tag: %i", current_tag);
+            UIButton *firstClick = (UIButton *)[self.view viewWithTag:previous_tag];
             [firstClick setImage: defaultButtonImage forState:UIControlStateNormal];
             
-            UIButton *secondClick = (UIButton *)[self.view viewWithTag:current_button];
+            UIButton *secondClick = (UIButton *)[self.view viewWithTag:current_tag];
             [secondClick setImage: defaultButtonImage forState:UIControlStateNormal];
             
         }
@@ -136,15 +142,26 @@ BOOL match;
     
     num_clicks++; // update for this click
     int tag = [sender tag]; // find button's tag
+    int tagIndex = (int)(tag - 100);
     
+    // Update the indices
     if(num_clicks == 1)
-        previous_button = tag;
+    {
+        previous_button = tagIndex;
+    }
     if(num_clicks == 2)
-        current_button = tag;
+    {
+        current_button = tagIndex;
+    }
     
-    NSString *cardName =[NSString stringWithFormat:@"%@",[stringArray objectAtIndex: cardArray[tag]]];
+    // Check for matching cards
+    int previousMatched =
+        [[matched objectAtIndex:cardArray[previous_button]] intValue];
+    int currentMatched =
+        [[matched objectAtIndex:cardArray[current_button]]intValue];
     
-    NSLog(@"Image Name: %@ Tag: %i", cardName, tag);
+    // Find card image name
+    NSString *cardName =[NSString stringWithFormat:@"%@",[stringArray objectAtIndex: cardArray[tagIndex]]];
     
     UIImage *buttonImage = [UIImage imageNamed:cardName];
     [sender setImage: buttonImage forState: UIControlStateNormal];
@@ -156,22 +173,18 @@ BOOL match;
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     
-    NSLog(@"Number of clicks: %i", num_clicks);
-    int previousMatched = [[matched objectAtIndex:cardArray[previous_button]] intValue];
-    int currentMatched = [[matched objectAtIndex:cardArray[current_button]]intValue];
-    
-    NSLog(@"Previous matched: %i Current matched %i", previousMatched, currentMatched);
-    
     // Do not rematch
     if(num_clicks == 2 && previousMatched == 1 && currentMatched == 1)
     {
         num_clicks = 0;
     }
     
-    // On second click make sure not already matched
-    if(num_clicks == 2 && previousMatched == 0 && currentMatched == 0)
+    // On second click check for matches
+    if(num_clicks == 2)
     {
-        if((cardArray[current_button] == (cardArray[previous_button] - 6)) || (cardArray[current_button] == (cardArray[previous_button] + 6)))
+        // Match found
+        if((cardArray[current_button] == (cardArray[previous_button] - 6))
+           || (cardArray[current_button] == (cardArray[previous_button] + 6)))
         {
             
             NSLog(@"match");
@@ -183,9 +196,20 @@ BOOL match;
             [matched replaceObjectAtIndex:cardArray[current_button]
                                withObject:[NSNumber numberWithInt:1]];
             
+            int previous_tag = (int)(previous_button + 100);
+            int current_tag = (int)(current_button + 100);
+            
+            // Set button matches unclickable
+            UIButton *firstClick = (UIButton *)[self.view viewWithTag:previous_tag];
+            firstClick.enabled = NO;
+            
+            UIButton *secondClick = (UIButton *)[self.view viewWithTag:current_tag];
+            secondClick.enabled = NO;
+            
             if(num_matches_left > 0)
                 num_matches_left--;
         }
+        // No match
         else if((cardArray[current_button] != (cardArray[previous_button] - 6)) && (cardArray[current_button] != (cardArray[previous_button] + 6)))
         {
             NSLog(@"no match");
