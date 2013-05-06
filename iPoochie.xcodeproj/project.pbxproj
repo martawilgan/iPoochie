@@ -26,8 +26,6 @@
 		850904EA171F7869009F125C /* InteractViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904E8171F7869009F125C /* InteractViewController.xib */; };
 		850904EE171F789E009F125C /* ClosetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904EC171F789E009F125C /* ClosetViewController.m */; };
 		850904EF171F789E009F125C /* ClosetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904ED171F789E009F125C /* ClosetViewController.xib */; };
-		850904F3171F78BE009F125C /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904F1171F78BE009F125C /* GamesViewController.m */; };
-		850904F4171F78BE009F125C /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F2171F78BE009F125C /* GamesViewController.xib */; };
 		850904F8171F78D3009F125C /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850904F6171F78D3009F125C /* StoreViewController.m */; };
 		850904F9171F78D3009F125C /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850904F7171F78D3009F125C /* StoreViewController.xib */; };
 		8509050C17259EA6009F125C /* items.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8509050B17259EA6009F125C /* items.plist */; };
@@ -102,6 +100,37 @@
 		856BBB6E1737D02E00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB6D1737D02E00CFA485 /* cash_register.wav */; };
 		856BBB711737D37800CFA485 /* walkingLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB6F1737D37800CFA485 /* walkingLeft.png */; };
 		856BBB721737D37800CFA485 /* walkingRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB701737D37800CFA485 /* walkingRight.png */; };
+		856BBB961737D8FE00CFA485 /* back_chance_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB741737D8FE00CFA485 /* back_chance_card.png */; };
+		856BBB971737D8FE00CFA485 /* card1.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB751737D8FE00CFA485 /* card1.png */; };
+		856BBB981737D8FE00CFA485 /* card10.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB761737D8FE00CFA485 /* card10.png */; };
+		856BBB991737D8FE00CFA485 /* card11.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB771737D8FE00CFA485 /* card11.png */; };
+		856BBB9A1737D8FE00CFA485 /* card12.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB781737D8FE00CFA485 /* card12.png */; };
+		856BBB9B1737D8FE00CFA485 /* card2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB791737D8FE00CFA485 /* card2.png */; };
+		856BBB9C1737D8FE00CFA485 /* card3.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7A1737D8FE00CFA485 /* card3.png */; };
+		856BBB9D1737D8FE00CFA485 /* card4.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7B1737D8FE00CFA485 /* card4.png */; };
+		856BBB9E1737D8FE00CFA485 /* card5.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7C1737D8FE00CFA485 /* card5.png */; };
+		856BBB9F1737D8FE00CFA485 /* card6.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7D1737D8FE00CFA485 /* card6.png */; };
+		856BBBA01737D8FE00CFA485 /* card7.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7E1737D8FE00CFA485 /* card7.png */; };
+		856BBBA11737D8FE00CFA485 /* card8.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB7F1737D8FE00CFA485 /* card8.png */; };
+		856BBBA21737D8FE00CFA485 /* card9.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB801737D8FE00CFA485 /* card9.png */; };
+		856BBBA31737D8FE00CFA485 /* cards_label.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB811737D8FE00CFA485 /* cards_label.png */; };
+		856BBBA41737D8FE00CFA485 /* chance_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB821737D8FE00CFA485 /* chance_background.png */; };
+		856BBBA51737D8FE00CFA485 /* chance_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB831737D8FE00CFA485 /* chance_button.png */; };
+		856BBBA61737D8FE00CFA485 /* chance_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB841737D8FE00CFA485 /* chance_card.png */; };
+		856BBBA71737D8FE00CFA485 /* chanceButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB851737D8FE00CFA485 /* chanceButton.png */; };
+		856BBBA81737D8FE00CFA485 /* ChanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB871737D8FE00CFA485 /* ChanceViewController.m */; };
+		856BBBA91737D8FE00CFA485 /* ChanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB881737D8FE00CFA485 /* ChanceViewController.xib */; };
+		856BBBAA1737D8FE00CFA485 /* games_font.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB891737D8FE00CFA485 /* games_font.png */; };
+		856BBBAB1737D8FE00CFA485 /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB8B1737D8FE00CFA485 /* GamesViewController.m */; };
+		856BBBAC1737D8FE00CFA485 /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8C1737D8FE00CFA485 /* GamesViewController.xib */; };
+		856BBBAD1737D8FE00CFA485 /* lost.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8D1737D8FE00CFA485 /* lost.png */; };
+		856BBBAE1737D8FE00CFA485 /* matching_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8E1737D8FE00CFA485 /* matching_background.png */; };
+		856BBBAF1737D8FE00CFA485 /* matchingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8F1737D8FE00CFA485 /* matchingButton.png */; };
+		856BBBB01737D8FE00CFA485 /* MatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB911737D8FE00CFA485 /* MatchingViewController.m */; };
+		856BBBB11737D8FE00CFA485 /* MatchingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB921737D8FE00CFA485 /* MatchingViewController.xib */; };
+		856BBBB21737D8FE00CFA485 /* pawprints_games.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB931737D8FE00CFA485 /* pawprints_games.png */; };
+		856BBBB31737D8FE00CFA485 /* shrug.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB941737D8FE00CFA485 /* shrug.png */; };
+		856BBBB41737D8FE00CFA485 /* won.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB951737D8FE00CFA485 /* won.png */; };
 		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
 		85A4A46F172D2A030034EED6 /* bars1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A465172D2A030034EED6 /* bars1.png */; };
 		85A4A470172D2A030034EED6 /* bars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A466172D2A030034EED6 /* bars2.png */; };
@@ -199,8 +228,6 @@
 		85E63E1B1734C67E0052A655 /* card12.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E0C1734C67E0052A655 /* card12.png */; };
 		85E63E1C1734C67E0052A655 /* cards.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E0D1734C67E0052A655 /* cards.png */; };
 		85E63E1D1734C67E0052A655 /* matching_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E0E1734C67E0052A655 /* matching_background.png */; };
-		85E63E211734CDC10052A655 /* MatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E63E1F1734CDC00052A655 /* MatchingViewController.m */; };
-		85E63E221734CDC10052A655 /* MatchingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E201734CDC00052A655 /* MatchingViewController.xib */; };
 		85E63E251734CEF20052A655 /* backyard.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E231734CEF20052A655 /* backyard.png */; };
 		85E63E281734CFAC0052A655 /* kitchen.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E271734CFAC0052A655 /* kitchen.png */; };
 		85E63E2A1734D25E0052A655 /* interact_icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E63E291734D25D0052A655 /* interact_icon2.png */; };
@@ -243,9 +270,6 @@
 		850904EB171F789E009F125C /* ClosetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClosetViewController.h; path = ../ClosetViewController.h; sourceTree = "<group>"; };
 		850904EC171F789E009F125C /* ClosetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ClosetViewController.m; path = ../ClosetViewController.m; sourceTree = "<group>"; };
 		850904ED171F789E009F125C /* ClosetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ClosetViewController.xib; path = ../ClosetViewController.xib; sourceTree = "<group>"; };
-		850904F0171F78BD009F125C /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GamesViewController.h; path = ../GamesViewController.h; sourceTree = "<group>"; };
-		850904F1171F78BE009F125C /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GamesViewController.m; path = ../GamesViewController.m; sourceTree = "<group>"; };
-		850904F2171F78BE009F125C /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GamesViewController.xib; path = ../GamesViewController.xib; sourceTree = "<group>"; };
 		850904F5171F78D3009F125C /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreViewController.h; path = ../StoreViewController.h; sourceTree = "<group>"; };
 		850904F6171F78D3009F125C /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = ../StoreViewController.m; sourceTree = "<group>"; };
 		850904F7171F78D3009F125C /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = ../StoreViewController.xib; sourceTree = "<group>"; };
@@ -322,6 +346,40 @@
 		856BBB6D1737D02E00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
 		856BBB6F1737D37800CFA485 /* walkingLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walkingLeft.png; path = petFrames/walkingLeft.png; sourceTree = SOURCE_ROOT; };
 		856BBB701737D37800CFA485 /* walkingRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walkingRight.png; path = petFrames/walkingRight.png; sourceTree = SOURCE_ROOT; };
+		856BBB741737D8FE00CFA485 /* back_chance_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_chance_card.png; sourceTree = "<group>"; };
+		856BBB751737D8FE00CFA485 /* card1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card1.png; sourceTree = "<group>"; };
+		856BBB761737D8FE00CFA485 /* card10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card10.png; sourceTree = "<group>"; };
+		856BBB771737D8FE00CFA485 /* card11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card11.png; sourceTree = "<group>"; };
+		856BBB781737D8FE00CFA485 /* card12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card12.png; sourceTree = "<group>"; };
+		856BBB791737D8FE00CFA485 /* card2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card2.png; sourceTree = "<group>"; };
+		856BBB7A1737D8FE00CFA485 /* card3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card3.png; sourceTree = "<group>"; };
+		856BBB7B1737D8FE00CFA485 /* card4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card4.png; sourceTree = "<group>"; };
+		856BBB7C1737D8FE00CFA485 /* card5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card5.png; sourceTree = "<group>"; };
+		856BBB7D1737D8FE00CFA485 /* card6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card6.png; sourceTree = "<group>"; };
+		856BBB7E1737D8FE00CFA485 /* card7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card7.png; sourceTree = "<group>"; };
+		856BBB7F1737D8FE00CFA485 /* card8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card8.png; sourceTree = "<group>"; };
+		856BBB801737D8FE00CFA485 /* card9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card9.png; sourceTree = "<group>"; };
+		856BBB811737D8FE00CFA485 /* cards_label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards_label.png; sourceTree = "<group>"; };
+		856BBB821737D8FE00CFA485 /* chance_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chance_background.png; sourceTree = "<group>"; };
+		856BBB831737D8FE00CFA485 /* chance_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chance_button.png; sourceTree = "<group>"; };
+		856BBB841737D8FE00CFA485 /* chance_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chance_card.png; sourceTree = "<group>"; };
+		856BBB851737D8FE00CFA485 /* chanceButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chanceButton.png; sourceTree = "<group>"; };
+		856BBB861737D8FE00CFA485 /* ChanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChanceViewController.h; sourceTree = "<group>"; };
+		856BBB871737D8FE00CFA485 /* ChanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChanceViewController.m; sourceTree = "<group>"; };
+		856BBB881737D8FE00CFA485 /* ChanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChanceViewController.xib; sourceTree = "<group>"; };
+		856BBB891737D8FE00CFA485 /* games_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = games_font.png; sourceTree = "<group>"; };
+		856BBB8A1737D8FE00CFA485 /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
+		856BBB8B1737D8FE00CFA485 /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
+		856BBB8C1737D8FE00CFA485 /* GamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GamesViewController.xib; sourceTree = "<group>"; };
+		856BBB8D1737D8FE00CFA485 /* lost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lost.png; sourceTree = "<group>"; };
+		856BBB8E1737D8FE00CFA485 /* matching_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matching_background.png; sourceTree = "<group>"; };
+		856BBB8F1737D8FE00CFA485 /* matchingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchingButton.png; sourceTree = "<group>"; };
+		856BBB901737D8FE00CFA485 /* MatchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingViewController.h; sourceTree = "<group>"; };
+		856BBB911737D8FE00CFA485 /* MatchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingViewController.m; sourceTree = "<group>"; };
+		856BBB921737D8FE00CFA485 /* MatchingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingViewController.xib; sourceTree = "<group>"; };
+		856BBB931737D8FE00CFA485 /* pawprints_games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pawprints_games.png; sourceTree = "<group>"; };
+		856BBB941737D8FE00CFA485 /* shrug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shrug.png; sourceTree = "<group>"; };
+		856BBB951737D8FE00CFA485 /* won.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = won.png; sourceTree = "<group>"; };
 		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
 		85A4A465172D2A030034EED6 /* bars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars1.png; sourceTree = "<group>"; };
 		85A4A466172D2A030034EED6 /* bars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars2.png; sourceTree = "<group>"; };
@@ -423,9 +481,6 @@
 		85E63E0C1734C67E0052A655 /* card12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card12.png; sourceTree = "<group>"; };
 		85E63E0D1734C67E0052A655 /* cards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cards.png; sourceTree = "<group>"; };
 		85E63E0E1734C67E0052A655 /* matching_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matching_background.png; sourceTree = "<group>"; };
-		85E63E1E1734CDB10052A655 /* MatchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingViewController.h; sourceTree = "<group>"; };
-		85E63E1F1734CDC00052A655 /* MatchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingViewController.m; sourceTree = "<group>"; };
-		85E63E201734CDC00052A655 /* MatchingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingViewController.xib; sourceTree = "<group>"; };
 		85E63E231734CEF20052A655 /* backyard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backyard.png; sourceTree = SOURCE_ROOT; };
 		85E63E271734CFAC0052A655 /* kitchen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitchen.png; sourceTree = "<group>"; };
 		85E63E291734D25D0052A655 /* interact_icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interact_icon2.png; sourceTree = SOURCE_ROOT; };
@@ -460,6 +515,7 @@
 		85090489171F7049009F125C = {
 			isa = PBXGroup;
 			children = (
+				856BBB731737D8FD00CFA485 /* Games */,
 				8509049B171F704A009F125C /* iPoochie */,
 				850904B9171F704A009F125C /* iPoochieTests */,
 				85090494171F7049009F125C /* Frameworks */,
@@ -542,14 +598,8 @@
 			isa = PBXGroup;
 			children = (
 				850904EB171F789E009F125C /* ClosetViewController.h */,
-				85E63E1E1734CDB10052A655 /* MatchingViewController.h */,
-				85E63E1F1734CDC00052A655 /* MatchingViewController.m */,
-				85E63E201734CDC00052A655 /* MatchingViewController.xib */,
 				850904EC171F789E009F125C /* ClosetViewController.m */,
 				850904ED171F789E009F125C /* ClosetViewController.xib */,
-				850904F0171F78BD009F125C /* GamesViewController.h */,
-				850904F1171F78BE009F125C /* GamesViewController.m */,
-				850904F2171F78BE009F125C /* GamesViewController.xib */,
 				850904E6171F7869009F125C /* InteractViewController.h */,
 				850904E7171F7869009F125C /* InteractViewController.m */,
 				850904E8171F7869009F125C /* InteractViewController.xib */,
@@ -737,6 +787,47 @@
 			name = walkingRight;
 			path = petFrames/walkingRight;
 			sourceTree = SOURCE_ROOT;
+		};
+		856BBB731737D8FD00CFA485 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				856BBB741737D8FE00CFA485 /* back_chance_card.png */,
+				856BBB751737D8FE00CFA485 /* card1.png */,
+				856BBB761737D8FE00CFA485 /* card10.png */,
+				856BBB771737D8FE00CFA485 /* card11.png */,
+				856BBB781737D8FE00CFA485 /* card12.png */,
+				856BBB791737D8FE00CFA485 /* card2.png */,
+				856BBB7A1737D8FE00CFA485 /* card3.png */,
+				856BBB7B1737D8FE00CFA485 /* card4.png */,
+				856BBB7C1737D8FE00CFA485 /* card5.png */,
+				856BBB7D1737D8FE00CFA485 /* card6.png */,
+				856BBB7E1737D8FE00CFA485 /* card7.png */,
+				856BBB7F1737D8FE00CFA485 /* card8.png */,
+				856BBB801737D8FE00CFA485 /* card9.png */,
+				856BBB811737D8FE00CFA485 /* cards_label.png */,
+				856BBB821737D8FE00CFA485 /* chance_background.png */,
+				856BBB831737D8FE00CFA485 /* chance_button.png */,
+				856BBB841737D8FE00CFA485 /* chance_card.png */,
+				856BBB851737D8FE00CFA485 /* chanceButton.png */,
+				856BBB861737D8FE00CFA485 /* ChanceViewController.h */,
+				856BBB871737D8FE00CFA485 /* ChanceViewController.m */,
+				856BBB881737D8FE00CFA485 /* ChanceViewController.xib */,
+				856BBB891737D8FE00CFA485 /* games_font.png */,
+				856BBB8A1737D8FE00CFA485 /* GamesViewController.h */,
+				856BBB8B1737D8FE00CFA485 /* GamesViewController.m */,
+				856BBB8C1737D8FE00CFA485 /* GamesViewController.xib */,
+				856BBB8D1737D8FE00CFA485 /* lost.png */,
+				856BBB8E1737D8FE00CFA485 /* matching_background.png */,
+				856BBB8F1737D8FE00CFA485 /* matchingButton.png */,
+				856BBB901737D8FE00CFA485 /* MatchingViewController.h */,
+				856BBB911737D8FE00CFA485 /* MatchingViewController.m */,
+				856BBB921737D8FE00CFA485 /* MatchingViewController.xib */,
+				856BBB931737D8FE00CFA485 /* pawprints_games.png */,
+				856BBB941737D8FE00CFA485 /* shrug.png */,
+				856BBB951737D8FE00CFA485 /* won.png */,
+			);
+			path = Games;
+			sourceTree = "<group>";
 		};
 		85A4A431172949A00034EED6 /* Icons */ = {
 			isa = PBXGroup;
@@ -983,7 +1074,6 @@
 				850904DD171F7323009F125C /* TabBarController.xib in Resources */,
 				850904EA171F7869009F125C /* InteractViewController.xib in Resources */,
 				850904EF171F789E009F125C /* ClosetViewController.xib in Resources */,
-				850904F4171F78BE009F125C /* GamesViewController.xib in Resources */,
 				850904F9171F78D3009F125C /* StoreViewController.xib in Resources */,
 				8509050C17259EA6009F125C /* items.plist in Resources */,
 				85A4A430172911FD0034EED6 /* game.plist in Resources */,
@@ -1078,7 +1168,6 @@
 				85E63E1B1734C67E0052A655 /* card12.png in Resources */,
 				85E63E1C1734C67E0052A655 /* cards.png in Resources */,
 				85E63E1D1734C67E0052A655 /* matching_background.png in Resources */,
-				85E63E221734CDC10052A655 /* MatchingViewController.xib in Resources */,
 				85E63E251734CEF20052A655 /* backyard.png in Resources */,
 				85E63E281734CFAC0052A655 /* kitchen.png in Resources */,
 				85E63E2A1734D25E0052A655 /* interact_icon2.png in Resources */,
@@ -1151,6 +1240,34 @@
 				856BBB6E1737D02E00CFA485 /* cash_register.wav in Resources */,
 				856BBB711737D37800CFA485 /* walkingLeft.png in Resources */,
 				856BBB721737D37800CFA485 /* walkingRight.png in Resources */,
+				856BBB961737D8FE00CFA485 /* back_chance_card.png in Resources */,
+				856BBB971737D8FE00CFA485 /* card1.png in Resources */,
+				856BBB981737D8FE00CFA485 /* card10.png in Resources */,
+				856BBB991737D8FE00CFA485 /* card11.png in Resources */,
+				856BBB9A1737D8FE00CFA485 /* card12.png in Resources */,
+				856BBB9B1737D8FE00CFA485 /* card2.png in Resources */,
+				856BBB9C1737D8FE00CFA485 /* card3.png in Resources */,
+				856BBB9D1737D8FE00CFA485 /* card4.png in Resources */,
+				856BBB9E1737D8FE00CFA485 /* card5.png in Resources */,
+				856BBB9F1737D8FE00CFA485 /* card6.png in Resources */,
+				856BBBA01737D8FE00CFA485 /* card7.png in Resources */,
+				856BBBA11737D8FE00CFA485 /* card8.png in Resources */,
+				856BBBA21737D8FE00CFA485 /* card9.png in Resources */,
+				856BBBA31737D8FE00CFA485 /* cards_label.png in Resources */,
+				856BBBA41737D8FE00CFA485 /* chance_background.png in Resources */,
+				856BBBA51737D8FE00CFA485 /* chance_button.png in Resources */,
+				856BBBA61737D8FE00CFA485 /* chance_card.png in Resources */,
+				856BBBA71737D8FE00CFA485 /* chanceButton.png in Resources */,
+				856BBBA91737D8FE00CFA485 /* ChanceViewController.xib in Resources */,
+				856BBBAA1737D8FE00CFA485 /* games_font.png in Resources */,
+				856BBBAC1737D8FE00CFA485 /* GamesViewController.xib in Resources */,
+				856BBBAD1737D8FE00CFA485 /* lost.png in Resources */,
+				856BBBAE1737D8FE00CFA485 /* matching_background.png in Resources */,
+				856BBBAF1737D8FE00CFA485 /* matchingButton.png in Resources */,
+				856BBBB11737D8FE00CFA485 /* MatchingViewController.xib in Resources */,
+				856BBBB21737D8FE00CFA485 /* pawprints_games.png in Resources */,
+				856BBBB31737D8FE00CFA485 /* shrug.png in Resources */,
+				856BBBB41737D8FE00CFA485 /* won.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1189,14 +1306,15 @@
 				850904A6171F704A009F125C /* AppDelegate.m in Sources */,
 				850904E9171F7869009F125C /* InteractViewController.m in Sources */,
 				850904EE171F789E009F125C /* ClosetViewController.m in Sources */,
-				850904F3171F78BE009F125C /* GamesViewController.m in Sources */,
 				850904F8171F78D3009F125C /* StoreViewController.m in Sources */,
 				85A4A513172F5B020034EED6 /* EatViewController.m in Sources */,
 				85A4A51D172F63B70034EED6 /* WalkViewController.m in Sources */,
 				85A4A522172F640A0034EED6 /* PlayViewController.m in Sources */,
 				85A4A527172F643A0034EED6 /* PetViewController.m in Sources */,
-				85E63E211734CDC10052A655 /* MatchingViewController.m in Sources */,
 				856BBB6417377DD800CFA485 /* playView.m in Sources */,
+				856BBBA81737D8FE00CFA485 /* ChanceViewController.m in Sources */,
+				856BBBAB1737D8FE00CFA485 /* GamesViewController.m in Sources */,
+				856BBBB01737D8FE00CFA485 /* MatchingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
