@@ -162,6 +162,12 @@ BOOL match;
     
     NSLog(@"Previous matched: %i Current matched %i", previousMatched, currentMatched);
     
+    // Do not rematch
+    if(num_clicks == 2 && previousMatched == 1 && currentMatched == 1)
+    {
+        num_clicks = 0;
+    }
+    
     // On second click make sure not already matched
     if(num_clicks == 2 && previousMatched == 0 && currentMatched == 0)
     {
@@ -196,6 +202,12 @@ BOOL match;
                                                   cancelButtonTitle:@"Ok"
                                                   otherButtonTitles: nil];
             [alert show];
+            
+            // Play drumroll sound
+            NSString *path = [ [NSBundle mainBundle] pathForResource:@"drum_roll" ofType:@"wav"];
+            SystemSoundID theSound;
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+            AudioServicesPlaySystemSound (theSound);
             
             //Set points
             points = [NSNumber numberWithInt: [points intValue] + 100];

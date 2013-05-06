@@ -84,14 +84,32 @@ NSNumber *newPoints;
     if(randPoints < 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU JUST LOST: %d points", -1*randPoints];
         [chanceImage setImage: [UIImage imageNamed: @"lost.png"]];
+        
+        // Play lose sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"lose" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
     }
     if(randPoints > 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU JUST WON: %d points!!!", randPoints];
         [chanceImage setImage: [UIImage imageNamed: @"won.png"]];
+        
+        // Play win sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"win" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
     }
     if(randPoints == 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU DIDN'T LOSE OR WIN ANY POINTS"];
         [chanceImage setImage: [UIImage imageNamed: @"shrug.png"]];
+        
+        // Play whimper sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"whimper" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
     }
     
     
