@@ -85,6 +85,8 @@ BOOL match;
     
     //Initializing numArray, which holds indeces of images that are left to randomly choose from to distribute among the cards
     numArray = [[NSMutableArray alloc]init];
+    matched = [[NSMutableArray alloc]init];
+    
     for(int i = 0; i < 12; i++)
     {
         [numArray addObject: [NSNumber numberWithInt: i]];
