@@ -16,8 +16,6 @@
 @implementation MatchingViewController
 @synthesize points;
 @synthesize pointsLabel;
-@synthesize previousButton;
-@synthesize currentButton;
 
 int num_matches_left;
 /*int card1_pressed, card2_pressed, card3_pressed, card4_pressed, card5_pressed, card6_pressed,card7_pressed, card8_pressed, card9_pressed, card10_pressed, card11_pressed, card12_pressed;*/
@@ -124,8 +122,11 @@ BOOL match;
     {
         if(match == NO)
         {
-            [previousButton setImage: defaultButtonImage forState:UIControlStateNormal];
-            [currentButton setImage: defaultButtonImage forState:UIControlStateNormal];
+            UIButton *firstClick = (UIButton *)[self.view viewWithTag:previous_button];
+            [firstClick setImage: defaultButtonImage forState:UIControlStateNormal];
+            
+            UIButton *secondClick = (UIButton *)[self.view viewWithTag:current_button];
+            [secondClick setImage: defaultButtonImage forState:UIControlStateNormal];
             
         }
         
@@ -138,10 +139,8 @@ BOOL match;
     
     if(num_clicks == 1)
         previous_button = tag;
-        previousButton = sender;
     if(num_clicks == 2)
         current_button = tag;
-        currentButton = sender;
     
     NSString *cardName =[NSString stringWithFormat:@"%@",[stringArray objectAtIndex: cardArray[tag]]];
     
