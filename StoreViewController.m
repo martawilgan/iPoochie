@@ -21,6 +21,7 @@
 @synthesize pickerData;
 @synthesize pointsLabel;
 @synthesize points;
+@synthesize shopImageView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -85,6 +86,11 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    // Hide the shop image
+    [self performSelector:@selector(hideShop)
+               withObject:nil
+               afterDelay:1.0];
     
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -175,6 +181,11 @@
         
     }
     
+}
+
+-(void) hideShop
+{
+    shopImageView.hidden = YES;
 }
 
 #pragma mark -

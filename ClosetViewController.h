@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *closet;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *closetImageView;
 @property (strong, nonatomic) NSNumber *points;
 @property (nonatomic, retain) NSArray *itemImageNames;
 @property (nonatomic, retain) NSArray *itemAmounts;

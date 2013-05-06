@@ -26,6 +26,7 @@
 @synthesize descriptions;
 @synthesize points;
 @synthesize pointsLabel;
+@synthesize closetImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +59,11 @@
 -(void) viewDidAppear: (BOOL) animated
 {    
     [super viewDidAppear:animated];
+    
+    // Hide the closet image
+    [self performSelector:@selector(hideCloset)
+               withObject:nil
+               afterDelay:1.0];
     
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -135,6 +141,11 @@
     self.imageNames = theImageNames;
     self.amounts = theAmounts;
     self.descriptions = theDescriptions;
+}
+
+-(void) hideCloset
+{
+    closetImageView.hidden = YES;
 }
 
 #pragma mark - 

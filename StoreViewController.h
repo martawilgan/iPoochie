@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSArray *pickerData;
 @property (strong, nonatomic) NSNumber *points;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *shopImageView;
 
 -(IBAction)buttonPressed;
 
