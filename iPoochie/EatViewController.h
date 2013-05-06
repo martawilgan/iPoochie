@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSNumber *points;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bagsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoBubbleLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIImageView *bowlImageView;

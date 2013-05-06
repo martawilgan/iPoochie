@@ -84,6 +84,15 @@
 		856BBB351736806600CFA485 /* eating6.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB2C1736806600CFA485 /* eating6.png */; };
 		856BBB361736806600CFA485 /* goingToEat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB2E1736806600CFA485 /* goingToEat1.png */; };
 		856BBB371736806600CFA485 /* goingToEat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB2F1736806600CFA485 /* goingToEat2.png */; };
+		856BBB3917373EFF00CFA485 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3817373EFF00CFA485 /* alert.wav */; };
+		856BBB3B17373F1D00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3A17373F1D00CFA485 /* cash_register.wav */; };
+		856BBB3E1737408F00CFA485 /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3C1737408F00CFA485 /* lose.wav */; };
+		856BBB3F1737408F00CFA485 /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3D1737408F00CFA485 /* win.wav */; };
+		856BBB451737409F00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB401737409F00CFA485 /* cash_register.wav */; };
+		856BBB461737409F00CFA485 /* drum_roll.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB411737409F00CFA485 /* drum_roll.wav */; };
+		856BBB471737409F00CFA485 /* chime_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB421737409F00CFA485 /* chime_down.wav */; };
+		856BBB481737409F00CFA485 /* chime_up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB431737409F00CFA485 /* chime_up.wav */; };
+		856BBB491737409F00CFA485 /* card_shuffle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB441737409F00CFA485 /* card_shuffle.wav */; };
 		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
 		85A4A46F172D2A030034EED6 /* bars1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A465172D2A030034EED6 /* bars1.png */; };
 		85A4A470172D2A030034EED6 /* bars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A466172D2A030034EED6 /* bars2.png */; };
@@ -286,6 +295,15 @@
 		856BBB2C1736806600CFA485 /* eating6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eating6.png; sourceTree = "<group>"; };
 		856BBB2E1736806600CFA485 /* goingToEat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goingToEat1.png; sourceTree = "<group>"; };
 		856BBB2F1736806600CFA485 /* goingToEat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goingToEat2.png; sourceTree = "<group>"; };
+		856BBB3817373EFF00CFA485 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alert.wav; sourceTree = SOURCE_ROOT; };
+		856BBB3A17373F1D00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
+		856BBB3C1737408F00CFA485 /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = SOURCE_ROOT; };
+		856BBB3D1737408F00CFA485 /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = SOURCE_ROOT; };
+		856BBB401737409F00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
+		856BBB411737409F00CFA485 /* drum_roll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum_roll.wav; sourceTree = SOURCE_ROOT; };
+		856BBB421737409F00CFA485 /* chime_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_down.wav; sourceTree = SOURCE_ROOT; };
+		856BBB431737409F00CFA485 /* chime_up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_up.wav; sourceTree = SOURCE_ROOT; };
+		856BBB441737409F00CFA485 /* card_shuffle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_shuffle.wav; sourceTree = SOURCE_ROOT; };
 		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
 		85A4A465172D2A030034EED6 /* bars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars1.png; sourceTree = "<group>"; };
 		85A4A466172D2A030034EED6 /* bars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars2.png; sourceTree = "<group>"; };
@@ -555,6 +573,15 @@
 		850904CF171F7149009F125C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB3A17373F1D00CFA485 /* cash_register.wav */,
+				856BBB3C1737408F00CFA485 /* lose.wav */,
+				856BBB401737409F00CFA485 /* cash_register.wav */,
+				856BBB411737409F00CFA485 /* drum_roll.wav */,
+				856BBB421737409F00CFA485 /* chime_down.wav */,
+				856BBB431737409F00CFA485 /* chime_up.wav */,
+				856BBB441737409F00CFA485 /* card_shuffle.wav */,
+				856BBB3D1737408F00CFA485 /* win.wav */,
+				856BBB3817373EFF00CFA485 /* alert.wav */,
 				856BBB09173621A100CFA485 /* down.wav */,
 				856BBB0A173621A100CFA485 /* up.wav */,
 				85A4A539172F83C90034EED6 /* angry_bark.wav */,
@@ -1064,6 +1091,15 @@
 				856BBB351736806600CFA485 /* eating6.png in Resources */,
 				856BBB361736806600CFA485 /* goingToEat1.png in Resources */,
 				856BBB371736806600CFA485 /* goingToEat2.png in Resources */,
+				856BBB3917373EFF00CFA485 /* alert.wav in Resources */,
+				856BBB3B17373F1D00CFA485 /* cash_register.wav in Resources */,
+				856BBB3E1737408F00CFA485 /* lose.wav in Resources */,
+				856BBB3F1737408F00CFA485 /* win.wav in Resources */,
+				856BBB451737409F00CFA485 /* cash_register.wav in Resources */,
+				856BBB461737409F00CFA485 /* drum_roll.wav in Resources */,
+				856BBB471737409F00CFA485 /* chime_down.wav in Resources */,
+				856BBB481737409F00CFA485 /* chime_up.wav in Resources */,
+				856BBB491737409F00CFA485 /* card_shuffle.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

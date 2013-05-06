@@ -74,7 +74,6 @@
         // add imageView and label as subviews
         [theView addSubview: theImageView];
         [theView addSubview: theLabel];
-        //[theView bringSubviewToFront:theLabel];
         
         [pickerDataArray insertObject:theView atIndex:i];
     }
