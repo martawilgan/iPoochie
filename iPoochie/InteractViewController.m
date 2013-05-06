@@ -67,7 +67,10 @@
     pointsLabel.text =
     [NSString stringWithFormat:@"Points: %@", points];
     
-    // Update the health, energy, and happiness levels
+    // Update the health, energy, and happiness levels in plist
+    [self updateLevelsInPlist];
+    
+    // Update the health, energy, and happiness levels on screen
     [self updateHealth];
     [self updateEnergy];
     [self updateHappiness];
@@ -118,13 +121,13 @@
 // Update energy on screen to reflect current values in plist
 - (void) updateEnergy
 {
-    // Grab health from plist through app delegate
+    // Grab energry from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     NSNumber *energy = [gameData objectForKey:@"energy"];
     
-    // Update the health label text
+    // Update the energy label text
     energyLabel.text =
     [NSString stringWithFormat:@"%@%@", energy, @"%"];
     
@@ -136,7 +139,7 @@
 // Update happiness on screen to reflect current values in plist
 - (void) updateHappiness
 {
-    // Grab health from plist through app delegate
+    // Grab happiness from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
@@ -149,6 +152,181 @@
     // Update the happiness image view
     NSString *imageName = [self barsImageName: [happiness intValue]];
     happinessImageView.image = [UIImage imageNamed:imageName];
+}
+
+// Change percent by one for every minute in direction specified
+-(int) changePercentForLevel:(NSString *) level
+            andOldPercentage:(int)percentage
+                     andTime:(int) time
+                 inDirection:(NSString *) direction
+{
+    int change;
+    
+    // set change 1 for every minute, if less than 1 min make change = 1
+    if(time > 60)
+    {
+        change = time/60;
+    }
+    else
+    {
+        change = 1;
+    }
+    
+    if([direction isEqual:@"down"])
+    {
+        // Make sure percentage does not go below 0
+        if(percentage - change >= 0)
+        {
+            percentage -= change;
+        }
+        else
+        {
+            percentage = 0;
+        }
+        
+    }
+    
+    if([direction isEqual:@"up"])
+    {
+        // Make sure percentage does not above 100
+        if(percentage + change <= 100)
+        {
+            percentage += change;
+        }
+        else
+        {
+            percentage = 100;
+        }
+        
+    }
+    
+    return percentage;
+}
+
+/*
+ * Update levels in plist for previous activity
+ * for play energry and health go down 1 % for every minute
+ * for eat health goes up 1% for every minute
+ * for pet health goes down 1% for every minute
+ */
+- (void) updateLevelsInPlist
+{
+    // Grab percentages from plist through app delegate
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *energy = [gameData objectForKey:@"energy"];
+    NSNumber *health = [gameData objectForKey:@"health"];
+    NSNumber *happiness = [gameData objectForKey:@"happiness"];
+    
+    // Grab last view and time spent in it
+    NSString *lastViewName = [gameData objectForKey:@"lastViewName"];
+    NSNumber *lastViewTime = [gameData objectForKey:@"lastViewTime"];
+    
+    // Decrease energy for play
+    if([lastViewName isEqual:@"play"])
+    {
+        NSLog(@"Energy was %@", energy);
+        
+        int percentage = [energy intValue]; 
+        int time = [lastViewTime intValue] + 1; // not zero
+        
+        percentage = [self changePercentForLevel:@"energry"
+                                andOldPercentage:percentage
+                                         andTime:time
+                                     inDirection:@"down"];
+        
+        // Update energy and write back to plist
+        energy = [NSNumber numberWithInt:percentage];
+        
+         NSLog(@"Energy now %@", energy);
+        
+        [gameData setObject:energy
+                     forKey:@"energy"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    }
+    // Increase health and energry for eat
+    if([lastViewName isEqual:@"eat"])
+    {
+        NSLog(@"Health was %@", health);
+        
+        int percentage = [health intValue];
+        int time = [lastViewTime intValue] + 1; // not zero
+        
+        percentage = [self changePercentForLevel:@"health"
+                                andOldPercentage:percentage
+                                         andTime:time
+                                     inDirection:@"up"];
+        
+        // Update health
+        health = [NSNumber numberWithInt:percentage];
+        
+        NSLog(@"Health now %@", health);
+        
+        // Write health and energry back to plist
+        [gameData setObject:health
+                     forKey:@"health"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    }
+    
+    // Decrease health for play and pet
+    if([lastViewName isEqual:@"play"] || [lastViewName isEqual:@"pet"])
+    {
+        NSLog(@"Health was %@", health);
+        
+        int percentage = [health intValue];
+        int time = [lastViewTime intValue] + 1; // not zero
+        
+        percentage = [self changePercentForLevel:@"health"
+                                andOldPercentage:percentage
+                                         andTime:time
+                                     inDirection:@"down"];
+        
+        // Update health and write back to plist
+        health = [NSNumber numberWithInt:percentage];
+        
+        NSLog(@"Health now %@", health);
+        
+        [gameData setObject:health
+                     forKey:@"health"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    }
+    
+    // Increase happiness for play
+    if([lastViewName isEqual:@"play"])
+    {
+        NSLog(@"Happiness was %@", happiness);
+        
+        int percentage = [happiness intValue];
+        int time = [lastViewTime intValue] + 1; // not zero
+        
+        percentage = [self changePercentForLevel:@"happiness"
+                                andOldPercentage:percentage
+                                         andTime:time
+                                     inDirection:@"up"];
+        
+        // Update happiness and write back to plist
+        happiness = [NSNumber numberWithInt:percentage];
+        
+        NSLog(@"Happiness now %@", happiness);
+        
+        [gameData setObject:happiness
+                     forKey:@"happiness"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    }
+    
+    if(![lastViewTime isEqual:@"none"])
+    {
+        // Change last view name and time
+        lastViewName = @"none";
+        lastViewTime = [NSNumber numberWithInt:0];
+    
+        // Write back to plist
+        [gameData setObject:lastViewName
+                 forKey:@"lastViewName"];
+        [gameData setObject:lastViewTime forKey:@"lastViewTime"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    }    
 }
 
 // Return appropriate bar image name for percentage

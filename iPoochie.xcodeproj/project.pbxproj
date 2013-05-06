@@ -85,14 +85,23 @@
 		856BBB361736806600CFA485 /* goingToEat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB2E1736806600CFA485 /* goingToEat1.png */; };
 		856BBB371736806600CFA485 /* goingToEat2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB2F1736806600CFA485 /* goingToEat2.png */; };
 		856BBB3917373EFF00CFA485 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3817373EFF00CFA485 /* alert.wav */; };
-		856BBB3B17373F1D00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3A17373F1D00CFA485 /* cash_register.wav */; };
 		856BBB3E1737408F00CFA485 /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3C1737408F00CFA485 /* lose.wav */; };
 		856BBB3F1737408F00CFA485 /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB3D1737408F00CFA485 /* win.wav */; };
-		856BBB451737409F00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB401737409F00CFA485 /* cash_register.wav */; };
 		856BBB461737409F00CFA485 /* drum_roll.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB411737409F00CFA485 /* drum_roll.wav */; };
 		856BBB471737409F00CFA485 /* chime_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB421737409F00CFA485 /* chime_down.wav */; };
 		856BBB481737409F00CFA485 /* chime_up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB431737409F00CFA485 /* chime_up.wav */; };
 		856BBB491737409F00CFA485 /* card_shuffle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB441737409F00CFA485 /* card_shuffle.wav */; };
+		856BBB5417375B6F00CFA485 /* WalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB5317375B6D00CFA485 /* WalkViewController.xib */; };
+		856BBB5E1737799300CFA485 /* walkingLeft1.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB591737799300CFA485 /* walkingLeft1.png */; };
+		856BBB5F1737799300CFA485 /* walkingLeft2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB5A1737799300CFA485 /* walkingLeft2.png */; };
+		856BBB601737799300CFA485 /* walkingRight1.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB5C1737799300CFA485 /* walkingRight1.png */; };
+		856BBB611737799300CFA485 /* walkingRight2.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB5D1737799300CFA485 /* walkingRight2.png */; };
+		856BBB6417377DD800CFA485 /* playView.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB6317377DD600CFA485 /* playView.m */; };
+		856BBB681737A00700CFA485 /* success.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB671737A00400CFA485 /* success.png */; };
+		856BBB6C1737A9FF00CFA485 /* patten.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB6B1737A9FE00CFA485 /* patten.png */; };
+		856BBB6E1737D02E00CFA485 /* cash_register.wav in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB6D1737D02E00CFA485 /* cash_register.wav */; };
+		856BBB711737D37800CFA485 /* walkingLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB6F1737D37800CFA485 /* walkingLeft.png */; };
+		856BBB721737D37800CFA485 /* walkingRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB701737D37800CFA485 /* walkingRight.png */; };
 		85A4A430172911FD0034EED6 /* game.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A42F172911FD0034EED6 /* game.plist */; };
 		85A4A46F172D2A030034EED6 /* bars1.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A465172D2A030034EED6 /* bars1.png */; };
 		85A4A470172D2A030034EED6 /* bars2.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A466172D2A030034EED6 /* bars2.png */; };
@@ -163,7 +172,6 @@
 		85A4A513172F5B020034EED6 /* EatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A511172F5B010034EED6 /* EatViewController.m */; };
 		85A4A514172F5B020034EED6 /* EatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A512172F5B010034EED6 /* EatViewController.xib */; };
 		85A4A51D172F63B70034EED6 /* WalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A51B172F63AB0034EED6 /* WalkViewController.m */; };
-		85A4A51E172F63B70034EED6 /* WalkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A51C172F63AF0034EED6 /* WalkViewController.xib */; };
 		85A4A522172F640A0034EED6 /* PlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A520172F64090034EED6 /* PlayViewController.m */; };
 		85A4A523172F640A0034EED6 /* PlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A4A521172F64090034EED6 /* PlayViewController.xib */; };
 		85A4A527172F643A0034EED6 /* PetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A4A525172F642D0034EED6 /* PetViewController.m */; };
@@ -296,14 +304,24 @@
 		856BBB2E1736806600CFA485 /* goingToEat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goingToEat1.png; sourceTree = "<group>"; };
 		856BBB2F1736806600CFA485 /* goingToEat2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goingToEat2.png; sourceTree = "<group>"; };
 		856BBB3817373EFF00CFA485 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alert.wav; sourceTree = SOURCE_ROOT; };
-		856BBB3A17373F1D00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
 		856BBB3C1737408F00CFA485 /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = SOURCE_ROOT; };
 		856BBB3D1737408F00CFA485 /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = SOURCE_ROOT; };
-		856BBB401737409F00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
 		856BBB411737409F00CFA485 /* drum_roll.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = drum_roll.wav; sourceTree = SOURCE_ROOT; };
 		856BBB421737409F00CFA485 /* chime_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_down.wav; sourceTree = SOURCE_ROOT; };
 		856BBB431737409F00CFA485 /* chime_up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chime_up.wav; sourceTree = SOURCE_ROOT; };
 		856BBB441737409F00CFA485 /* card_shuffle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_shuffle.wav; sourceTree = SOURCE_ROOT; };
+		856BBB5317375B6D00CFA485 /* WalkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkViewController.xib; sourceTree = "<group>"; };
+		856BBB591737799300CFA485 /* walkingLeft1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkingLeft1.png; sourceTree = "<group>"; };
+		856BBB5A1737799300CFA485 /* walkingLeft2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkingLeft2.png; sourceTree = "<group>"; };
+		856BBB5C1737799300CFA485 /* walkingRight1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkingRight1.png; sourceTree = "<group>"; };
+		856BBB5D1737799300CFA485 /* walkingRight2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = walkingRight2.png; sourceTree = "<group>"; };
+		856BBB6217377DD400CFA485 /* playView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playView.h; sourceTree = "<group>"; };
+		856BBB6317377DD600CFA485 /* playView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = playView.m; sourceTree = "<group>"; };
+		856BBB671737A00400CFA485 /* success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = success.png; sourceTree = SOURCE_ROOT; };
+		856BBB6B1737A9FE00CFA485 /* patten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = patten.png; sourceTree = SOURCE_ROOT; };
+		856BBB6D1737D02E00CFA485 /* cash_register.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cash_register.wav; sourceTree = SOURCE_ROOT; };
+		856BBB6F1737D37800CFA485 /* walkingLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walkingLeft.png; path = petFrames/walkingLeft.png; sourceTree = SOURCE_ROOT; };
+		856BBB701737D37800CFA485 /* walkingRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = walkingRight.png; path = petFrames/walkingRight.png; sourceTree = SOURCE_ROOT; };
 		85A4A42F172911FD0034EED6 /* game.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = game.plist; sourceTree = "<group>"; };
 		85A4A465172D2A030034EED6 /* bars1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars1.png; sourceTree = "<group>"; };
 		85A4A466172D2A030034EED6 /* bars2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bars2.png; sourceTree = "<group>"; };
@@ -376,7 +394,6 @@
 		85A4A512172F5B010034EED6 /* EatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EatViewController.xib; sourceTree = "<group>"; };
 		85A4A51A172F63A90034EED6 /* WalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalkViewController.h; sourceTree = "<group>"; };
 		85A4A51B172F63AB0034EED6 /* WalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalkViewController.m; sourceTree = "<group>"; };
-		85A4A51C172F63AF0034EED6 /* WalkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalkViewController.xib; sourceTree = "<group>"; };
 		85A4A51F172F64090034EED6 /* PlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayViewController.h; sourceTree = "<group>"; };
 		85A4A520172F64090034EED6 /* PlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayViewController.m; sourceTree = "<group>"; };
 		85A4A521172F64090034EED6 /* PlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayViewController.xib; sourceTree = "<group>"; };
@@ -544,7 +561,9 @@
 				850904F7171F78D3009F125C /* StoreViewController.xib */,
 				85A4A51A172F63A90034EED6 /* WalkViewController.h */,
 				85A4A51B172F63AB0034EED6 /* WalkViewController.m */,
-				85A4A51C172F63AF0034EED6 /* WalkViewController.xib */,
+				856BBB5317375B6D00CFA485 /* WalkViewController.xib */,
+				856BBB6217377DD400CFA485 /* playView.h */,
+				856BBB6317377DD600CFA485 /* playView.m */,
 				85A4A51F172F64090034EED6 /* PlayViewController.h */,
 				85A4A520172F64090034EED6 /* PlayViewController.m */,
 				85A4A521172F64090034EED6 /* PlayViewController.xib */,
@@ -573,9 +592,8 @@
 		850904CF171F7149009F125C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				856BBB3A17373F1D00CFA485 /* cash_register.wav */,
+				856BBB6D1737D02E00CFA485 /* cash_register.wav */,
 				856BBB3C1737408F00CFA485 /* lose.wav */,
-				856BBB401737409F00CFA485 /* cash_register.wav */,
 				856BBB411737409F00CFA485 /* drum_roll.wav */,
 				856BBB421737409F00CFA485 /* chime_down.wav */,
 				856BBB431737409F00CFA485 /* chime_up.wav */,
@@ -642,6 +660,7 @@
 		856BBAF217354E6000CFA485 /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB671737A00400CFA485 /* success.png */,
 				856BBB011735790600CFA485 /* redArrow.png */,
 				856BBB021735790600CFA485 /* blueArrow.png */,
 				856BBB031735790600CFA485 /* purpleArrow.png */,
@@ -699,6 +718,26 @@
 			path = petFrames/goingToEat;
 			sourceTree = SOURCE_ROOT;
 		};
+		856BBB581737799300CFA485 /* walkingLeft */ = {
+			isa = PBXGroup;
+			children = (
+				856BBB591737799300CFA485 /* walkingLeft1.png */,
+				856BBB5A1737799300CFA485 /* walkingLeft2.png */,
+			);
+			name = walkingLeft;
+			path = petFrames/walkingLeft;
+			sourceTree = SOURCE_ROOT;
+		};
+		856BBB5B1737799300CFA485 /* walkingRight */ = {
+			isa = PBXGroup;
+			children = (
+				856BBB5C1737799300CFA485 /* walkingRight1.png */,
+				856BBB5D1737799300CFA485 /* walkingRight2.png */,
+			);
+			name = walkingRight;
+			path = petFrames/walkingRight;
+			sourceTree = SOURCE_ROOT;
+		};
 		85A4A431172949A00034EED6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,6 +768,7 @@
 		85A4A43517294A200034EED6 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB6B1737A9FE00CFA485 /* patten.png */,
 				856BBAC617352BB400CFA485 /* room.png */,
 				85E63E271734CFAC0052A655 /* kitchen.png */,
 				85A4A545172FC6840034EED6 /* room.png */,
@@ -763,6 +803,10 @@
 		85A4A48F172D41F80034EED6 /* Pet Frames */ = {
 			isa = PBXGroup;
 			children = (
+				856BBB6F1737D37800CFA485 /* walkingLeft.png */,
+				856BBB701737D37800CFA485 /* walkingRight.png */,
+				856BBB581737799300CFA485 /* walkingLeft */,
+				856BBB5B1737799300CFA485 /* walkingRight */,
 				856BBB261736806600CFA485 /* eating */,
 				856BBB2D1736806600CFA485 /* goingToEat */,
 				856BBB0F17365B5E00CFA485 /* Shake */,
@@ -1010,7 +1054,6 @@
 				85A4A50B172E59C60034EED6 /* angry2.png in Resources */,
 				85A4A50F172F4B720034EED6 /* talkBubble.png in Resources */,
 				85A4A514172F5B020034EED6 /* EatViewController.xib in Resources */,
-				85A4A51E172F63B70034EED6 /* WalkViewController.xib in Resources */,
 				85A4A523172F640A0034EED6 /* PlayViewController.xib in Resources */,
 				85A4A528172F643A0034EED6 /* PetViewController.xib in Resources */,
 				85A4A530172F6DB50034EED6 /* purpleBar.png in Resources */,
@@ -1092,14 +1135,22 @@
 				856BBB361736806600CFA485 /* goingToEat1.png in Resources */,
 				856BBB371736806600CFA485 /* goingToEat2.png in Resources */,
 				856BBB3917373EFF00CFA485 /* alert.wav in Resources */,
-				856BBB3B17373F1D00CFA485 /* cash_register.wav in Resources */,
 				856BBB3E1737408F00CFA485 /* lose.wav in Resources */,
 				856BBB3F1737408F00CFA485 /* win.wav in Resources */,
-				856BBB451737409F00CFA485 /* cash_register.wav in Resources */,
 				856BBB461737409F00CFA485 /* drum_roll.wav in Resources */,
 				856BBB471737409F00CFA485 /* chime_down.wav in Resources */,
 				856BBB481737409F00CFA485 /* chime_up.wav in Resources */,
 				856BBB491737409F00CFA485 /* card_shuffle.wav in Resources */,
+				856BBB5417375B6F00CFA485 /* WalkViewController.xib in Resources */,
+				856BBB5E1737799300CFA485 /* walkingLeft1.png in Resources */,
+				856BBB5F1737799300CFA485 /* walkingLeft2.png in Resources */,
+				856BBB601737799300CFA485 /* walkingRight1.png in Resources */,
+				856BBB611737799300CFA485 /* walkingRight2.png in Resources */,
+				856BBB681737A00700CFA485 /* success.png in Resources */,
+				856BBB6C1737A9FF00CFA485 /* patten.png in Resources */,
+				856BBB6E1737D02E00CFA485 /* cash_register.wav in Resources */,
+				856BBB711737D37800CFA485 /* walkingLeft.png in Resources */,
+				856BBB721737D37800CFA485 /* walkingRight.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1145,6 +1196,7 @@
 				85A4A522172F640A0034EED6 /* PlayViewController.m in Sources */,
 				85A4A527172F643A0034EED6 /* PetViewController.m in Sources */,
 				85E63E211734CDC10052A655 /* MatchingViewController.m in Sources */,
+				856BBB6417377DD800CFA485 /* playView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

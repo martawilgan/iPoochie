@@ -95,6 +95,7 @@
     // Update the points label text
     pointsLabel.text =
         [NSString stringWithFormat:@"Points: %@", points];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,6 +146,12 @@
         [itemsData setObject:amounts
                      forKey:@"amounts"];
         [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
+        
+        // Play happy bark sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"happy_bark" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
 
     }
     else
@@ -159,6 +166,12 @@
                                               cancelButtonTitle:@"Done"
                                               otherButtonTitles: nil];
         [alert show];
+        
+        // Play alert sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
         
     }
     

@@ -11,6 +11,7 @@
 @implementation AppDelegate
 @synthesize window;
 @synthesize rootController;
+@synthesize motionManager;
 @synthesize itemsData;
 @synthesize gameData;
 @synthesize itemsDataPath;
@@ -29,6 +30,9 @@
     // Load data from plists
     itemsData = [[NSDictionary alloc] initWithContentsOfFile:itemsDataPath];
     gameData = [[NSDictionary alloc] initWithContentsOfFile:gameDataPath];
+    
+    // Init motion manager
+    self.motionManager = [[CMMotionManager alloc] init];
         
     // Add subview rootController to the TabBarController
     [[NSBundle mainBundle] loadNibNamed:@"TabBarController" owner:self options:nil];

@@ -15,6 +15,7 @@
 
 @implementation EatViewController
 @synthesize points;
+@synthesize timeInView;
 @synthesize pointsLabel;
 @synthesize bagsLabel;
 @synthesize bowlImageView;
@@ -145,7 +146,10 @@ int gBagsOfChow = 0;
     bagsLabel.text =
         [NSString stringWithFormat:@"Bags of chow: %i", gBagsOfChow];
     
-    [self showInfoBubble];
+    // Start the time in view
+    timeInView = [NSDate date];
+    
+    [self showInfoBubble]; // show the info bubble
 }
 
 - (void)didReceiveMemoryWarning
@@ -243,7 +247,47 @@ int gBagsOfChow = 0;
 // Go back to interactViewController
 -(IBAction)goBack: (id)sender
 {
+    // Find how much time was spent in view
+    NSNumber *time = [NSNumber numberWithDouble:
+                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
+    
+    // Update lastViewName to play and save time spent in view
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    [gameData setObject:@"eat" forKey:@"lastViewName"];
+    [gameData setObject:time
+                 forKey:@"lastViewTime"];
+    
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
+    // go back
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+// Update energry by 5%, if possible
+-(void) updateEnergy
+{
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *energy = [gameData objectForKey:@"energy"];
+
+    int percentage = [energy intValue];
+    percentage += 5;
+    
+    // Make sure not more than 100
+    if(percentage > 100)
+    {
+        percentage = 100;
+    }
+    
+    energy = [NSNumber numberWithInt:percentage];
+    
+    // Write back to plist
+    [gameData setObject:energy
+                 forKey:@"energy"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
 }
 
 // Let the puppy eat if bowl is full
@@ -254,8 +298,11 @@ int gBagsOfChow = 0;
         [self hideBubble];
         [self playHappyBarkSound];
         [self animateEating];
+        
+        // Update energry
+        [self updateEnergy];
     
-        // Clear bowl after timer and uodate number of bags avaialable
+        // Clear bowl after timer and update number of bags avaialable
         [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
                                    selector:@selector(clearBowl:)
                                    userInfo:nil repeats:NO];

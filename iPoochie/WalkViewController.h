@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface WalkViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) NSNumber *points;
-
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 -(IBAction)goBack: (id)sender;

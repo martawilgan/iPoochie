@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSArray *wagging1;
 @property (strong, nonatomic) NSArray *wagging2;
 @property (strong, nonatomic) NSDate *timingDate;
+@property (strong, nonatomic) NSDate *timeInView;
 
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *talkLabel;

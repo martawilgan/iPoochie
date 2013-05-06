@@ -16,6 +16,7 @@
 @interface EatViewController : UIViewController <UIAccelerometerDelegate>
 
 @property (strong, nonatomic) NSNumber *points;
+@property (strong, nonatomic) NSDate *timeInView;
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bagsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoBubbleLabel;

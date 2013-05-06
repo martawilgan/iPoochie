@@ -16,6 +16,7 @@
 
 @implementation PetViewController
 @synthesize points;
+@synthesize timeInView;
 @synthesize wagging1;
 @synthesize wagging2;
 @synthesize timingDate;
@@ -106,6 +107,9 @@ double gTotalTime = 0; // total time spent petting
     gTotalTime = 0;
     gTwoSeconds = 0;
     
+    // Start the time in view
+    timeInView = [NSDate date];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,6 +121,21 @@ double gTotalTime = 0; // total time spent petting
 // Go back to interactViewController
 -(IBAction)goBack: (id)sender
 {
+    // Find how much time was spent in view
+    NSNumber *time = [NSNumber numberWithDouble:
+                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
+    
+    // Update lastViewName to play and save time spent in view
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    [gameData setObject:@"pet" forKey:@"lastViewName"];
+    [gameData setObject:time
+                 forKey:@"lastViewTime"];
+    
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
+    // go back
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
