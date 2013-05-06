@@ -16,14 +16,19 @@
 @implementation MatchingViewController
 @synthesize points;
 @synthesize pointsLabel;
+@synthesize previousButton;
+@synthesize currentButton;
 
 int num_matches_left;
-int card1_pressed, card2_pressed, card3_pressed, card4_pressed, card5_pressed, card6_pressed,card7_pressed, card8_pressed, card9_pressed, card10_pressed, card11_pressed, card12_pressed;
+/*int card1_pressed, card2_pressed, card3_pressed, card4_pressed, card5_pressed, card6_pressed,card7_pressed, card8_pressed, card9_pressed, card10_pressed, card11_pressed, card12_pressed;*/
 
 int num_clicks, previous_button, current_button;
 NSArray *stringArray;
 NSMutableArray *numArray;
+NSMutableArray *matched;
+
 int cardArray[12];
+BOOL match;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,6 +50,12 @@ int cardArray[12];
 {
     [super viewDidAppear:animated];
     
+    // set to defaults
+    num_clicks = 0;
+    previous_button = -1;
+    current_button = -1;
+    match = NO;
+
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
@@ -75,8 +86,11 @@ int cardArray[12];
     //Initializing numArray, which holds indeces of images that are left to randomly choose from to distribute among the cards
     numArray = [[NSMutableArray alloc]init];
     for(int i = 0; i < 12; i++)
+    {
         [numArray addObject: [NSNumber numberWithInt: i]];
-        
+        [matched addObject:[NSNumber numberWithInt:0]];
+    }
+         
     int random;
     int arrayLength = 12;
     
@@ -87,7 +101,7 @@ int cardArray[12];
         arrayLength--;
     }
     
-    num_matches_left = 12;
+    num_matches_left = 6;
 
 }
 
@@ -99,17 +113,40 @@ int cardArray[12];
 }
 
 - (IBAction)cardPressed:(UIButton *)sender {
-    num_clicks++;
-    int tag = [sender tag];
+    
+    // Set default image
+    UIImage *defaultButtonImage = [UIImage imageNamed: @"back_card.png"];
+    
+    // Clear buttons from previous two clicks if no match
+    if(num_clicks == 2)
+    {
+        if(match == NO)
+        {
+            [previousButton setImage: defaultButtonImage forState:UIControlStateNormal];
+            [currentButton setImage: defaultButtonImage forState:UIControlStateNormal];
+            
+        }
+        
+        // update for this click
+        num_clicks = 0;
+    }
+    
+    num_clicks++; // update for this click
+    int tag = [sender tag]; // find button's tag
     
     if(num_clicks == 1)
         previous_button = tag;
+        previousButton = sender;
     if(num_clicks == 2)
         current_button = tag;
+        currentButton = sender;
     
-    UIImage *buttonImage = [UIImage imageNamed: [stringArray objectAtIndex: cardArray[tag]]];
-    UIImage *defaultButtonImage = [UIImage imageNamed: @"back_card.png"];
-    [sender setImage: buttonImage forState: UIControlStateSelected];
+    NSString *cardName =[NSString stringWithFormat:@"%@",[stringArray objectAtIndex: cardArray[tag]]];
+    
+    NSLog(@"Image Name: %@ Tag: %i", cardName, tag);
+    
+    UIImage *buttonImage = [UIImage imageNamed:cardName];
+    [sender setImage: buttonImage forState: UIControlStateNormal];
     
     // Create the app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -118,19 +155,36 @@ int cardArray[12];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     
-    if(num_clicks == 2){
-        if((cardArray[current_button] == (cardArray[previous_button] - 6)) || (cardArray[current_button] == (cardArray[previous_button] + 6))){
+    NSLog(@"Number of clicks: %i", num_clicks);
+    int previousMatched = [[matched objectAtIndex:cardArray[previous_button]] intValue];
+    int currentMatched = [[matched objectAtIndex:cardArray[current_button]]intValue];
+    
+    NSLog(@"Previous matched: %i Current matched %i", previousMatched, currentMatched);
+    
+    // On second click make sure not already matched
+    if(num_clicks == 2 && previousMatched == 0 && currentMatched == 0)
+    {
+        if((cardArray[current_button] == (cardArray[previous_button] - 6)) || (cardArray[current_button] == (cardArray[previous_button] + 6)))
+        {
+            
+            NSLog(@"match");
+            match = YES;
+            
+            // Set both to matched
+            [matched replaceObjectAtIndex:cardArray[previous_button]
+                               withObject:[NSNumber numberWithInt:1]];
+            [matched replaceObjectAtIndex:cardArray[current_button]
+                               withObject:[NSNumber numberWithInt:1]];
+            
             if(num_matches_left > 0)
                 num_matches_left--;
         }
-        if((cardArray[current_button] != (cardArray[previous_button] - 6)) || (cardArray[current_button] != (cardArray[previous_button] + 6))){
-            [sender setImage: defaultButtonImage forState:UIControlStateNormal];
-            UIButton *tempButton = (UIButton *)[self.view viewWithTag: previous_button];
-            [tempButton setImage: defaultButtonImage forState:UIControlStateNormal];
+        else if((cardArray[current_button] != (cardArray[previous_button] - 6)) && (cardArray[current_button] != (cardArray[previous_button] + 6)))
+        {
+            NSLog(@"no match");
+            match = NO;
             
         }
-        
-        num_clicks = 0;
         
         if(num_matches_left == 0){
             NSString *message = @"CONGRATULATIONS!";

@@ -13,6 +13,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) NSNumber *points;
 
+@property (weak, nonatomic) IBOutlet UIButton *previousButton;
+@property (weak, nonatomic) IBOutlet UIButton *currentButton;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *card1;
 @property (weak, nonatomic) IBOutlet UIButton *card2;
 @property (weak, nonatomic) IBOutlet UIButton *card3;
