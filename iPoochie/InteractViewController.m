@@ -51,6 +51,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Make sure choose toy is no
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    [gameData setObject:@"no" forKey:@"chooseToy"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -393,7 +401,6 @@
     // Grab button title
     NSString *buttonType = [sender titleForState:UIControlStateNormal];
     
-    
     // Find the state of the pet in plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
@@ -425,6 +432,7 @@
             // Show changes made to happiness if any
             [self levelForType:@"happiness"
                      direction:@"down"
+                    withBubble:@"yes"
                  intervalStart:10
                    intervalEnd:30];
         }
@@ -454,6 +462,7 @@
             // Show changes made to happiness if any
             [self levelForType:@"happiness"
                      direction:@"down"
+                    withBubble:@"yes"
                  intervalStart:10
                    intervalEnd:20];
         }
@@ -464,26 +473,54 @@
 
 -(IBAction)goToEatView: (id)sender
 {
-    EatViewController *eatViewController = [[EatViewController alloc] init];
-    [self presentViewController:eatViewController animated:YES completion:NULL];
+    if([state isEqual:@"asleep"])
+    {
+        [self alertIfAsleep];
+    }
+    else
+    {
+        EatViewController *eatViewController = [[EatViewController alloc] init];
+        [self presentViewController:eatViewController animated:YES completion:NULL];
+    }
 }
 
 -(IBAction)goToPetView: (id)sender
 {
-    PetViewController *petViewController = [[PetViewController alloc] init];
-    [self presentViewController:petViewController animated:YES completion:NULL];
+    if([state isEqual:@"asleep"])
+    {
+        [self alertIfAsleep];
+    }
+    else
+    {
+        PetViewController *petViewController = [[PetViewController alloc] init];
+        [self presentViewController:petViewController animated:YES completion:NULL];
+    }
 }
 
 -(IBAction)goToPlayView: (id)sender
 {
-    PlayViewController *playViewController = [[PlayViewController alloc] init];
-    [self presentViewController:playViewController animated:YES completion:NULL];
+    if([state isEqual:@"asleep"])
+    {
+        [self alertIfAsleep];
+    }
+    else
+    {
+        PlayViewController *playViewController = [[PlayViewController alloc] init];
+        [self presentViewController:playViewController animated:YES completion:NULL];
+    }
 }
 
 -(IBAction)goToWalkView: (id)sender
 {
-    WalkViewController *walkViewController = [[WalkViewController alloc] init];
-    [self presentViewController:walkViewController animated:YES completion:NULL];
+    if([state isEqual:@"asleep"])
+    {
+        [self alertIfAsleep];
+    }
+    else
+    {
+        WalkViewController *walkViewController = [[WalkViewController alloc] init];
+        [self presentViewController:walkViewController animated:YES completion:NULL];
+    }
 }
 
 // Create animation for puppy to appear to be awake
@@ -723,8 +760,33 @@
 
 }
 
+-(void) alertIfAsleep
+{
+    if([state isEqual:@"asleep"])
+    {
+        // Create alert if pet is asleep
+        NSString *message = @"You must wake your pet up first";
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+        
+        // Play alert sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
+
+    }
+}
+
+
 -(void) levelForType:(NSString*) type
            direction:(NSString*) direction
+          withBubble:(NSString*) withBubble
        intervalStart:(int) start
          intervalEnd:(int) end
 {
@@ -740,13 +802,13 @@
     
     // Calculate random number for change on interval
     int change = (arc4random() % (end - start)) + start;
-    
-    NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i Plus Change: %i",
-          type, direction, start, end, change, percentageInt, (percentageInt + change));
-    
+     
     // Do checks for up
     if([direction isEqualToString:@"up"])
     {
+        NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
+              type, direction, start, end, change, percentageInt, (percentageInt + change));
+        
         // Percentage is already at 100
         if(percentageInt == 100)
         {
@@ -770,6 +832,9 @@
     // Do checks for down
     if([direction isEqualToString:@"down"])
     {
+        NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
+              type, direction, start, end, change, percentageInt, (percentageInt - change));
+
         // Percentage is already 0
         if(percentageInt == 0)
         {
@@ -793,44 +858,11 @@
     // Show changes made and update plist
     if(showChange == YES)
     {
-        // Show labels
-        infoTypeLabel.text =
-            [NSString stringWithFormat:@"%@", type];
-        infoPercLabel.text =
-            [NSString stringWithFormat:@"%i%@", change, @"%"];
-    
-        /*
-         * Bubble for direction, green for up, red for down
-         * Arrow for direction, purple for up, red for down
-         */
-        if([direction isEqualToString:@"up"])
-        {
-            infoBubbleImageView.image =
-                [UIImage imageNamed:@"greenBubble.png"];
-            infoArrowImageView.image =
-            [UIImage imageNamed:@"magentaArrow.png"];
-        }
-        else if([direction isEqualToString:@"down"])
-        {
-            infoBubbleImageView.image =
-                [UIImage imageNamed:@"redBubble.png"];
-            infoArrowImageView.image =
-                [UIImage imageNamed:@"redArrow.png"];
-        }
-    
-        // Show image views
-        infoBubbleImageView.hidden = NO;
-        infoArrowImageView.hidden = NO;
-        
-        // Play sound
-        [self soundForDirection:direction];
-    
         // Update the plist values
         percentage = [NSNumber numberWithInt:percentageInt];
         [gameData setObject:percentage
                      forKey:type];
         [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-        
         
         // Update stat information
         if([type isEqualToString:@"health"])
@@ -846,10 +878,48 @@
             [self updateHappiness];
         }
         
-        // Clear labels and imageViews after timer
-        [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
+        // Show the bubble with info if requested
+        if([withBubble isEqual:@"yes"])
+        {
+            // Show labels
+            infoTypeLabel.text =
+                [NSString stringWithFormat:@"%@", type];
+            infoPercLabel.text =
+                [NSString stringWithFormat:@"%i%@", change, @"%"];
+    
+            /*
+             * Bubble for direction, green for up, red for down
+             * Arrow for direction, purple for up, red for down
+             */
+            if([direction isEqualToString:@"up"])
+            {
+                infoBubbleImageView.image =
+                    [UIImage imageNamed:@"greenBubble.png"];
+                infoArrowImageView.image =
+                [UIImage imageNamed:@"magentaArrow.png"];
+            }
+            else if([direction isEqualToString:@"down"])
+            {
+                infoBubbleImageView.image =
+                    [UIImage imageNamed:@"redBubble.png"];
+                infoArrowImageView.image =
+                    [UIImage imageNamed:@"redArrow.png"];
+            }
+    
+            // Show image views
+            infoBubbleImageView.hidden = NO;
+            infoArrowImageView.hidden = NO;
+        
+            // Play sound
+            [self soundForDirection:direction];
+
+            // Clear labels and imageViews after timer
+            [NSTimer scheduledTimerWithTimeInterval:3.0 target:self
                                        selector:@selector(clearInfo:)
-                                       userInfo:nil repeats:NO];
+                                        userInfo:nil repeats:NO];
+            
+        }
+        
     }
 }
 
@@ -889,6 +959,7 @@
         // Show changes made to type if any
         [self levelForType:type
                  direction:@"down"
+                withBubble:@"no"
              intervalStart:2
                intervalEnd:end];
     }
@@ -900,6 +971,7 @@
         // Show changes made to type if any
         [self levelForType:type
                  direction:@"up"
+                withBubble:@"yes"
              intervalStart:2
                intervalEnd:end];
     }

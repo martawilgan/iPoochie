@@ -12,11 +12,11 @@
 	<integer>100</integer>
 	<key>petState</key>
 	<string>awake</string>
-	<key>angry</key>
-	<integer>0</integer>
 	<key>lastViewTime</key>
 	<integer>0</integer>
 	<key>lastViewName</key>
+	<string>none</string>
+	<key>chosenItem</key>
 	<string>none</string>
 </dict>
 </plist>

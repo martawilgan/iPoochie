@@ -81,37 +81,34 @@ NSNumber *newPoints;
     randPoints = (arc4random() % (toPoints - fromPoints)) + fromPoints;
     newPoints = [NSNumber numberWithInt: randPoints];
     
+    NSString *path; // path for sound
+    
     if(randPoints < 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU JUST LOST: %d points", -1*randPoints];
         [chanceImage setImage: [UIImage imageNamed: @"lost.png"]];
         
-        // Play lose sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"lose" ofType:@"wav"];
-        SystemSoundID theSound;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-        AudioServicesPlaySystemSound (theSound);
+        // Path for losing sound
+        path = [[NSBundle mainBundle] pathForResource:@"whimper" ofType:@"wav"];
     }
     if(randPoints > 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU JUST WON: %d points!!!", randPoints];
         [chanceImage setImage: [UIImage imageNamed: @"won.png"]];
         
-        // Play win sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"win" ofType:@"wav"];
-        SystemSoundID theSound;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-        AudioServicesPlaySystemSound (theSound);
+        // Path for winning sound
+        path = [ [NSBundle mainBundle] pathForResource:@"win" ofType:@"wav"];
     }
     if(randPoints == 0){
         chanceLabel.text = [NSString stringWithFormat: @"YOU DIDN'T LOSE OR WIN ANY POINTS"];
         [chanceImage setImage: [UIImage imageNamed: @"shrug.png"]];
         
-        // Play whimper sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"whimper" ofType:@"wav"];
-        SystemSoundID theSound;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-        AudioServicesPlaySystemSound (theSound);
+        // Path for not winning or losing sound
+        path = [ [NSBundle mainBundle] pathForResource:@"down" ofType:@"wav"];
     }
     
+    // Play the sound
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
     
     points = [NSNumber numberWithInt: [points intValue] + [newPoints intValue]];
     [gameData setObject:points

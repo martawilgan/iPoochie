@@ -135,6 +135,8 @@
     self.prices = [itemsData objectForKey:@"prices"];
     self.points = [gameData objectForKey:@"points"];
     
+    NSString *path; // path for sound
+    
     // If enough points, grant the purchase
     if ([prices[theRow] intValue] <= [points intValue])
     {
@@ -159,11 +161,8 @@
                      forKey:@"amounts"];
         [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
         
-        // Play cash register sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"register2" ofType:@"mp3"];
-        SystemSoundID theSound;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-        AudioServicesPlaySystemSound (theSound);
+        // Set path for cash register sound
+        path = [ [NSBundle mainBundle] pathForResource:@"register2" ofType:@"mp3"];
 
     }
     else
@@ -179,13 +178,15 @@
                                               otherButtonTitles: nil];
         [alert show];
         
-        // Play alert sound
-        NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
-        SystemSoundID theSound;
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-        AudioServicesPlaySystemSound (theSound);
+        // Set alert sound path
+        path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
         
     }
+    
+    // Play sound
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
     
 }
 

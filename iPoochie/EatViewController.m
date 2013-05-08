@@ -362,21 +362,6 @@ int gBagsOfChow = 0;
     [self showInfoBubble];
 }
 
-
-// Create animation for puppy to appear to be getting ready to eat
--(void) animateGoingToEat
-{
-    petImageView.animationImages =  [NSArray arrayWithObjects:
-                                     [UIImage imageNamed:@"goingToEat1.png"],
-                                     [UIImage imageNamed:@"goingToEat2.png"],
-                                     nil];
-    
-    petImageView.animationDuration = 1.0;
-    petImageView.animationRepeatCount = 1;
-    [petImageView startAnimating];
-    
-}
-
 // Create animation for puppy to appear to be eating
 -(void) animateEating
 {
@@ -398,19 +383,5 @@ int gBagsOfChow = 0;
     petImageView.animationRepeatCount = 1;
     [petImageView startAnimating];
 }
-
-// Create animation for puppy to appear to stop eating
--(void) animateStopEating
-{
-    petImageView.animationImages =  [NSArray arrayWithObjects:
-                                     [UIImage imageNamed:@"goingToEat2.png"],
-                                     [UIImage imageNamed:@"goingToEat1.png"],
-                                     nil];
-    
-    petImageView.animationDuration = 1.0;
-    petImageView.animationRepeatCount = 1;
-    [petImageView startAnimating];
-}
-
 
 @end
