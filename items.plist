@@ -11,7 +11,9 @@
 		<string>squeaky toys</string>
 		<string>chew toys</string>
 		<string>treats</string>
+		<string>bouncy balls</string>
 		<string>balls</string>
+		<string>frisbees</string>
 	</array>
 	<key>imageNames</key>
 	<array>
@@ -21,6 +23,8 @@
 		<string>chewtoy.png</string>
 		<string>treat.png</string>
 		<string>ball.png</string>
+		<string>ball2.png</string>
+		<string>frisbee.png</string>
 	</array>
 	<key>prices</key>
 	<array>
@@ -30,6 +34,8 @@
 		<integer>25</integer>
 		<integer>30</integer>
 		<integer>50</integer>
+		<string>60</string>
+		<string>75</string>
 	</array>
 	<key>amounts</key>
 	<array>
@@ -39,6 +45,8 @@
 		<integer>1</integer>
 		<integer>1</integer>
 		<integer>1</integer>
+		<integer>0</integer>
+		<integer>0</integer>
 	</array>
 </dict>
 </plist>
