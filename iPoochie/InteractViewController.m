@@ -112,6 +112,12 @@
 
 -(void) hideWelcome
 {
+    // Play happy bark sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"happy_bark" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+    
     // Fade image out
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:5.0];
