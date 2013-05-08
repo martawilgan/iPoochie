@@ -80,7 +80,6 @@ BOOL chooseToy;
          * or cannot be played with
          */
         if([items[i] isEqual:@"chow.png"]
-           || [items[i] isEqual:@"treat.png"]
            || [amounts[i] isEqual:[NSNumber numberWithInt:0]])
         {
             [items removeObjectAtIndex:i];
@@ -211,6 +210,16 @@ BOOL chooseToy;
         NSString *imageName = [self barsImageName: [happiness intValue]];
         happinessImageView.image = [UIImage imageNamed:imageName];
     }
+    
+    // If pet has no energy and/or health kick out of play
+    if([energy intValue] == 0 || [health intValue] == 0 ||
+       ([energy intValue] == 0 && [health intValue] == 0))
+    {
+        // Make any leaving updates
+        [self leavingUpdatesWithAlert:@"yes"];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+        
+    }
 
 }
 
@@ -272,8 +281,7 @@ BOOL chooseToy;
     return name;
 }
 
-// Go back to interactViewController
--(IBAction)goBack: (id)sender
+-(void) leavingUpdatesWithAlert: (NSString*) withAlert
 {
     // Find how much time was spent in view
     NSNumber *time = [NSNumber numberWithDouble:
@@ -282,9 +290,9 @@ BOOL chooseToy;
     // Update lastViewName to play and save time spent in view
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData =
-        [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate gameDataPath]];
+    [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate gameDataPath]];
     NSMutableDictionary *itemsData =
-        [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate itemsDataPath]];
+    [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate itemsDataPath]];
     
     self.items = [itemsData objectForKey:@"imageNames"];
     self.amounts = [itemsData objectForKey:@"amounts"];
@@ -299,16 +307,31 @@ BOOL chooseToy;
         }
     }
     
-    // Write back to plist
+    NSNumber *itemsToPlayWith = [itemsData objectForKey:@"itemsToPlayWith"];
+    itemsToPlayWith = [NSNumber numberWithInt:([itemsToPlayWith intValue] - 1)];
+    
+    // Write back to items plist
+    [itemsData setObject:itemsToPlayWith forKey:@"itemsToPlayWith"];
     [itemsData setObject:amounts forKey:@"amounts"];
     [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
     
+    if([withAlert isEqual:@"yes"])
+    {
+        [gameData setObject:@"yes" forKey:@"showAlert"];
+    }
+    
+    // Write back to game plist
     [gameData setObject:@"play" forKey:@"lastViewName"];
     [gameData setObject:time forKey:@"lastViewTime"];
-    [gameData setObject:@"none" forKey:@"chosenItem"];    
+    [gameData setObject:@"none" forKey:@"chosenItem"];
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-    
-    // go back
+}
+
+// Go back to interactViewController
+-(IBAction)goBack: (id)sender
+{
+    // Make any final updates and go back
+    [self leavingUpdatesWithAlert:@"no"];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -353,7 +376,7 @@ BOOL chooseToy;
          {
              [(playView*)self.playView setAcceleration:accerlerometerData.acceleration];
              [self.playView performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-             [self performSelectorOnMainThread:@selector(updateAllLabels) withObject:nil waitUntilDone:NO];
+             [self performSelectorOnMainThread:@selector(updateAllLabels) withObject:nil waitUntilDone:YES];
          
          }];
     }

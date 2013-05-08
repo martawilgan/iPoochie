@@ -18,5 +18,7 @@
 	<string>none</string>
 	<key>chosenItem</key>
 	<string>none</string>
+	<key>showAlert</key>
+	<string>no</string>
 </dict>
 </plist>

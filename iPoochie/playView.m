@@ -225,7 +225,7 @@
     int happinessPercentage = [happinessLevel intValue];
     
     // if energy greater than 10 increase happiness
-    if(energyPercentage > 10)
+    if(energyPercentage > 15)
     {
         direction = @"up";
         happinessPercentage += change;

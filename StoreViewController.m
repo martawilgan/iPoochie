@@ -159,6 +159,12 @@
         [self.amounts replaceObjectAtIndex: theRow withObject: newAmount];
         [itemsData setObject:amounts
                      forKey:@"amounts"];
+        
+        // Update number of items to play with
+        NSNumber *itemsToPlayWith = [itemsData objectForKey:@"itemsToPlayWith"];
+        itemsToPlayWith = [NSNumber numberWithInt:([itemsToPlayWith intValue] + 1)];
+        [itemsData setObject:itemsToPlayWith forKey:@"itemsToPlayWith"];
+        
         [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
         
         // Set path for cash register sound

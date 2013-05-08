@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *infoBubbleImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *infoArrowImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *welcomeImageView;
 
 // Buttons
 @property (weak, nonatomic) IBOutlet UIButton *eatButton;

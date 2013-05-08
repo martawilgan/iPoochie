@@ -36,6 +36,7 @@
 @synthesize infoArrowImageView;
 @synthesize infoBubbleImageView;
 @synthesize timingDate;
+@synthesize welcomeImageView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -59,6 +60,8 @@
     [gameData setObject:@"no" forKey:@"chooseToy"];
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
     
+    [self hideWelcome];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -74,6 +77,8 @@
     // Update the points label text
     pointsLabel.text =
     [NSString stringWithFormat:@"Points: %@", points];
+    
+    [self showAlert];   // show any alerts that need to be made
     
     // Update the health, energy, and happiness levels in plist
     [self updateLevelsInPlist];
@@ -103,6 +108,50 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) hideWelcome
+{
+    // Fade image out
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:5.0];
+    [welcomeImageView setAlpha:0];
+    [UIView commitAnimations];
+}
+
+-(void) showAlert
+{
+    // Grab showAlert from plist
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSString *showAlert = [gameData objectForKey:@"showAlert"];
+    NSString *lastViewName = [gameData objectForKey:@"lastViewName"];
+   
+    if([showAlert isEqual:@"yes"] && [lastViewName isEqual:@"play"])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Watch Out!"
+                                                        message:@"Your pet is too tired and needs some rest and something to eat.  Come back to play when in better shape."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+    
+    
+        // Play alert sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
+        
+        // Make changes and write back to plist
+        [gameData setObject:@"no" forKey:@"showAlert"];
+        [gameData setObject:@"none" forKey:@"lastViewName"];
+        [gameData setObject:[NSNumber numberWithInt:0] forKey:@"lastViewTime"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+        
+        // Show the alert
+        [alert show];
+    }
 }
 
 // Update health on screen to reflect current values in plist
@@ -213,7 +262,6 @@
 
 /*
  * Update levels in plist for previous activity
- * for play energry and health go down 1 % for every minute
  * for eat health goes up 1% for every minute
  * for pet health goes down 1% for every minute
  */
@@ -231,28 +279,6 @@
     NSString *lastViewName = [gameData objectForKey:@"lastViewName"];
     NSNumber *lastViewTime = [gameData objectForKey:@"lastViewTime"];
     
-    // Decrease energy for play
-    if([lastViewName isEqual:@"play"])
-    {
-        NSLog(@"Energy was %@", energy);
-        
-        int percentage = [energy intValue]; 
-        int time = [lastViewTime intValue] + 1; // not zero
-        
-        percentage = [self changePercentForLevel:@"energry"
-                                andOldPercentage:percentage
-                                         andTime:time
-                                     inDirection:@"down"];
-        
-        // Update energy and write back to plist
-        energy = [NSNumber numberWithInt:percentage];
-        
-         NSLog(@"Energy now %@", energy);
-        
-        [gameData setObject:energy
-                     forKey:@"energy"];
-        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-    }
     // Increase health and energry for eat
     if([lastViewName isEqual:@"eat"])
     {
@@ -278,7 +304,7 @@
     }
     
     // Decrease health for play and pet
-    if([lastViewName isEqual:@"play"] || [lastViewName isEqual:@"pet"])
+    if([lastViewName isEqual:@"pet"])
     {
         NSLog(@"Health was %@", health);
         
@@ -297,29 +323,6 @@
         
         [gameData setObject:health
                      forKey:@"health"];
-        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-    }
-    
-    // Increase happiness for play
-    if([lastViewName isEqual:@"play"])
-    {
-        NSLog(@"Happiness was %@", happiness);
-        
-        int percentage = [happiness intValue];
-        int time = [lastViewTime intValue] + 1; // not zero
-        
-        percentage = [self changePercentForLevel:@"happiness"
-                                andOldPercentage:percentage
-                                         andTime:time
-                                     inDirection:@"up"];
-        
-        // Update happiness and write back to plist
-        happiness = [NSNumber numberWithInt:percentage];
-        
-        NSLog(@"Happiness now %@", happiness);
-        
-        [gameData setObject:happiness
-                     forKey:@"happiness"];
         [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
     }
     
@@ -499,9 +502,34 @@
 
 -(IBAction)goToPlayView: (id)sender
 {
+    // See if any items to play with are available
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *itemsData =
+        [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate itemsDataPath]];
+    NSNumber *itemsToPlayWith = [itemsData objectForKey:@"itemsToPlayWith"];
+    
     if([state isEqual:@"asleep"])
     {
         [self alertIfAsleep];
+    }
+    else if([itemsToPlayWith intValue] == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry!"
+                                                        message:@"Your pet needs items to play with.  You must buy some from the store first before you can play."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        
+        
+        // Play alert sound
+        NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+        SystemSoundID theSound;
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+        AudioServicesPlaySystemSound (theSound);
+        
+        // Show the alert
+        [alert show];
     }
     else
     {
