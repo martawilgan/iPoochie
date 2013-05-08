@@ -193,18 +193,14 @@
     NSNumber *timeNumber = [NSNumber numberWithDouble:
                             [[NSDate date] timeIntervalSinceDate:self.timingDate]];
     int time = [timeNumber intValue];
-    int change; // will hold change for levels and points
     
-    // Update the levels
+    int change = 1; // change for level
+    
+    // Change increases when time > 10
     if(time > 10)
     {
-        change = (arc4random() % (20-10)) + 11;
+        change = 3;
     }
-    else
-    {
-        change = time;
-    }
-    
     
     // Grab points from plist through app delegate
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -212,66 +208,95 @@
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
     
     // Update the energry level
-    NSNumber *number = [gameData objectForKey:@"energry"];
-    int percentage = [number intValue] - change;
+    NSNumber *energyLevel = [gameData objectForKey:@"energy"];
+    int energyPercentage = [energyLevel intValue] - change;
     
     // Make sure doen't go below 0
-    if(percentage < 0)
+    if(energyPercentage < 0)
     {
-        percentage = 0;
+        energyPercentage = 0;
     }
     
-    [gameData setObject:[NSNumber numberWithInt:percentage]
+    [gameData setObject:[NSNumber numberWithInt:energyPercentage]
                  forKey:@"energy"];
     
     // Update the happiness level
-    number = [gameData objectForKey:@"happiness"];
+    NSNumber *happinessLevel = [gameData objectForKey:@"happiness"];
+    int happinessPercentage = [happinessLevel intValue];
     
     // if energy greater than 10 increase happiness
-    if(percentage > 10)
+    if(energyPercentage > 10)
     {
         direction = @"up";
-        percentage = [number intValue] + change + 1;
+        happinessPercentage += change;
     }
     else
     {
         direction = @"down";
-        percentage -= 1;
+        happinessPercentage -= change;
     }
     
     // Make sure it doesn't go above 100 or below 0
-    if(percentage > 100)
+    if(happinessPercentage > 100)
     {
-        percentage = 100;
+        happinessPercentage = 100;
     }
-    if(percentage < 0)
+    if(happinessPercentage < 0)
     {
-        percentage = 0;
+        happinessPercentage = 0;
     }
 
-    [gameData setObject:[NSNumber numberWithInt:percentage]
+    [gameData setObject:[NSNumber numberWithInt:happinessPercentage]
                  forKey:@"happiness"];
     
-    // Update health by 1 + or - , if possible
-    number = [gameData objectForKey:@"health"];
+    // Update health by change + or - , if possible
+    NSNumber *healthLevel = [gameData objectForKey:@"health"];
     
-    if ([direction isEqual:@"up"] && ([number intValue] + 1) <= 100)
+    if ([direction isEqual:@"up"] && ([healthLevel intValue] + change) <= 100)
     {
-        [gameData setObject:[NSNumber numberWithInt:[number intValue] + 1]
+        [gameData setObject:[NSNumber numberWithInt:([healthLevel intValue] + change)]
                      forKey:@"health"];
     }
-    if ([direction isEqual:@"down"] && ([number intValue] - 1) >= 0)
+    if ([direction isEqual:@"down"] && ([healthLevel intValue] - change) >= 0)
     {
-        [gameData setObject:[NSNumber numberWithInt:[number intValue] - 1]
+        [gameData setObject:[NSNumber numberWithInt:([healthLevel intValue] - change)]
                      forKey:@"health"];
     }
+    
+    NSLog(@"Time is %i", time);
+    NSLog(@"Energy was: %@ now: %i", energyLevel, energyPercentage);
+    NSLog(@"Happiness was: %@ now: %i", happinessLevel, happinessPercentage);
+    NSLog(@"Health was: %@ change: %i direction %@", healthLevel, change, direction);
     
     NSNumber *points = [gameData objectForKey:@"points"];
 
     // Number to increment points
-    change = (arc4random() % 5) + 1;
+    int pointsInt = 0;
     
-    switch(change)
+    // Choose number of points based on time
+    if(time > 10)
+    {
+        pointsInt = 1;
+    }
+    else if(time <= 10 && time > 8)
+    {
+        pointsInt = 2;
+    }
+    else if(time <= 8 && time > 5)
+    {
+        pointsInt = 3;
+    }
+    else if(time <= 5 && time > 3)
+    {
+        pointsInt = 4;
+    }
+    else if(time <= 3)
+    {
+        pointsInt = 5;
+    }
+        
+    
+    switch(pointsInt)
     {
         case 1:
             self.left = [UIImage imageNamed:@"1points.png"];
@@ -295,7 +320,7 @@
             break;
     }
     
-    // Increment points with number 1- 5 and add back to plist
+    // Increment points with number 1- 5 and add all changes back to plist
     points = [NSNumber numberWithInt: [points intValue] + change];
     [gameData setObject:points
                  forKey:@"points"];
