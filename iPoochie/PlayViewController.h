@@ -31,11 +31,14 @@ UIPickerViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *energyImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *happinessImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *infoImageView;
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIView *playView;
 
 -(IBAction)goBack: (id)sender;
+-(IBAction)toggleInfo:(id)sender;
 -(IBAction)chooseItem:(id)sender;
 
 @end

@@ -325,9 +325,9 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
-    NSNumber *energy = [gameData objectForKey:@"energy"];
+    //NSNumber *energy = [gameData objectForKey:@"energy"];
     NSNumber *health = [gameData objectForKey:@"health"];
-    NSNumber *happiness = [gameData objectForKey:@"happiness"];
+    //NSNumber *happiness = [gameData objectForKey:@"happiness"];
     
     // Grab last view and time spent in it
     NSString *lastViewName = [gameData objectForKey:@"lastViewName"];
@@ -336,7 +336,7 @@
     // Increase health and energry for eat
     if([lastViewName isEqual:@"eat"])
     {
-        NSLog(@"Health was %@", health);
+        //NSLog(@"Health was %@", health);
         
         int percentage = [health intValue];
         int time = [lastViewTime intValue] + 1; // not zero
@@ -349,7 +349,7 @@
         // Update health
         health = [NSNumber numberWithInt:percentage];
         
-        NSLog(@"Health now %@", health);
+        //NSLog(@"Health now %@", health);
         
         // Write health and energry back to plist
         [gameData setObject:health
@@ -360,7 +360,7 @@
     // Decrease health for play and pet
     if([lastViewName isEqual:@"pet"])
     {
-        NSLog(@"Health was %@", health);
+        //NSLog(@"Health was %@", health);
         
         int percentage = [health intValue];
         int time = [lastViewTime intValue] + 1; // not zero
@@ -373,7 +373,7 @@
         // Update health and write back to plist
         health = [NSNumber numberWithInt:percentage];
         
-        NSLog(@"Health now %@", health);
+        //NSLog(@"Health now %@", health);
         
         [gameData setObject:health
                      forKey:@"health"];
@@ -474,14 +474,7 @@
         // Check to see if awake
         if([state isEqualToString:@"awake"])
         {
-            // Stop the  energy timer
-            //[energyTimer invalidate];
-            //energyTimer = nil;
-            
-            // Update energy and put to sleep
-            //[self levelForTimeInState:@"awake" andType:@"energy"];
-            
-            // Put to sleep
+            // Go to sleep
             [self animateGoingToSleep];
             [self changeStateTo:@"asleep"];
         }
@@ -510,17 +503,10 @@
         // Check to see if asleep
         if([state isEqualToString:@"asleep"])
         {
-            // Update energy and wake up
-            //[self levelForTimeInState:@"asleep" andType:@"energy"];
+            // Wake up
             [self animateWakingUp];
             [self changeStateTo:@"awake"];
             
-            // Start the energy timer
-            /*energyTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                           target:self
-                                                         selector:@selector(updateEnergyForState)
-                                                         userInfo:nil
-                                                          repeats:YES];*/
         }
         else
         {
@@ -1037,39 +1023,6 @@
     SystemSoundID theSound;
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
-}
-
--(void) levelForTimeInState:(NSString *) theState andType:(NSString *) type
-{
-    // Find how much time pet was in state
-    NSNumber *time = [NSNumber numberWithDouble:
-        [[NSDate date] timeIntervalSinceDate:self.timingDate]];
-    
-    if([theState isEqualToString:@"awake"])
-    {
-        int end  = [time intValue] + 5; // end on interval
-        
-        // Show changes made to type if any
-        [self levelForType:type
-                 direction:@"down"
-                withBubble:@"no"
-             intervalStart:2
-               intervalEnd:end];
-    }
-    
-    if([theState isEqualToString:@"asleep"])
-    {
-        int end  = [time intValue] + 10; // end on interval
-
-        // Show changes made to type if any
-        [self levelForType:type
-                 direction:@"up"
-                withBubble:@"yes"
-             intervalStart:2
-               intervalEnd:end];
-    }
-    
-    timingDate = [NSDate date]; // set start date for next state
 }
 
 @end

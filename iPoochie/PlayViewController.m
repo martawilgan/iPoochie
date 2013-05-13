@@ -35,11 +35,13 @@ BOOL chooseToy;
 @synthesize energyImageView;
 @synthesize happinessImageView;
 @synthesize backgroundImageView;
+@synthesize infoImageView;
 @synthesize motionManager;
 @synthesize timeInView;
 @synthesize pickerLabel;
 @synthesize pickerView;
 @synthesize playView;
+@synthesize infoButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -119,8 +121,12 @@ BOOL chooseToy;
 {
     [super viewDidAppear:animated];
     
+    // Set default values for start
     self.playView.hidden = YES;
-    
+    self.infoImageView.hidden = YES;
+    self.infoImageView.image = [UIImage imageNamed:@"playInfo.png"];
+    self.infoButton.enabled = NO;
+    self.infoButton.hidden = YES;
     chooseToy = NO;
     
     // Grab values from plist through app delegate
@@ -366,6 +372,9 @@ BOOL chooseToy;
     if(![chosenItemInPlist isEqual:@"none"])
     {        
         self.playView.hidden = NO; // show the play view
+        // Show and enable the info button
+        self.infoButton.enabled = YES;
+        self.infoButton.hidden = NO;
         
         // Start playing
         //self.motionManager = [[CMMotionManager alloc] init];
@@ -382,6 +391,18 @@ BOOL chooseToy;
          }];
     }
 
+}
+
+-(IBAction)toggleInfo:(id)sender
+{
+    if(infoImageView.hidden == YES)
+    {
+        infoImageView.hidden = NO;
+    }
+    else
+    {
+        infoImageView.hidden = YES;
+    }
 }
 
 #pragma mark -

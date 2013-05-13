@@ -188,6 +188,7 @@
     AudioServicesPlaySystemSound (theSound);
     
     NSString *direction;
+    NSString *reward = @"points";
     
     // Find how much time before pet caught item
     NSNumber *timeNumber = [NSNumber numberWithDouble:
@@ -263,67 +264,183 @@
                      forKey:@"health"];
     }
     
-    NSLog(@"Time is %i", time);
-    NSLog(@"Energy was: %@ now: %i", energyLevel, energyPercentage);
-    NSLog(@"Happiness was: %@ now: %i", happinessLevel, happinessPercentage);
-    NSLog(@"Health was: %@ change: %i direction %@", healthLevel, change, direction);
+    //NSLog(@"Time is %i", time);
+    // NSLog(@"Energy was: %@ now: %i", energyLevel, energyPercentage);
+    // NSLog(@"Happiness was: %@ now: %i", happinessLevel, happinessPercentage);
+    //NSLog(@"Health was: %@ change: %i direction %@", healthLevel, change, direction);
     
     NSNumber *points = [gameData objectForKey:@"points"];
 
     // Number to increment points
     int pointsInt = 0;
     
-    // Choose number of points based on time
+    // Choose number of points based on time and item played with
     if(time > 10)
     {
-        pointsInt = 1;
+        if([chosenItem isEqual:@"mouse.png"])
+        {
+            pointsInt = 5;
+        }
+        else
+        {
+            pointsInt = 1;
+        }
     }
     else if(time <= 10 && time > 8)
     {
-        pointsInt = 2;
+        if([chosenItem isEqual:@"mouse.png"])
+        {
+            pointsInt = 10;
+        }
+        else if([chosenItem isEqual:@"ducky.png"]
+                || [chosenItem isEqual:@"frisbee.png"])
+        {
+            pointsInt = 4;
+        }
+        else if([chosenItem isEqual:@"ball.png"]
+                || [chosenItem isEqual:@"ball2.png"]
+                || [chosenItem isEqual:@"ball3.png"])
+        {
+            pointsInt = 3;
+        }
+        else
+        {
+            pointsInt = 2;
+        }
     }
     else if(time <= 8 && time > 5)
     {
-        pointsInt = 3;
+        if([chosenItem isEqual:@"mouse.png"])
+        {
+            pointsInt = 15;
+        }
+        else if([chosenItem isEqual:@"ducky.png"]
+                || [chosenItem isEqual:@"frisbee.png"])
+        {
+            pointsInt = 5;
+        }
+        else if([chosenItem isEqual:@"ball.png"]
+                || [chosenItem isEqual:@"ball2.png"]
+                || [chosenItem isEqual:@"ball3.png"])
+        {
+            pointsInt = 5;
+        }
+        else
+        {
+            pointsInt = 3;
+        }
     }
     else if(time <= 5 && time > 3)
     {
-        pointsInt = 4;
+        if([chosenItem isEqual:@"mouse.png"])
+        {
+            pointsInt = 15;
+        }
+        else if([chosenItem isEqual:@"ducky.png"]
+                || [chosenItem isEqual:@"frisbee.png"])
+        {
+            pointsInt = 10;
+        }
+        else if([chosenItem isEqual:@"ball.png"]
+                || [chosenItem isEqual:@"ball2.png"]
+                || [chosenItem isEqual:@"ball3.png"])
+        {
+            pointsInt = 5;
+        }
+        else
+        {
+            pointsInt = 4;
+        }
     }
     else if(time <= 3)
     {
-        pointsInt = 5;
+        if([chosenItem isEqual:@"mouse.png"])
+        {
+            pointsInt = 20;
+        }
+        else if([chosenItem isEqual:@"ducky.png"]
+                || [chosenItem isEqual:@"frisbee.png"])
+        {
+            pointsInt = 15;
+        }
+        else if([chosenItem isEqual:@"ball.png"]
+                || [chosenItem isEqual:@"ball2.png"]
+                || [chosenItem isEqual:@"ball3.png"])
+        {
+            // If possible give boost of energy 
+            int boost = (arc4random() % (20 - 10)) + 11;
+            
+            // Get the energry level with boost
+            energyLevel = [gameData objectForKey:@"energy"];
+            energyPercentage = [energyLevel intValue] + boost;
+            
+            // Make sure doen't go above 100
+            if(energyPercentage > 100)
+            {
+                energyPercentage = 100;
+                pointsInt = 10;
+            }
+            else
+            {
+                reward = @"energy"; // Boost of energy possible
+                [gameData setObject:[NSNumber numberWithInt:energyPercentage]
+                             forKey:@"energy"];
+                self.left = [UIImage imageNamed:@"energyBoost.png"];
+                self.right = [UIImage imageNamed:@"energyBoost.png"];
+
+            }
+        }
+        else
+        {
+            pointsInt = 5;
+        }
     }
         
-    
-    switch(pointsInt)
+    if([reward isEqual:@"points"])
     {
-        case 1:
-            self.left = [UIImage imageNamed:@"1points.png"];
-            self.right = [UIImage imageNamed:@"1points.png"];
-            break;
-        case 2:
-            self.left = [UIImage imageNamed:@"2points.png"];
-            self.right = [UIImage imageNamed:@"2points.png"];
-            break;
-        case 3:
-            self.left = [UIImage imageNamed:@"3points.png"];
-            self.right = [UIImage imageNamed:@"3points.png"];
-            break;
-        case 4:
-            self.left = [UIImage imageNamed:@"4points.png"];
-            self.right = [UIImage imageNamed:@"4points.png"];
-            break;
-        case 5:
-            self.left = [UIImage imageNamed:@"5points.png"];
-            self.right = [UIImage imageNamed:@"5points.png"];
-            break;
+        switch(pointsInt)
+        {
+            case 1:
+                self.left = [UIImage imageNamed:@"1points.png"];
+                self.right = [UIImage imageNamed:@"1points.png"];
+                break;
+            case 2:
+                self.left = [UIImage imageNamed:@"2points.png"];
+                self.right = [UIImage imageNamed:@"2points.png"];
+                break;
+            case 3:
+                self.left = [UIImage imageNamed:@"3points.png"];
+                self.right = [UIImage imageNamed:@"3points.png"];
+                break;
+            case 4:
+                self.left = [UIImage imageNamed:@"4points.png"];
+                self.right = [UIImage imageNamed:@"4points.png"];
+                break;
+            case 5:
+                self.left = [UIImage imageNamed:@"5points.png"];
+                self.right = [UIImage imageNamed:@"5points.png"];
+                break;
+            case 10:
+                self.left = [UIImage imageNamed:@"10points.png"];
+                self.right = [UIImage imageNamed:@"10points.png"];
+                break;
+            case 15:
+                self.left = [UIImage imageNamed:@"15points.png"];
+                self.right = [UIImage imageNamed:@"15points.png"];
+                break;
+            case 20 :
+                self.left = [UIImage imageNamed:@"20points.png"];
+                self.right = [UIImage imageNamed:@"20points.png"];
+                break;
+        }
+    
+        // Increment points
+        points = [NSNumber numberWithInt: ([points intValue] + pointsInt)];
+        [gameData setObject:points
+                     forKey:@"points"];
     }
     
-    // Increment points with number 1- 5 and add all changes back to plist
-    points = [NSNumber numberWithInt: [points intValue] + change];
-    [gameData setObject:points
-                 forKey:@"points"];
+    // Update all changes
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
     
     // Reset the timing
