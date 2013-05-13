@@ -12,8 +12,11 @@
 		<string>chew toys</string>
 		<string>treats</string>
 		<string>bouncy balls</string>
-		<string>balls</string>
+		<string>colorful balls</string>
+		<string>tennis balls</string>
 		<string>frisbees</string>
+		<string>rubber duckies</string>
+		<string>toy mice</string>
 	</array>
 	<key>imageNames</key>
 	<array>
@@ -24,7 +27,10 @@
 		<string>treat.png</string>
 		<string>ball.png</string>
 		<string>ball2.png</string>
+		<string>ball3.png</string>
 		<string>frisbee.png</string>
+		<string>ducky.png</string>
+		<string>mouse.png</string>
 	</array>
 	<key>prices</key>
 	<array>
@@ -34,8 +40,11 @@
 		<integer>25</integer>
 		<integer>30</integer>
 		<integer>50</integer>
-		<string>60</string>
-		<string>75</string>
+		<integer>55</integer>
+		<integer>60</integer>
+		<integer>75</integer>
+		<integer>80</integer>
+		<integer>100</integer>
 	</array>
 	<key>amounts</key>
 	<array>
@@ -45,6 +54,9 @@
 		<integer>1</integer>
 		<integer>1</integer>
 		<integer>1</integer>
+		<integer>0</integer>
+		<integer>0</integer>
+		<integer>0</integer>
 		<integer>0</integer>
 		<integer>0</integer>
 	</array>

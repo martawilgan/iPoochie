@@ -69,7 +69,10 @@ int gBagsOfChow = 0;
     gIndex = 0; // current index of the shakes array
     
     // Shakes motion - fill up bowl while shake detected
-    self.motionManager = [[CMMotionManager alloc] init];
+    //self.motionManager = [[CMMotionManager alloc] init];
+    
+     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.motionManager = [appDelegate motionManager];
     motionManager.accelerometerUpdateInterval = kUpdateInterval;
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [motionManager startAccelerometerUpdatesToQueue:queue

@@ -368,7 +368,8 @@ BOOL chooseToy;
         self.playView.hidden = NO; // show the play view
         
         // Start playing
-        self.motionManager = [[CMMotionManager alloc] init];
+        //self.motionManager = [[CMMotionManager alloc] init];
+        self.motionManager = [appDelegate motionManager];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         motionManager.accelerometerUpdateInterval = kUpdateInterval;
         [motionManager startAccelerometerUpdatesToQueue:queue withHandler:

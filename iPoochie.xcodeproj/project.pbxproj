@@ -37,6 +37,11 @@
 		853FBC24173AD0570094BE2E /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC23173AD0570094BE2E /* welcome.png */; };
 		853FBC27173AD93D0094BE2E /* frisbee.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC25173AD93D0094BE2E /* frisbee.png */; };
 		853FBC28173AD93D0094BE2E /* ball2.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC26173AD93D0094BE2E /* ball2.png */; };
+		853FBC2B1740E2690094BE2E /* ChanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC291740E2670094BE2E /* ChanceViewController.xib */; };
+		853FBC2C1740E2690094BE2E /* MatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 853FBC2A1740E2680094BE2E /* MatchingViewController.m */; };
+		853FBC301740E7E00094BE2E /* mouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC2D1740E7E00094BE2E /* mouse.png */; };
+		853FBC311740E7E00094BE2E /* ducky.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC2E1740E7E00094BE2E /* ducky.png */; };
+		853FBC321740E7E00094BE2E /* ball3.png in Resources */ = {isa = PBXBuildFile; fileRef = 853FBC2F1740E7E00094BE2E /* ball3.png */; };
 		856BBAC717352BB400CFA485 /* room.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAC617352BB400CFA485 /* room.png */; };
 		856BBADD17353A2100CFA485 /* wagging1A.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBAC917353A2100CFA485 /* wagging1A.png */; };
 		856BBADE17353A2100CFA485 /* wagging1B.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBACA17353A2100CFA485 /* wagging1B.png */; };
@@ -125,14 +130,12 @@
 		856BBBA61737D8FE00CFA485 /* chance_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB841737D8FE00CFA485 /* chance_card.png */; };
 		856BBBA71737D8FE00CFA485 /* chanceButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB851737D8FE00CFA485 /* chanceButton.png */; };
 		856BBBA81737D8FE00CFA485 /* ChanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB871737D8FE00CFA485 /* ChanceViewController.m */; };
-		856BBBA91737D8FE00CFA485 /* ChanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB881737D8FE00CFA485 /* ChanceViewController.xib */; };
 		856BBBAA1737D8FE00CFA485 /* games_font.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB891737D8FE00CFA485 /* games_font.png */; };
 		856BBBAB1737D8FE00CFA485 /* GamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB8B1737D8FE00CFA485 /* GamesViewController.m */; };
 		856BBBAC1737D8FE00CFA485 /* GamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8C1737D8FE00CFA485 /* GamesViewController.xib */; };
 		856BBBAD1737D8FE00CFA485 /* lost.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8D1737D8FE00CFA485 /* lost.png */; };
 		856BBBAE1737D8FE00CFA485 /* matching_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8E1737D8FE00CFA485 /* matching_background.png */; };
 		856BBBAF1737D8FE00CFA485 /* matchingButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB8F1737D8FE00CFA485 /* matchingButton.png */; };
-		856BBBB01737D8FE00CFA485 /* MatchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856BBB911737D8FE00CFA485 /* MatchingViewController.m */; };
 		856BBBB11737D8FE00CFA485 /* MatchingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB921737D8FE00CFA485 /* MatchingViewController.xib */; };
 		856BBBB21737D8FE00CFA485 /* pawprints_games.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB931737D8FE00CFA485 /* pawprints_games.png */; };
 		856BBBB31737D8FE00CFA485 /* shrug.png in Resources */ = {isa = PBXBuildFile; fileRef = 856BBB941737D8FE00CFA485 /* shrug.png */; };
@@ -296,6 +299,11 @@
 		853FBC23173AD0570094BE2E /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
 		853FBC25173AD93D0094BE2E /* frisbee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frisbee.png; sourceTree = "<group>"; };
 		853FBC26173AD93D0094BE2E /* ball2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball2.png; sourceTree = "<group>"; };
+		853FBC291740E2670094BE2E /* ChanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChanceViewController.xib; path = ../ChanceViewController.xib; sourceTree = "<group>"; };
+		853FBC2A1740E2680094BE2E /* MatchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchingViewController.m; path = ../MatchingViewController.m; sourceTree = "<group>"; };
+		853FBC2D1740E7E00094BE2E /* mouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouse.png; sourceTree = "<group>"; };
+		853FBC2E1740E7E00094BE2E /* ducky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ducky.png; sourceTree = "<group>"; };
+		853FBC2F1740E7E00094BE2E /* ball3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball3.png; sourceTree = "<group>"; };
 		856BBAC617352BB400CFA485 /* room.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = room.png; sourceTree = "<group>"; };
 		856BBAC917353A2100CFA485 /* wagging1A.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wagging1A.png; sourceTree = "<group>"; };
 		856BBACA17353A2100CFA485 /* wagging1B.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wagging1B.png; sourceTree = "<group>"; };
@@ -386,7 +394,6 @@
 		856BBB851737D8FE00CFA485 /* chanceButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chanceButton.png; sourceTree = "<group>"; };
 		856BBB861737D8FE00CFA485 /* ChanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChanceViewController.h; sourceTree = "<group>"; };
 		856BBB871737D8FE00CFA485 /* ChanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChanceViewController.m; sourceTree = "<group>"; };
-		856BBB881737D8FE00CFA485 /* ChanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChanceViewController.xib; sourceTree = "<group>"; };
 		856BBB891737D8FE00CFA485 /* games_font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = games_font.png; sourceTree = "<group>"; };
 		856BBB8A1737D8FE00CFA485 /* GamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamesViewController.h; sourceTree = "<group>"; };
 		856BBB8B1737D8FE00CFA485 /* GamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamesViewController.m; sourceTree = "<group>"; };
@@ -395,7 +402,6 @@
 		856BBB8E1737D8FE00CFA485 /* matching_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matching_background.png; sourceTree = "<group>"; };
 		856BBB8F1737D8FE00CFA485 /* matchingButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = matchingButton.png; sourceTree = "<group>"; };
 		856BBB901737D8FE00CFA485 /* MatchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchingViewController.h; sourceTree = "<group>"; };
-		856BBB911737D8FE00CFA485 /* MatchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchingViewController.m; sourceTree = "<group>"; };
 		856BBB921737D8FE00CFA485 /* MatchingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchingViewController.xib; sourceTree = "<group>"; };
 		856BBB931737D8FE00CFA485 /* pawprints_games.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pawprints_games.png; sourceTree = "<group>"; };
 		856BBB941737D8FE00CFA485 /* shrug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shrug.png; sourceTree = "<group>"; };
@@ -696,6 +702,9 @@
 		85090502171FD337009F125C /* Pet Items */ = {
 			isa = PBXGroup;
 			children = (
+				853FBC2D1740E7E00094BE2E /* mouse.png */,
+				853FBC2E1740E7E00094BE2E /* ducky.png */,
+				853FBC2F1740E7E00094BE2E /* ball3.png */,
 				853FBC25173AD93D0094BE2E /* frisbee.png */,
 				853FBC26173AD93D0094BE2E /* ball2.png */,
 				85A4A4B2172D76170034EED6 /* squeakytoy.png */,
@@ -833,6 +842,8 @@
 			isa = PBXGroup;
 			children = (
 				856BBB741737D8FE00CFA485 /* back_chance_card.png */,
+				853FBC291740E2670094BE2E /* ChanceViewController.xib */,
+				853FBC2A1740E2680094BE2E /* MatchingViewController.m */,
 				856BBB751737D8FE00CFA485 /* card1.png */,
 				856BBB761737D8FE00CFA485 /* card10.png */,
 				856BBB771737D8FE00CFA485 /* card11.png */,
@@ -852,7 +863,6 @@
 				856BBB851737D8FE00CFA485 /* chanceButton.png */,
 				856BBB861737D8FE00CFA485 /* ChanceViewController.h */,
 				856BBB871737D8FE00CFA485 /* ChanceViewController.m */,
-				856BBB881737D8FE00CFA485 /* ChanceViewController.xib */,
 				856BBB891737D8FE00CFA485 /* games_font.png */,
 				856BBB8A1737D8FE00CFA485 /* GamesViewController.h */,
 				856BBB8B1737D8FE00CFA485 /* GamesViewController.m */,
@@ -861,7 +871,6 @@
 				856BBB8E1737D8FE00CFA485 /* matching_background.png */,
 				856BBB8F1737D8FE00CFA485 /* matchingButton.png */,
 				856BBB901737D8FE00CFA485 /* MatchingViewController.h */,
-				856BBB911737D8FE00CFA485 /* MatchingViewController.m */,
 				856BBB921737D8FE00CFA485 /* MatchingViewController.xib */,
 				856BBB931737D8FE00CFA485 /* pawprints_games.png */,
 				856BBB941737D8FE00CFA485 /* shrug.png */,
@@ -1298,7 +1307,6 @@
 				856BBBA51737D8FE00CFA485 /* chance_button.png in Resources */,
 				856BBBA61737D8FE00CFA485 /* chance_card.png in Resources */,
 				856BBBA71737D8FE00CFA485 /* chanceButton.png in Resources */,
-				856BBBA91737D8FE00CFA485 /* ChanceViewController.xib in Resources */,
 				856BBBAA1737D8FE00CFA485 /* games_font.png in Resources */,
 				856BBBAC1737D8FE00CFA485 /* GamesViewController.xib in Resources */,
 				856BBBAD1737D8FE00CFA485 /* lost.png in Resources */,
@@ -1324,6 +1332,10 @@
 				853FBC24173AD0570094BE2E /* welcome.png in Resources */,
 				853FBC27173AD93D0094BE2E /* frisbee.png in Resources */,
 				853FBC28173AD93D0094BE2E /* ball2.png in Resources */,
+				853FBC2B1740E2690094BE2E /* ChanceViewController.xib in Resources */,
+				853FBC301740E7E00094BE2E /* mouse.png in Resources */,
+				853FBC311740E7E00094BE2E /* ducky.png in Resources */,
+				853FBC321740E7E00094BE2E /* ball3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1370,7 +1382,7 @@
 				856BBB6417377DD800CFA485 /* playView.m in Sources */,
 				856BBBA81737D8FE00CFA485 /* ChanceViewController.m in Sources */,
 				856BBBAB1737D8FE00CFA485 /* GamesViewController.m in Sources */,
-				856BBBB01737D8FE00CFA485 /* MatchingViewController.m in Sources */,
+				853FBC2C1740E2690094BE2E /* MatchingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

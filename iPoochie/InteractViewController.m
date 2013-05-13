@@ -37,6 +37,7 @@
 @synthesize infoBubbleImageView;
 @synthesize timingDate;
 @synthesize welcomeImageView;
+@synthesize energyTimer;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -95,11 +96,19 @@
     if([state isEqualToString:@"awake"])
     {
         [self animateAwake];
+        
     }
     if([state isEqualToString:@"asleep"])
     {
         [self animateSleeping];
     }
+    
+    // Decrease energy if awake, Increase if asleep
+    energyTimer = [NSTimer scheduledTimerWithTimeInterval:60.0
+                                                   target:self
+                                                 selector:@selector(updateEnergyForState)
+                                                 userInfo:nil
+                                                  repeats:YES];
     
     timingDate = [NSDate date]; // set start date
 }
@@ -123,6 +132,45 @@
     [UIView setAnimationDuration:5.0];
     [welcomeImageView setAlpha:0];
     [UIView commitAnimations];
+}
+
+-(void) updateEnergyForState
+{
+    // Grab percentage from plist through app delegate
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *energy = [gameData objectForKey:@"energy"];
+    int percentageInt = [energy intValue];
+    Boolean showChange = NO;
+    
+    // If awake and possible decrease energy by 1
+    if( [state isEqual:@"awake"] && (percentageInt - 1) >= 0)
+    {
+        percentageInt --;
+        showChange = YES;
+        
+    }
+    
+    // If asleep and possible increase energy by 1
+    if( [state isEqual:@"asleep"] && (percentageInt + 1) <= 100)
+    {
+        percentageInt ++;
+        showChange = YES;
+        
+    }
+    
+    if(showChange == YES)
+    {
+        // Update the plist value
+        energy = [NSNumber numberWithInt:percentageInt];
+        [gameData setObject:energy
+                     forKey:@"energy"];
+        [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+        
+        [self updateEnergy]; // Update energy bar
+    }
+    
 }
 
 -(void) showAlert
@@ -426,8 +474,14 @@
         // Check to see if awake
         if([state isEqualToString:@"awake"])
         {
+            // Stop the  energy timer
+            //[energyTimer invalidate];
+            //energyTimer = nil;
+            
             // Update energy and put to sleep
-            [self levelForTimeInState:@"awake" andType:@"energy"];
+            //[self levelForTimeInState:@"awake" andType:@"energy"];
+            
+            // Put to sleep
             [self animateGoingToSleep];
             [self changeStateTo:@"asleep"];
         }
@@ -457,9 +511,16 @@
         if([state isEqualToString:@"asleep"])
         {
             // Update energy and wake up
-            [self levelForTimeInState:@"asleep" andType:@"energy"];
+            //[self levelForTimeInState:@"asleep" andType:@"energy"];
             [self animateWakingUp];
             [self changeStateTo:@"awake"];
+            
+            // Start the energy timer
+            /*energyTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                           target:self
+                                                         selector:@selector(updateEnergyForState)
+                                                         userInfo:nil
+                                                          repeats:YES];*/
         }
         else
         {
@@ -656,8 +717,6 @@
                                      [UIImage imageNamed:@"sleepingK.png"],
                                      [UIImage imageNamed:@"sleepingL.png"],
                                      [UIImage imageNamed:@"sleepingM.png"],
-                                     [UIImage imageNamed:@"sleepingN.png"],
-                                     [UIImage imageNamed:@"sleepingO.png"],
                                      [UIImage imageNamed:@"sleepingP.png"],
                                      [UIImage imageNamed:@"sleepingP.png"],
                                      [UIImage imageNamed:@"sleepingP.png"],
@@ -840,20 +899,20 @@
     // Do checks for up
     if([direction isEqualToString:@"up"])
     {
-        NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
-              type, direction, start, end, change, percentageInt, (percentageInt + change));
+        /*NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
+              type, direction, start, end, change, percentageInt, (percentageInt + change));*/
         
         // Percentage is already at 100
         if(percentageInt == 100)
         {
-            NSLog(@"\nPercentage already 100");
+            //NSLog(@"\nPercentage already 100");
             showChange = NO;
         }
         
         // Make sure percentage + change does not go over 100
         if((percentageInt + change) > 100)
         {
-            NSLog(@"\nPercentage + change > 100");
+            //NSLog(@"\nPercentage + change > 100");
             change = 100 - percentageInt;
             percentageInt = 100;
         }
@@ -866,20 +925,20 @@
     // Do checks for down
     if([direction isEqualToString:@"down"])
     {
-        NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
-              type, direction, start, end, change, percentageInt, (percentageInt - change));
+        /*NSLog(@"Type: %@ Direction: %@ Start: %i End: %i Change: %i Current Percentage: %i with Change: %i",
+              type, direction, start, end, change, percentageInt, (percentageInt - change));*/
 
         // Percentage is already 0
         if(percentageInt == 0)
         {
-            NSLog(@"Percentage already 0");
+            //NSLog(@"Percentage already 0");
             showChange = NO;
         }
         
         // Make sure percentage - change does not go below 0
         if((percentageInt - change) < 0)
         {
-            NSLog(@"\nPercentage - change < 0");
+            //NSLog(@"\nPercentage - change < 0");
             change = percentageInt;
             percentageInt = 0;
         }

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSNumber *points;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSDate *timingDate;
+@property (strong, nonatomic) NSTimer *energyTimer;
 
 // Labels
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
