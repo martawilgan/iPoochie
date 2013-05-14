@@ -424,18 +424,28 @@
 
 } // End chooseItem
 
-
--(IBAction)toggleInfo:(id)sender
+/*
+ * infoAlert - shows the user an alert message 
+ * with info on how to play game
+ */
+-(IBAction)infoAlert:(id)sender
 {
-    if(infoImageView.hidden == YES)
-    {
-        infoImageView.hidden = NO;
-    }
-    else
-    {
-        infoImageView.hidden = YES;
-    }
-}
+    // Create and show the alert
+    NSString *message = @"Tilt the screen to make your pet move. Keep moving until the item appears, then move your pet directly on top of the item and tap the screen where the item is.  Good Luck!";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"How To Play"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+    
+    // Play alert sound
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];    
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+
+} // End infoAlert
 
 //====== Picker Methods =======
 

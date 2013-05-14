@@ -58,8 +58,8 @@ UIPickerViewDataSource>
 
 // Actions
 -(IBAction) goBack: (id)sender;
--(IBAction) toggleInfo:(id)sender;
 -(IBAction) chooseItem:(id)sender;
+-(IBAction) infoAlert:(id)sender;
 
 // Picker Data Source and Delegate Methods
 -(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView;

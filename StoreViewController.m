@@ -203,7 +203,7 @@
         [alert show];
         
         // Set alert sound path
-        path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+        path = [[NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
         
     }
     
