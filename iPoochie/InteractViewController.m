@@ -1026,7 +1026,7 @@
  * goToEatView - Makes EatViewController the 
  * presentViewController if pet is awake
  */
--(IBAction)goToEatView: (id)sender
+-(IBAction) goToEatView: (id)sender
 {
     if([state isEqual:@"asleep"])
     {
@@ -1044,7 +1044,7 @@
  * goToPetView - Makes PetViewController the
  * presentViewController if pet is awake
  */
--(IBAction)goToPetView: (id)sender
+-(IBAction) goToPetView: (id)sender
 {
     if([state isEqual:@"asleep"])
     {
@@ -1063,7 +1063,7 @@
  * presentViewController if pet is awake and
  * items specified for play are currently in closet
  */
--(IBAction)goToPlayView: (id)sender
+-(IBAction) goToPlayView: (id)sender
 {
     // See if any items to play with are available
     itemsData = [[NSMutableDictionary alloc]
@@ -1104,7 +1104,7 @@
  * goToWalkView - Makes WalkViewController the
  * presentViewController if pet is awake
  */
--(IBAction)goToWalkView: (id)sender
+-(IBAction) goToWalkView: (id)sender
 {
     if([state isEqual:@"asleep"])
     {

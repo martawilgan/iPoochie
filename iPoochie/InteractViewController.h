@@ -87,10 +87,10 @@
 -(NSString*) barsImageName: (int)number;
 
 // Actions
--(IBAction)buttonPressed: (id)sender;
--(IBAction)goToEatView: (id)sender;
--(IBAction)goToPetView: (id)sender;
--(IBAction)goToPlayView: (id)sender;
--(IBAction)goToWalkView: (id)sender;
+-(IBAction) buttonPressed: (id)sender;
+-(IBAction) goToEatView: (id)sender;
+-(IBAction) goToPetView: (id)sender;
+-(IBAction) goToPlayView: (id)sender;
+-(IBAction) goToWalkView: (id)sender;
 
 @end

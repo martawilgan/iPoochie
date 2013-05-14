@@ -7,29 +7,28 @@
 //
 
 #import "EatViewController.h"
-#import "AppDelegate.h"
 
 @interface EatViewController ()
 
 @end
 
 @implementation EatViewController
-@synthesize points;
-@synthesize timeInView;
-@synthesize pointsLabel;
-@synthesize bagsLabel;
-@synthesize bowlImageView;
-@synthesize petImageView;
-@synthesize motionManager;
 @synthesize fullBowl;
 @synthesize full;
 @synthesize empty;
+@synthesize points;
 @synthesize shakes;
-@synthesize infoBubbleImageView;
+@synthesize timeInView;
+@synthesize motionManager;
+@synthesize pointsLabel;
+@synthesize bagsLabel;
 @synthesize infoBubbleLabel;
+@synthesize bowlImageView;
+@synthesize petImageView;
+@synthesize infoBubbleImageView;
 
-int gIndex = 0;
-int gBagsOfChow = 0;
+int gIndex = 0;          // Index of the shakes array
+int gBagsOfChow = 0;     // Number of bags of chow
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,11 +67,11 @@ int gBagsOfChow = 0;
     
     gIndex = 0; // current index of the shakes array
     
-    // Shakes motion - fill up bowl while shake detected
-    //self.motionManager = [[CMMotionManager alloc] init];
-    
+    // Grab motion manager from appDelegate
      AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.motionManager = [appDelegate motionManager];
+    
+    // Shakes motion - fill up bowl while shake detected
     motionManager.accelerometerUpdateInterval = kUpdateInterval;
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [motionManager startAccelerometerUpdatesToQueue:queue
@@ -98,15 +97,16 @@ int gBagsOfChow = 0;
                          // Make bubble hidden
                          if(gIndex == 0)
                          {
-                             [self performSelectorOnMainThread:@selector(hideBubble) withObject:nil waitUntilDone:NO];
+                             [self performSelectorOnMainThread:@selector(hideInfoBubble) withObject:nil waitUntilDone:NO];
                          }
                          
                          // Change bowl image view
                          [bowlImageView performSelectorOnMainThread:@selector(setImage:)
                                                          withObject:shakes[gIndex]
                                                       waitUntilDone:NO];
-                         gIndex++;
+                         gIndex++; // Update index for shake
                      }
+                     // Alert user to full bowl
                      else if(gIndex > 8 && gBagsOfChow > 0)
                      {
                          fullBowl = YES;
@@ -115,6 +115,7 @@ int gBagsOfChow = 0;
                                              waitUntilDone:NO];
                          
                      }
+                     // Alert user that no chow is available
                      else if(gBagsOfChow == 0)
                      {
                          [self performSelectorOnMainThread:@selector(showNoChowAlert:) withObject:nil waitUntilDone:NO];
@@ -171,6 +172,24 @@ int gBagsOfChow = 0;
     
 }
 
+//====== HELPER METHODS =======
+
+//====== Alerts =======
+
+/*
+ * hideInfoBubble - Hides info bubble image and label
+ */
+-(void)hideInfoBubble
+{
+    [self.infoBubbleImageView setHidden:YES];
+    [self.infoBubbleLabel setHidden:YES];
+    
+} // End hideInfoBubble
+
+/*
+ * showInfoBubble - Shows info bubble image
+ * with informative message
+ */
 -(void)showInfoBubble
 {
     [self.infoBubbleImageView setHidden:NO];
@@ -186,8 +205,74 @@ int gBagsOfChow = 0;
     {
         infoBubbleLabel.text = @"Shake screen to fill bowl";
     }
-}
+    
+} // End showInfoBubble
 
+/*
+ * showInfoBubbleWith - Shows the info bubble image
+ * with desired message
+ */
+-(void)showInfoBubbleWith:(NSString *) message
+{
+    [self.infoBubbleImageView setHidden:NO];
+    [self.infoBubbleLabel setHidden:NO];    
+    infoBubbleLabel.text = [NSString stringWithFormat:@"%@", message];
+    
+} // End showInfoBubbleWith
+
+/*
+ * showNoChowAlert - Shows alert with message that
+ * no more chow is available
+ */
+-(void)showNoChowAlert:(NSString *)string
+{
+    // Create alert for no bags of chow available
+    NSString *message = @"You must buy more bags of chow from the store before you can feed your pet.";
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry! No more chow!"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles: nil];
+    [alert show];
+    [self playAlertSound];
+    
+} // End showNoChowAlert
+
+//====== Animations =======
+
+/*
+ * animateEating - Creates animation for puppy 
+ * to appear to be eating
+ */
+-(void) animateEating
+{
+    petImageView.animationImages =  [NSArray arrayWithObjects:
+                                     [UIImage imageNamed:@"goingToEat1.png"],
+                                     [UIImage imageNamed:@"goingToEat2.png"],
+                                     [UIImage imageNamed:@"eating1.png"],
+                                     [UIImage imageNamed:@"eating2.png"],
+                                     [UIImage imageNamed:@"eating3.png"],
+                                     [UIImage imageNamed:@"eating4.png"],
+                                     [UIImage imageNamed:@"eating5.png"],
+                                     [UIImage imageNamed:@"eating6.png"],
+                                     [UIImage imageNamed:@"goingToEat2.png"],
+                                     [UIImage imageNamed:@"goingToEat1.png"],
+                                     nil];
+    
+    
+    petImageView.animationDuration = 3.0;
+    petImageView.animationRepeatCount = 1;
+    [petImageView startAnimating];
+    
+} // End animateEating
+
+//====== Plist Updats =======
+
+/*
+ * useBag - Decrements number of bags and write
+ * back to plist
+ */
 -(void)useBag
 {
     // Decrement bags of chow
@@ -212,42 +297,93 @@ int gBagsOfChow = 0;
     
     // Update bags of chow label
     bagsLabel.text =
-        [NSString stringWithFormat:@"Bags of chow: %i", gBagsOfChow];
+    [NSString stringWithFormat:@"Bags of chow: %i", gBagsOfChow];
     
     // Show info bubble
     [self showInfoBubble];
-}
-
--(void)showInfoBubbleWith:(NSString *) message
-{
-    [self.infoBubbleImageView setHidden:NO];
-    [self.infoBubbleLabel setHidden:NO];
     
-    infoBubbleLabel.text = [NSString stringWithFormat:@"%@", message];
-}
+} // End useBag
 
-// Hide bubble image and label
--(void)hideBubble
+/*
+ * updateEnergy - Updates energy by 5%, if possible
+ */
+-(void) updateEnergy
 {
-    [self.infoBubbleImageView setHidden:YES];
-    [self.infoBubbleLabel setHidden:YES];
-}
-
--(void)showNoChowAlert:(NSString *)string
-{
-    // Create alert for no bags of chow available
-    NSString *message = @"You must buy more bags of chow from the store before you can feed your pet.";
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    NSNumber *energy = [gameData objectForKey:@"energy"];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sorry! No more chow!"
-                                                    message:message
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles: nil];
-    [alert show];
-    [self playAlertSound];
-}
+    int percentage = [energy intValue];
+    percentage += 5; // Increment by 5
+    
+    // Make sure not more than 100
+    if(percentage > 100)
+    {
+        percentage = 100;
+    }
+    
+    // Write back to plist
+    energy = [NSNumber numberWithInt:percentage];
+    [gameData setObject:energy
+                 forKey:@"energy"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
+} // End updateEnergy
 
-// Go back to interactViewController
+//====== Sounds =======
+
+/*
+ * playAlertSound - Plays sound for alert
+ */
+-(void) playAlertSound
+{
+    // Play sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+    
+} // End playAlertSound
+
+/*
+ * playHappyBarkSound - plays sound of puppy
+ * barking happily
+ */
+-(void) playHappyBarkSound
+{
+    // Play sound
+    NSString *path = [ [NSBundle mainBundle] pathForResource:@"happy_bark" ofType:@"wav"];
+    SystemSoundID theSound;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
+    AudioServicesPlaySystemSound (theSound);
+    
+} // End playHappyBarkSound
+
+//====== Timer Methods =======
+
+/*
+ * clearBowl - Clears the bowl image and updates
+ * number of bags available
+ */
+-(void)clearBowl:(NSTimer*)inTimer
+{
+    [inTimer invalidate];
+    inTimer = nil;
+    
+    bowlImageView.image = empty;
+    fullBowl = NO;
+    gIndex = 0;
+    [self useBag];
+    [self showInfoBubble];
+    
+} // End clearBowl
+
+//====== Actions =======
+
+/*
+ * goBack -  Goes back to interactViewController
+ */
 -(IBAction)goBack: (id)sender
 {
     // Find how much time was spent in view
@@ -266,39 +402,19 @@ int gBagsOfChow = 0;
     
     // go back
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-// Update energry by 5%, if possible
--(void) updateEnergy
-{
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
-    NSNumber *energy = [gameData objectForKey:@"energy"];
-
-    int percentage = [energy intValue];
-    percentage += 5;
     
-    // Make sure not more than 100
-    if(percentage > 100)
-    {
-        percentage = 100;
-    }
-    
-    energy = [NSNumber numberWithInt:percentage];
-    
-    // Write back to plist
-    [gameData setObject:energy
-                 forKey:@"energy"];
-    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-}
+} // End goBack
 
-// Let the puppy eat if bowl is full
+
+/* 
+ * eat -  Makes the puppy appear to be eating
+ * if bowl is full, otherwise shows alert
+ */
 -(IBAction)eat:(id)sender
 {
     if(fullBowl == YES)
     {
-        [self hideBubble];
+        [self hideInfoBubble];
         [self playHappyBarkSound];
         [self animateEating];
         
@@ -332,59 +448,9 @@ int gBagsOfChow = 0;
         [alert show];
         [self playAlertSound];
     }
-}
-
--(void) playAlertSound
-{
-    // Play sound
-    NSString *path = [ [NSBundle mainBundle] pathForResource:@"alert" ofType:@"wav"];
-    SystemSoundID theSound;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-    AudioServicesPlaySystemSound (theSound);
-}
-
--(void) playHappyBarkSound
-{
-    // Play sound
-    NSString *path = [ [NSBundle mainBundle] pathForResource:@"happy_bark" ofType:@"wav"];
-    SystemSoundID theSound;
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
-    AudioServicesPlaySystemSound (theSound);
-}
-
-// Clear the bowl and update number of bags available
--(void)clearBowl:(NSTimer*)inTimer
-{
-    [inTimer invalidate];
-    inTimer = nil;
     
-    bowlImageView.image = empty;
-    fullBowl = NO;
-    gIndex = 0;
-    [self useBag];
-    [self showInfoBubble];
-}
+} // End eat
 
-// Create animation for puppy to appear to be eating
--(void) animateEating
-{
-    petImageView.animationImages =  [NSArray arrayWithObjects:
-                                     [UIImage imageNamed:@"goingToEat1.png"],
-                                     [UIImage imageNamed:@"goingToEat2.png"],
-                                     [UIImage imageNamed:@"eating1.png"],
-                                     [UIImage imageNamed:@"eating2.png"],
-                                     [UIImage imageNamed:@"eating3.png"],
-                                     [UIImage imageNamed:@"eating4.png"],
-                                     [UIImage imageNamed:@"eating5.png"],
-                                     [UIImage imageNamed:@"eating6.png"],
-                                     [UIImage imageNamed:@"goingToEat2.png"],
-                                     [UIImage imageNamed:@"goingToEat1.png"],
-                                     nil];
-    
-    
-    petImageView.animationDuration = 3.0;
-    petImageView.animationRepeatCount = 1;
-    [petImageView startAnimating];
-}
+
 
 @end

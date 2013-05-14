@@ -164,7 +164,7 @@
 /* 
  * numberOfSectionsInTableView - Returns number of sections in table
  */
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
     
@@ -174,8 +174,8 @@
  * tableView: numberOfRowsInSection - Returns number of rows 
  * in each table view for the Delegate
  */
--(NSInteger)tableView:(UITableView *)tableView
-numberOfRowsInSection:(NSInteger)section
+-(NSInteger) tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
     return [self.imageNames count];
     
@@ -185,8 +185,8 @@ numberOfRowsInSection:(NSInteger)section
  * tableView: cellForRowAtIndexPath: - 
  * Customizes the appearance of table view cells
  */
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *) tableView:(UITableView *)tableView
+          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     // Create the empty cell
     static NSString *CellIdentifier = @"Cell";
