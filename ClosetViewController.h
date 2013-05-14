@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
+//#import <CoreGraphics/CoreGraphics.h>
+#import "AppDelegate.h"
 
 @interface ClosetViewController : UIViewController
     <UITableViewDelegate, UITableViewDataSource>
@@ -23,6 +25,15 @@
 @property (nonatomic, retain) NSArray *amounts;
 @property (nonatomic, retain) NSArray *descriptions;
 
-- (void) currentData;
+// Helper Methods
+-(void) currentData;
+-(void) hideCloset;
+
+// Table View Data Source Methods
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+-(NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section;
+-(UITableViewCell *)tableView:(UITableView *)tableView
+        cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

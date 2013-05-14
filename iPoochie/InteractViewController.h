@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "AppDelegate.h"
-#import "InteractViewController.h"
 #import "EatViewController.h"
 #import "PetViewController.h"
 #import "PlayViewController.h"

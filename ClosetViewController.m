@@ -6,11 +6,7 @@
 //  Copyright (c) 2013 NYU. All rights reserved.
 //
 
-#import <CoreGraphics/CoreGraphics.h>
 #import "ClosetViewController.h"
-#import "AppDelegate.h"
-
-//#define itemImagesFileName  @"items.plist"
 
 @interface ClosetViewController ()
 
@@ -42,19 +38,13 @@
 {
 
     [super viewDidLoad];    
-    // Do any additional setup after loading the view from its nib.
-    
-    // Make the tableView scrollable
-    //[self.closet setScrollEnabled:YES];
-    
+    // Do any additional setup after loading the view from its nib.    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
+    [super viewWillAppear:animated];    
 }
-
 
 -(void) viewDidAppear: (BOOL) animated
 {    
@@ -105,6 +95,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+ * currentData - Grabs data from items plist and 
+ * keeps only items with amount > 0
+ */
 - (void) currentData
 {
     // Create temp array
@@ -148,9 +142,12 @@
     self.imageNames = theImageNames;
     self.amounts = theAmounts;
     self.descriptions = theDescriptions;
-}
+    
+} // End currentData
 
-// Fade the closet out
+/*
+ * hideCloset - Fades the closet image out
+ */
 -(void) hideCloset
 {    
     // Fade image out
@@ -158,26 +155,38 @@
     [UIView setAnimationDuration:2.0];
     [closetImageView setAlpha:0];
     [UIView commitAnimations];
-}
+    
+} // End hideCloset
 
 #pragma mark - 
 #pragma mark Table View Data Source Methods
 
-// Return number of sections in table
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+/* 
+ * numberOfSectionsInTableView - Returns number of sections in table
+ */
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}
+    
+} // End numberOfSectionsInTableView
 
-// Return number of rows in each table view for the Delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+/*
+ * tableView: numberOfRowsInSection - Returns number of rows 
+ * in each table view for the Delegate
+ */
+-(NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section
 {
     return [self.imageNames count];
-}
+    
+} // End tableView: numberOfRowsInSection
 
-
-// Customize the appearance of table view cells
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+/*
+ * tableView: cellForRowAtIndexPath: - 
+ * Customizes the appearance of table view cells
+ */
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     // Create the empty cell
     static NSString *CellIdentifier = @"Cell";
@@ -197,7 +206,6 @@
 	cell.imageView.image = myImage;
     
     // Add text to cell
-    //NSString *amount = [[self.amounts objectAtIndex:indexPath.row] stringValue];
 	cell.textLabel.text = [NSString stringWithFormat: @"  %@ %@",
         [[self.amounts objectAtIndex:indexPath.row] stringValue],
         [self.descriptions objectAtIndex:indexPath.row]];
@@ -205,11 +213,11 @@
     // Update appearence of cell
     cell.textLabel.font = [UIFont fontWithName:@"Chalkboard SE" size:27];
     cell.textLabel.backgroundColor = [UIColor clearColor];
-    //cell.contentView.backgroundColor = [UIColor colorWithRed:255/255.0f green:251/255.0f blue:230/255.0f alpha:1.0f];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
-}
+    
+} // End tableView: cellForRowAtIndexPath:
 
 // Define the height for each row
 /*-(CGFloat) tableView:(UITableView *)tableView
