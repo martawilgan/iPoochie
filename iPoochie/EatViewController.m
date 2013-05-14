@@ -20,6 +20,9 @@
 @synthesize shakes;
 @synthesize timeInView;
 @synthesize motionManager;
+@synthesize appDelegate;
+@synthesize gameData;
+@synthesize itemsData;
 @synthesize pointsLabel;
 @synthesize bagsLabel;
 @synthesize infoBubbleLabel;
@@ -27,6 +30,7 @@
 @synthesize petImageView;
 @synthesize infoBubbleImageView;
 
+// Global Variables
 int gIndex = 0;          // Index of the shakes array
 int gBagsOfChow = 0;     // Number of bags of chow
 
@@ -68,7 +72,7 @@ int gBagsOfChow = 0;     // Number of bags of chow
     gIndex = 0; // current index of the shakes array
     
     // Grab motion manager from appDelegate
-     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.motionManager = [appDelegate motionManager];
     
     // Shakes motion - fill up bowl while shake detected
@@ -134,10 +138,10 @@ int gBagsOfChow = 0;     // Number of bags of chow
     [super viewDidAppear:animated];
     
     // Grab points and number of bags of chow from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    gameData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate gameDataPath]];
-    NSMutableDictionary *itemsData = [[NSMutableDictionary alloc]
+    itemsData = [[NSMutableDictionary alloc]
                                      initWithContentsOfFile: [appDelegate itemsDataPath]];    
     points = [gameData objectForKey:@"points"];    
     NSArray *amounts = [itemsData objectForKey:@"amounts"];
@@ -279,9 +283,8 @@ int gBagsOfChow = 0;     // Number of bags of chow
     gBagsOfChow--;
     
     // Grab the amounts array from plist
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *itemsData = [[NSMutableDictionary alloc]
-                                      initWithContentsOfFile: [appDelegate itemsDataPath]];
+    itemsData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate itemsDataPath]];
     NSMutableArray *amounts = [itemsData objectForKey:@"amounts"];
     
     // Create NSNumber object with current number of bags of chow
@@ -309,13 +312,14 @@ int gBagsOfChow = 0;     // Number of bags of chow
  */
 -(void) updateEnergy
 {
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    // Grab energy level from plist
+    gameData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     NSNumber *energy = [gameData objectForKey:@"energy"];
     
+    // Increment by 5
     int percentage = [energy intValue];
-    percentage += 5; // Increment by 5
+    percentage += 5;
     
     // Make sure not more than 100
     if(percentage > 100)
@@ -391,9 +395,8 @@ int gBagsOfChow = 0;     // Number of bags of chow
                       [[NSDate date] timeIntervalSinceDate:self.timeInView]];
     
     // Update lastViewName to play and save time spent in view
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    gameData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     [gameData setObject:@"eat" forKey:@"lastViewName"];
     [gameData setObject:time
                  forKey:@"lastViewTime"];

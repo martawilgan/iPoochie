@@ -24,6 +24,9 @@
 @property (strong, nonatomic) NSNumber *points;
 @property (strong, nonatomic) NSDate *timeInView;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) NSMutableDictionary *itemsData;
+@property (strong, nonatomic) NSMutableDictionary *gameData;
 
 // Labels
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
