@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "AppDelegate.h"
+#import "InteractViewController.h"
+#import "EatViewController.h"
+#import "PetViewController.h"
+#import "PlayViewController.h"
+#import "WalkViewController.h"
 
 @interface InteractViewController : UIViewController
 
+// Variables
 @property (strong, nonatomic) NSNumber *points;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSDate *timingDate;
 @property (strong, nonatomic) NSTimer *energyTimer;
+@property (strong, nonatomic) AppDelegate *appDelegate;
+@property (strong, nonatomic) NSMutableDictionary *itemsData;
+@property (strong, nonatomic) NSMutableDictionary *gameData;
 
 // Labels
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
@@ -37,11 +48,44 @@
 // Buttons
 @property (weak, nonatomic) IBOutlet UIButton *eatButton;
 
-- (void) updateHealth;
-- (void) updateEnergy;
-- (void) updateHappiness;
+//====== Helper methods =======
 
-- (NSString*) barsImageName: (int)number;
+-(void) hideWelcome;
+
+// Alerts
+-(void) alertIfAsleep;
+-(void) showAlert;
+
+// Animations
+-(void) animateAngry;
+-(void) animateAwake;
+-(void) animateGoingToSleep;
+-(void) animateSleeping;
+-(void) animateWakingUp;
+
+// Timer methods
+-(void)clearInfo:(NSTimer*)inTimer;
+-(void)goingToSleep:(NSTimer*)inTimer;
+-(void)wakingUp:(NSTimer*)inTimer;
+
+// Level methods
+-(void) changeStateTo:(NSString*) theState;
+-(void) levelForType:(NSString*) type
+        andDirection:(NSString*) direction
+          withBubble:(NSString*) withBubble
+     onIntervalStart:(int) start
+      andIntervalEnd:(int) end;
+-(void) soundForDirection: (NSString*)direction;
+-(void) updateEnergy;
+-(void) updateEnergyForState;
+-(void) updateHappiness;
+-(void) updateHealth;
+-(void) updateLevelsInPlist;
+-(int) changePercentForLevel:(NSString*) level
+            andOldPercentage:(int)percentage
+                     andTime:(int) time
+                 inDirection:(NSString*) direction;
+-(NSString*) barsImageName: (int)number;
 
 // Actions
 -(IBAction)buttonPressed: (id)sender;
