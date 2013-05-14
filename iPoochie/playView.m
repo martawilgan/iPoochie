@@ -15,8 +15,9 @@
 @synthesize petYVelocity;
 
 
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+/*
+ * drawRect - draws the pet and item
+ */
 - (void)drawRect:(CGRect)rect
 {
     // Grab image data if needed
@@ -44,9 +45,13 @@
     {
         [right drawAtPoint:currentPoint];
     }
-}
+    
+} // End drawRect
 
-
+/*
+ * initWithCoder - Inits the view
+ * and assigns images and points
+ */
 -(id) initWithCoder:(NSCoder *)coder
 {
     if(self = [super initWithCoder:(NSCoder*)coder])
@@ -63,19 +68,24 @@
                                         (left.size.width / 2.0f),
                                         (self.bounds.size.height / 2.0f) + (left.size.height / 2.0f));
         
-        // Generate a random point for toy
+        // Generate a random point for item
         [self generateItemPoint];
         
         // Default velocity
         petXVelocity = 0.0f;
         petYVelocity = 0.0f;
         
-        timingDate = [NSDate date];
+        timingDate = [NSDate date]; // Set the date
     }
     
     return self;
-}
+    
+} // End initWithCoder
 
+/*
+ * generateItemPoint - generates random point
+ * in view to draw item
+ */
 -(void) generateItemPoint
 {
     // Generate random point to draw item
@@ -112,12 +122,18 @@
 
 }
 
-#pragma mark -
+/*
+ * currentPoint - returns the currentPoint
+ */
 -(CGPoint)currentPoint
 {
     return currentPoint;
-}
+    
+} // End currentPoint
 
+/* 
+ * setCurrentPoint - sets the current point for the pet
+ */
 -(void)setCurrentPoint:(CGPoint)newPoint
 {
     // Update the points
@@ -156,6 +172,10 @@
     
 }
 
+/*
+ * update - updates the pet's current point 
+ * based on movement of screen
+ */
 -(void)update
 {
     static NSDate *lastUpdatTime;
@@ -177,8 +197,13 @@
     
     // Update last time with time now
     lastUpdatTime = [[NSDate alloc] init];
-}
+    
+} // End update
 
+/*
+ * success - Calculates reward for success
+ * and shows image of reward
+ */
 -(void)success
 {
     // Play chime sound
@@ -453,9 +478,13 @@
     [NSTimer scheduledTimerWithTimeInterval:2.0 target:self
                                    selector:@selector(clearSuccess:)
                                    userInfo:nil repeats:NO];
-}
+    
+} // End success
 
-// Revert back to left and right images
+/*
+ * clearSuccess - Reverts back to left 
+ * and right pet images from reward image
+ */
 -(void)clearSuccess:(NSTimer*)inTimer
 {
     [inTimer invalidate];
@@ -463,9 +492,15 @@
     
     self.left = [UIImage imageNamed:@"walkingLeft.png"];
     self.right = [UIImage imageNamed:@"walkingRight.png"];
-}
+    
+} // End success
 
-// On touch check for success
+/*
+ * touchesBegan: withEvent - On touch 
+ * check for success
+ * success being when both pet and
+ * item are within range of touch
+ */
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     // Find location of touch
@@ -494,12 +529,12 @@
         petInRange = YES;
     }
     
-    // Item is caught!
+    // Success! Item is caught!
     if(itemInRange == YES && petInRange == YES)
     {
         [self success];
     }
     
-}
+} // End touchesBegan: withEvent
 
 @end

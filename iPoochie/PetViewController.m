@@ -85,9 +85,10 @@ double gTotalTime = 0; // total time spent petting
     [super viewDidAppear:animated];
     
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
 
@@ -123,16 +124,16 @@ double gTotalTime = 0; // total time spent petting
 {
     // Find how much time was spent in view
     NSNumber *time = [NSNumber numberWithDouble:
-                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
+        [[NSDate date] timeIntervalSinceDate:self.timeInView]];
     
     // Update lastViewName to play and save time spent in view
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     [gameData setObject:@"pet" forKey:@"lastViewName"];
     [gameData setObject:time
                  forKey:@"lastViewTime"];
-    
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
     
     // go back
@@ -187,9 +188,10 @@ double gTotalTime = 0; // total time spent petting
 -(void) updateHappinessForTime:(int)time
 {
     // Grab health from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
     int happinessInt = [happiness intValue];
     
@@ -379,7 +381,7 @@ double gTotalTime = 0; // total time spent petting
         
         // Find how much time petting lasted
         NSNumber *time = [NSNumber numberWithDouble:
-                          [[NSDate date] timeIntervalSinceDate:self.timingDate]];
+            [[NSDate date] timeIntervalSinceDate:self.timingDate]];
         gTotalTime += [time doubleValue]; // Update total time
         
         // Wait then change image for petImageView twice
@@ -402,7 +404,7 @@ double gTotalTime = 0; // total time spent petting
         
         // Find how much time petting
         NSNumber *time = [NSNumber numberWithDouble:
-                          [[NSDate date] timeIntervalSinceDate:self.timingDate]];        
+            [[NSDate date] timeIntervalSinceDate:self.timingDate]];        
         int totalTimeInt = (int)gTotalTime + [time intValue];
         
         // For every 2 seconds, happiness goes up unless already 100%
