@@ -27,15 +27,15 @@
 -(void) hideShop;
 
 // Actions
--(IBAction)buttonPressed;
+-(IBAction) buttonPressed;
 
 // Picker Data Source and Delegate Methods
 -(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView;
 -(NSInteger) pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component;
--(UIView *)pickerView:(UIPickerView *)pickerView
-           viewForRow:(NSInteger)row
-         forComponent:(NSInteger)component
-          reusingView:(UIView *)view;
+-(UIView *) pickerView:(UIPickerView *)pickerView
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view;
 
 @end

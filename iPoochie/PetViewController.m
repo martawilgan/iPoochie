@@ -7,8 +7,6 @@
 //
 
 #import "PetViewController.h"
-#import "AppDelegate.h"
-#import <AudioToolbox/AudioToolbox.h>
 
 @interface PetViewController ()
 
@@ -16,25 +14,28 @@
 
 @implementation PetViewController
 @synthesize points;
-@synthesize timeInView;
 @synthesize wagging1;
 @synthesize wagging2;
 @synthesize timingDate;
+@synthesize timeInView;
+@synthesize appDelegate;
+@synthesize gameData;
 @synthesize pointsLabel;
 @synthesize talkLabel;
-@synthesize petImageView;
-@synthesize talkImageView;
 @synthesize numberLabel;
 @synthesize happinessLabel;
+@synthesize happinessStatLabel;
+@synthesize talkImageView;
+@synthesize petImageView;
 @synthesize bubbleImageView;
 @synthesize arrowImageView;
-@synthesize happinessStatLabel;
 @synthesize happinessBarImageView;
 
-int gCurrentIndex = 0; // current index for wagging array
-int gCurrentArray = 0; // current wagging array
-int gTwoSeconds = 0;   // number of two seconds spent petting
-double gTotalTime = 0; // total time spent petting
+// Global variables
+int gCurrentIndex = 0; // Current index for wagging array
+int gCurrentArray = 0; // Current wagging array
+int gTwoSeconds = 0;   // Number of two seconds spent petting
+double gTotalTime = 0; // Total time spent petting
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -85,9 +86,8 @@ double gTotalTime = 0; // total time spent petting
     [super viewDidAppear:animated];
     
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate =
-        (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    gameData = [[NSMutableDictionary alloc]
         initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
@@ -119,28 +119,74 @@ double gTotalTime = 0; // total time spent petting
     // Dispose of any resources that can be recreated.
 }
 
-// Go back to interactViewController
--(IBAction)goBack: (id)sender
-{
-    // Find how much time was spent in view
-    NSNumber *time = [NSNumber numberWithDouble:
-        [[NSDate date] timeIntervalSinceDate:self.timeInView]];
-    
-    // Update lastViewName to play and save time spent in view
-    AppDelegate *appDelegate =
-        (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-        initWithContentsOfFile: [appDelegate gameDataPath]];
-    [gameData setObject:@"pet" forKey:@"lastViewName"];
-    [gameData setObject:time
-                 forKey:@"lastViewTime"];
-    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-    
-    // go back
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
+//====== HELPER METHODS =======
 
-// Return image name for current index in current array
+/*
+ * barsImageName -  Returns appropriate
+ * bar image name for percentage
+ */
+- (NSString*) barsImageName: (int) number
+{
+    NSString *name;
+    
+    if(number >= 0 && number < 11)
+    {
+        name = @"bars1.png";
+    }
+    
+    if(number > 10 && number < 21)
+    {
+        name = @"bars2.png";
+    }
+    
+    if(number > 20 && number < 31)
+    {
+        name = @"bars3.png";
+    }
+    
+    if(number > 30 && number < 41)
+    {
+        name = @"bars4.png";
+    }
+    
+    if(number > 40 && number < 51)
+    {
+        name = @"bars5.png";
+    }
+    
+    if(number > 50 && number < 61)
+    {
+        name = @"bars6.png";
+    }
+    
+    if(number > 60 && number < 71)
+    {
+        name = @"bars7.png";
+    }
+    
+    if(number > 70 && number < 81)
+    {
+        name = @"bars8.png";
+    }
+    
+    if(number > 80 && number < 91)
+    {
+        name = @"bars9.png";
+    }
+    
+    if(number > 90 && number < 101)
+    {
+        name = @"bars10.png";
+    }
+    
+    return name;
+    
+} // End barsImageName
+
+/*
+ * nextImageName - Returns image name for 
+ * current index in current array
+ */
 -(NSString*) nextImageName
 {
     NSString *imageName = @"";
@@ -155,9 +201,13 @@ double gTotalTime = 0; // total time spent petting
     }
     
     return imageName;
-}
+    
+} // End nextImageName
 
-// Increment index, switch to other array if last index in array
+/* 
+ * updateIndex -  Increments index, and
+ * switches to other array if last index in array
+ */
 -(void) updateIndex
 {
     // if not last index in wagging1
@@ -182,15 +232,17 @@ double gTotalTime = 0; // total time spent petting
         gCurrentIndex = 0;
         gCurrentArray = 1;
     }
-}
+    
+} // End updateIndex
 
-// Increase happiness if not already 100, and alert user
+/* 
+ * updateHappinessForTime: - Increases happiness 
+ * if not already 100, and alerts user
+ */
 -(void) updateHappinessForTime:(int)time
 {
     // Grab health from plist through app delegate
-    AppDelegate *appDelegate =
-        (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
+    gameData = [[NSMutableDictionary alloc]
         initWithContentsOfFile: [appDelegate gameDataPath]];
     NSNumber *happiness = [gameData objectForKey:@"happiness"];
     int happinessInt = [happiness intValue];
@@ -251,89 +303,12 @@ double gTotalTime = 0; // total time spent petting
                                        selector:@selector(hideBubble:)
                                        userInfo:nil repeats:NO];
     }
-}
 
-// Return appropriate bar image name for percentage
-- (NSString*) barsImageName: (int) number
-{
-    NSString *name;
-    
-    if(number >= 0 && number < 11)
-    {
-        name = @"bars1.png";
-    }
-    
-    if(number > 10 && number < 21)
-    {
-        name = @"bars2.png";
-    }
-    
-    if(number > 20 && number < 31)
-    {
-        name = @"bars3.png";
-    }
-    
-    if(number > 30 && number < 41)
-    {
-        name = @"bars4.png";
-    }
-    
-    if(number > 40 && number < 51)
-    {
-        name = @"bars5.png";
-    }
-    
-    if(number > 50 && number < 61)
-    {
-        name = @"bars6.png";
-    }
-    
-    if(number > 60 && number < 71)
-    {
-        name = @"bars7.png";
-    }
-    
-    if(number > 70 && number < 81)
-    {
-        name = @"bars8.png";
-    }
-    
-    if(number > 80 && number < 91)
-    {
-        name = @"bars9.png";
-    }
-    
-    if(number > 90 && number < 101)
-    {
-        name = @"bars10.png";
-    }
-    
-    return name;
-}
+} // End updateHappinessForTime
 
-// Wait then change image in petImageView
--(void)petting:(NSTimer*)inTimer
-{
-    [inTimer invalidate];
-    inTimer = nil;
-    
-    // change image
-    NSString *imageName = [self nextImageName];
-    petImageView.image = [UIImage imageNamed:imageName];
-    [self updateIndex]; // update the array index
-}
-
-// Wait then change image
--(void)stopped:(NSTimer*)inTimer
-{
-    [inTimer invalidate];
-    inTimer = nil;
-    
-    // Wake up and stop being angry if angry
-    petImageView.image = [UIImage imageNamed:@"blinking4A.png"];
-}
-
-// Wait then hide happiness message
+/*
+ * hideBubble - Waits then hides happiness message
+ */
 -(void)hideBubble:(NSTimer*)inTimer
 {
     [inTimer invalidate];
@@ -344,10 +319,72 @@ double gTotalTime = 0; // total time spent petting
     happinessLabel.text = @"";
     bubbleImageView.hidden = YES;
     arrowImageView.hidden = YES;
-}
+    
+} // End hideBubble
+
+/*
+ * petting - Waits then change image 
+ * in petImageView
+ */
+-(void)petting:(NSTimer*)inTimer
+{
+    [inTimer invalidate];
+    inTimer = nil;
+    
+    // change image
+    NSString *imageName = [self nextImageName];
+    petImageView.image = [UIImage imageNamed:imageName];
+    [self updateIndex]; // update the array index
+    
+} // End petting
+
+/*
+ * stopped - Waits then changes image 
+ * in petImageView
+ */
+-(void)stopped:(NSTimer*)inTimer
+{
+    [inTimer invalidate];
+    inTimer = nil;
+    
+    // Wake up and stop being angry if angry
+    petImageView.image = [UIImage imageNamed:@"blinking4A.png"];
+    
+} // End stopped
+
+//====== Actions =======
+
+/*
+ * goBack - Makes any final changes and
+ * returns to InteractViewController
+ */
+-(IBAction)goBack: (id)sender
+{
+    // Find how much time was spent in view
+    NSNumber *time = [NSNumber numberWithDouble:
+                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
+    
+    // Update lastViewName to play and save time spent in view
+    gameData = [[NSMutableDictionary alloc]
+                initWithContentsOfFile: [appDelegate gameDataPath]];
+    [gameData setObject:@"pet" forKey:@"lastViewName"];
+    [gameData setObject:time
+                 forKey:@"lastViewTime"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
+    // go back
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+} // End goBack
 
 #pragma mark -
 
+//====== Touch Methods =======
+
+/*
+ * touchesBegan: withEvent: - Starts the petting process
+ * when user touches the petImageView
+ */
 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
@@ -355,7 +392,7 @@ double gTotalTime = 0; // total time spent petting
     // touch for petImageView
 	if ([touch view] == petImageView)
     {
-        NSLog(@"\nTouches began");
+        //NSLog(@"\nTouches began");
         
         timingDate = [NSDate date]; // set start date
         gCurrentIndex = 0;          // Index starts at 0
@@ -363,13 +400,13 @@ double gTotalTime = 0; // total time spent petting
         talkLabel.text = @" ";      // Clear talk label
         talkImageView.hidden = YES; // Make talk bubble hidden
     }
-}
+    
+} // End touchesBegan: withEvent:
 
--(void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"\nTouches cancelled");
-}
-
+/*
+ * touchesEnded: withEvent: - Ends the petting process
+ * when user stops touching petImageView
+ */
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
@@ -377,7 +414,7 @@ double gTotalTime = 0; // total time spent petting
     // touch for petImageView
 	if ([touch view] == petImageView)
     {
-        NSLog(@"\nTouches ended");
+        //NSLog(@"\nTouches ended");
         
         // Find how much time petting lasted
         NSNumber *time = [NSNumber numberWithDouble:
@@ -391,8 +428,13 @@ double gTotalTime = 0; // total time spent petting
         petImageView.image = [UIImage imageNamed:@"blinking4C.png"];
         
     }
-}
+    
+} // End touchesEnded: withEvent:
 
+/*
+ * touchesMoved: withEvent: - Shows animation for petting
+ * simulation and updates happiness 
+ */
 -(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [[event allTouches] anyObject];
@@ -419,7 +461,8 @@ double gTotalTime = 0; // total time spent petting
                                        selector:@selector(petting:)
                                        userInfo:nil repeats:NO];
     }
-}
+
+} // End touchesMoved: withEvent:
 
 
 @end

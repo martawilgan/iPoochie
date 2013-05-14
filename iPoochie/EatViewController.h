@@ -64,7 +64,7 @@
 -(void)clearBowl:(NSTimer*)inTimer;
 
 // Actions
--(IBAction)goBack: (id)sender;
--(IBAction)eat:(id)sender;
+-(IBAction) goBack: (id)sender;
+-(IBAction) eat:(id)sender;
 
 @end

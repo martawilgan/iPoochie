@@ -24,14 +24,14 @@
 @property CGFloat petXVelocity;
 @property CGFloat petYVelocity;
 
-- (void)drawRect:(CGRect)rect;
+- (void) drawRect:(CGRect)rect;
 - (id) initWithCoder:(NSCoder *)coder;
 - (void) generateItemPoint;
 - (void) update;
-- (CGPoint)currentPoint;
-- (void)setCurrentPoint:(CGPoint)newPoint;
-- (void)success;
-- (void)clearSuccess:(NSTimer*)inTimer;
+- (CGPoint) currentPoint;
+- (void) setCurrentPoint:(CGPoint)newPoint;
+- (void) success;
+- (void) clearSuccess:(NSTimer*)inTimer;
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 
 @end

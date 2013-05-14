@@ -63,9 +63,9 @@
 -(void) animateWakingUp;
 
 // Timer methods
--(void)clearInfo:(NSTimer*)inTimer;
--(void)goingToSleep:(NSTimer*)inTimer;
--(void)wakingUp:(NSTimer*)inTimer;
+-(void) clearInfo:(NSTimer*)inTimer;
+-(void) goingToSleep:(NSTimer*)inTimer;
+-(void) wakingUp:(NSTimer*)inTimer;
 
 // Level methods
 -(void) changeStateTo:(NSString*) theState;

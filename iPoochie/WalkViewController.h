@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
--(IBAction)goBack: (id)sender;
+-(IBAction) goBack: (id)sender;
 
 @end

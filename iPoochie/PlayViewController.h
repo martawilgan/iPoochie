@@ -67,7 +67,7 @@ UIPickerViewDataSource>
 numberOfRowsInComponent:(NSInteger)component;
 -(UIView *) pickerView:(UIPickerView *)pickerView
             viewForRow:(NSInteger)row
-         forComponent:(NSInteger)component
+          forComponent:(NSInteger)component
            reusingView:(UIView *)view;
 -(CGFloat) pickerView:(UIPickerView *)pickerView
     widthForComponent:(NSInteger)component;
