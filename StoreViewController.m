@@ -99,7 +99,8 @@
     [self hideShop];
     
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
         initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
@@ -116,14 +117,31 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Update changes for purchase if enough points available
+/* 
+ * hideShop - Fades the shop image out
+ */
+-(void) hideShop
+{
+    // Fade image out
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:2.0];
+    [shopImageView setAlpha:0];
+    [UIView commitAnimations];
+    
+} // End hideShope
+
+/* 
+ * buttonPressed -  Updates changes for purchase 
+ * if enough points available, otherwise shows alert
+ */
 -(IBAction)buttonPressed
 {
     // Find the row
     NSInteger theRow = [itemPicker selectedRowInComponent:0];
     
     // Create the app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Get current data
     NSMutableDictionary *itemsData = [[NSMutableDictionary alloc]
@@ -194,34 +212,43 @@
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
     AudioServicesPlaySystemSound (theSound);
     
-}
-
--(void) hideShop
-{
-    // Fade image out
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:2.0];
-    [shopImageView setAlpha:0];
-    [UIView commitAnimations];
-}
+} // End buttonPressed
 
 #pragma mark -
 #pragma mark Picker Data Source Methods
+/*
+ * numberOfComponentsInPickerView - returns the number of
+ * column components in picker
+ */
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
-}
+    
+} // End numberOfComponentsInPickerView
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+/*
+ * pickerView: numberOfRowsInComponent - returns the
+ * number of rows for component
+ */
+-(NSInteger) pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
 {    
     return [self.items count];
-}
+    
+} // End numberOfRowsInComponent
 
 #pragma mark Picker Delegate Methods
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row
-         forComponent:(NSInteger)component reusingView:(UIView *)view
+/*
+ * pickerView: viewForRow: forComponent: reusingView
+ * returns item to be displayed in row for component
+ */
+-(UIView *)pickerView:(UIPickerView *)pickerView
+           viewForRow:(NSInteger)row
+         forComponent:(NSInteger)component
+          reusingView:(UIView *)view
 {
     return [self.pickerData objectAtIndex:row];
-}
+    
+} // End pickerView: viewForRow: forComponent: reusingView
 
 @end

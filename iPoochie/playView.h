@@ -17,10 +17,10 @@
 @property (strong, nonatomic) UIImage *right;
 @property (strong, nonatomic) UIImage *item;
 @property (strong, nonatomic) NSString *chosenItem;
+@property (assign, nonatomic) CMAcceleration acceleration;
 @property CGPoint itemPoint;
 @property CGPoint currentPoint;
 @property CGPoint previousPoint;
-@property (assign, nonatomic) CMAcceleration acceleration;
 @property CGFloat petXVelocity;
 @property CGFloat petYVelocity;
 
