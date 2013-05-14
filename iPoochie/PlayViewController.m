@@ -7,18 +7,15 @@
 //
 
 #import "PlayViewController.h"
-#import "playView.h"
-#import "AppDelegate.h"
 
 #define kUpdateInterval     (1.0f/60.0f)
-
-BOOL chooseToy;
 
 @interface PlayViewController ()
 
 @end
 
 @implementation PlayViewController
+@synthesize motionManager;
 @synthesize points;
 @synthesize health;
 @synthesize happiness;
@@ -27,6 +24,11 @@ BOOL chooseToy;
 @synthesize pickerData;
 @synthesize items;
 @synthesize amounts;
+@synthesize timeInView;
+@synthesize appDelegate;
+@synthesize itemsData;
+@synthesize gameData;
+@synthesize pickerLabel;
 @synthesize pointsLabel;
 @synthesize healthLabel;
 @synthesize happinessLabel;
@@ -36,11 +38,9 @@ BOOL chooseToy;
 @synthesize happinessImageView;
 @synthesize backgroundImageView;
 @synthesize infoImageView;
-@synthesize motionManager;
-@synthesize timeInView;
-@synthesize pickerLabel;
 @synthesize pickerView;
 @synthesize playView;
+@synthesize backButton;
 @synthesize infoButton;
 
 
@@ -66,15 +66,16 @@ BOOL chooseToy;
     self.amounts = tempArray;
     
     // Grab data from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *itemsData = [[NSMutableDictionary alloc]
-                                      initWithContentsOfFile: [appDelegate itemsDataPath]];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    itemsData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate itemsDataPath]];
     self.items = [itemsData objectForKey:@"imageNames"];
     self.amounts = [itemsData objectForKey:@"amounts"];
     
-    // create the pickerData array
+    // Create the pickerData array
     NSMutableArray *pickerDataArray = [[NSMutableArray alloc] init];
     
+    // Remove items from array
     for(int i = 0; i< items.count; i++)
     {
         /*
@@ -90,17 +91,20 @@ BOOL chooseToy;
         }
     }
     
+    // Create imageViews for items that remain
     for(int i = 0; i< items.count; i++)
     {
-        // create an image
+        // Create an image
         UIImage *theImage = [UIImage imageNamed:[self.items objectAtIndex :i]];
         
-        // create an imageview
+        // Create an imageview
         UIImageView *theImageView = [[UIImageView alloc] initWithImage:theImage];
         
+        // Insert imageView into array
         [pickerDataArray insertObject:theImageView atIndex:i];
     }
     
+    // Reload the picker with current data
     self.pickerData = pickerDataArray;
     [self.pickerView reloadAllComponents];
 
@@ -127,12 +131,11 @@ BOOL chooseToy;
     self.infoImageView.image = [UIImage imageNamed:@"playInfo.png"];
     self.infoButton.enabled = NO;
     self.infoButton.hidden = YES;
-    chooseToy = NO;
     
     // Grab values from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    gameData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     health = [gameData objectForKey:@"health"];
     happiness = [gameData objectForKey:@"happiness"];
@@ -166,6 +169,12 @@ BOOL chooseToy;
     // Dispose of any resources that can be recreated.
 }
 
+//====== HELPER METHODS =======
+
+/*
+ * updateAllLabels - updates the labels based
+ * on current values in plist
+ */
 -(void) updateAllLabels
 {
     // Keep track of old values shown 
@@ -175,9 +184,8 @@ BOOL chooseToy;
     NSNumber *oldHappiness = happiness;
     
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    gameData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     health = [gameData objectForKey:@"health"];
     energy = [gameData objectForKey:@"energy"];
@@ -217,7 +225,7 @@ BOOL chooseToy;
         happinessImageView.image = [UIImage imageNamed:imageName];
     }
     
-    // If pet has no energy and/or health kick out of play
+    // If pet has no energy and/or health kick user out of play
     if([energy intValue] == 0 || [health intValue] == 0 ||
        ([energy intValue] == 0 && [health intValue] == 0))
     {
@@ -227,9 +235,66 @@ BOOL chooseToy;
         
     }
 
-}
+} // End updateAllLabels
 
-// Return appropriate bar image name for percentage
+/*
+ * leavingUpdatesWithAlert - Completes final leaving updates
+ * and sets showAlert in plist if specified
+ * (InteractViewController will display alert if requested)
+ */
+-(void) leavingUpdatesWithAlert: (NSString*) withAlert
+{
+    // Find how much time was spent in view
+    NSNumber *time = [NSNumber numberWithDouble:
+                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
+    
+    // Update lastViewName to play and save time spent in view
+    gameData = [[NSMutableDictionary alloc]initWithContentsOfFile:
+        [appDelegate gameDataPath]];
+    itemsData = [[NSMutableDictionary alloc]initWithContentsOfFile:
+        [appDelegate itemsDataPath]];
+    
+    // Grab current items and amounts from plist
+    self.items = [itemsData objectForKey:@"imageNames"];
+    self.amounts = [itemsData objectForKey:@"amounts"];
+    
+    // Remove item that was played with from closet
+    for(int i = 0; i < [items count]; i++)
+    {
+        if([items[i] isEqual:chosenItem])
+        {
+            NSNumber *newAmount = [NSNumber numberWithInt:[amounts[i] intValue] - 1];
+            [self.amounts replaceObjectAtIndex:i withObject: newAmount];
+        }
+    }
+    
+    // Update itemsToPlayWith
+    NSNumber *itemsToPlayWith = [itemsData objectForKey:@"itemsToPlayWith"];
+    itemsToPlayWith = [NSNumber numberWithInt:([itemsToPlayWith intValue] - 1)];
+    
+    // Write back to items plist
+    [itemsData setObject:itemsToPlayWith forKey:@"itemsToPlayWith"];
+    [itemsData setObject:amounts forKey:@"amounts"];
+    [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
+    
+    // Set showAlert to yes if alert requested
+    if([withAlert isEqual:@"yes"])
+    {
+        [gameData setObject:@"yes" forKey:@"showAlert"];
+    }
+    
+    // Write back to game plist
+    [gameData setObject:@"play" forKey:@"lastViewName"];
+    [gameData setObject:time forKey:@"lastViewTime"];
+    [gameData setObject:@"none" forKey:@"chosenItem"];
+    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
+    
+} // End leavingUpdatesWithAlert
+
+/*
+ * barsImageName -  Returns appropriate bar
+ * image name for number
+ */
 - (NSString*) barsImageName: (int) number
 {
     NSString *name;
@@ -285,62 +350,26 @@ BOOL chooseToy;
     }
     
     return name;
-}
+    
+} // End barsImageName
 
--(void) leavingUpdatesWithAlert: (NSString*) withAlert
-{
-    // Find how much time was spent in view
-    NSNumber *time = [NSNumber numberWithDouble:
-                      [[NSDate date] timeIntervalSinceDate:self.timeInView]];
-    
-    // Update lastViewName to play and save time spent in view
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData =
-    [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate gameDataPath]];
-    NSMutableDictionary *itemsData =
-    [[NSMutableDictionary alloc]initWithContentsOfFile: [appDelegate itemsDataPath]];
-    
-    self.items = [itemsData objectForKey:@"imageNames"];
-    self.amounts = [itemsData objectForKey:@"amounts"];
-    
-    // Remove item that was played with from closet
-    for(int i = 0; i < [items count]; i++)
-    {
-        if([items[i] isEqual:chosenItem])
-        {
-            NSNumber *newAmount = [NSNumber numberWithInt:[amounts[i] intValue] - 1];
-            [self.amounts replaceObjectAtIndex:i withObject: newAmount];
-        }
-    }
-    
-    NSNumber *itemsToPlayWith = [itemsData objectForKey:@"itemsToPlayWith"];
-    itemsToPlayWith = [NSNumber numberWithInt:([itemsToPlayWith intValue] - 1)];
-    
-    // Write back to items plist
-    [itemsData setObject:itemsToPlayWith forKey:@"itemsToPlayWith"];
-    [itemsData setObject:amounts forKey:@"amounts"];
-    [itemsData writeToFile:[appDelegate itemsDataPath] atomically:NO];
-    
-    if([withAlert isEqual:@"yes"])
-    {
-        [gameData setObject:@"yes" forKey:@"showAlert"];
-    }
-    
-    // Write back to game plist
-    [gameData setObject:@"play" forKey:@"lastViewName"];
-    [gameData setObject:time forKey:@"lastViewTime"];
-    [gameData setObject:@"none" forKey:@"chosenItem"];
-    [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
-}
+//====== Actions =======
 
-// Go back to interactViewController
+/*
+ * goBack - Goes back to InteractViewController
+ */
 -(IBAction)goBack: (id)sender
 {
     // Make any final updates and go back
     [self leavingUpdatesWithAlert:@"no"];
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
+    
+} // End goBack
 
+/*
+ * chooseItem - Sets the chosen item 
+ * selected in picker and shows the play view
+ */
 -(IBAction)chooseItem:(id)sender
 {
     UIButton *button = sender;
@@ -359,25 +388,27 @@ BOOL chooseToy;
     int index = row;
     chosenItem = items[index];
     
-    NSLog(@"the item is %@", chosenItem);
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+    //NSLog(@"the item is %@", chosenItem);
+    
+    // Set chosenItem in plist to item selected
+    gameData = [[NSMutableDictionary alloc]
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     [gameData setObject:chosenItem forKey:@"chosenItem"];
     [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
     
+    // Check if chosenItem is updated in plist
     NSString *chosenItemInPlist = [gameData objectForKey:@"chosenItem"];
     
-    // Make sure item is saved in plist
+    // Make sure item is saved in plist before play
     if(![chosenItemInPlist isEqual:@"none"])
     {        
-        self.playView.hidden = NO; // show the play view
+        self.playView.hidden = NO; // Show the play view
+        
         // Show and enable the info button
         self.infoButton.enabled = YES;
         self.infoButton.hidden = NO;
         
         // Start playing
-        //self.motionManager = [[CMMotionManager alloc] init];
         self.motionManager = [appDelegate motionManager];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         motionManager.accelerometerUpdateInterval = kUpdateInterval;
@@ -391,7 +422,8 @@ BOOL chooseToy;
          }];
     }
 
-}
+} // End chooseItem
+
 
 -(IBAction)toggleInfo:(id)sender
 {
@@ -405,28 +437,55 @@ BOOL chooseToy;
     }
 }
 
+//====== Picker Methods =======
+
 #pragma mark -
 #pragma mark Picker Data Source Methods
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+
+/*
+ * numberOfComponentsInPickerView - returns 1 
+ * as the number of components in picker
+ */
+-(NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
-}
+    
+} // End numberOfComponentsInPickerView
 
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+/*
+ * pickerView: numberOfRowsInComponent - Returns number
+ * of rows in the component
+ */
+-(NSInteger) pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
 {
     return [self.pickerData count];
-}
+    
+} // End pickerView: numberOfRowsInComponent
 
 #pragma mark Picker Delegate Methods
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row
-         forComponent:(NSInteger)component reusingView:(UIView *)view
+/*
+ * pickerView: viewForRow: forComponent: reusingView: - 
+ * Returns the object to be displayed in row for component
+ */
+-(UIView*) pickerView:(UIPickerView *)pickerView
+           viewForRow:(NSInteger)row
+         forComponent:(NSInteger)component
+          reusingView:(UIView *)view
 {
     return [self.pickerData objectAtIndex:row];
-}
+    
+} // End pickerView: viewForRow: forComponent: reusingView: - 
 
--(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+/*
+ * pickerView: widthForComponent: - Returns
+ * 60 as the width for the component
+ */
+-(CGFloat) pickerView:(UIPickerView *)pickerView
+    widthForComponent:(NSInteger)component
 {
     return 60.0;
-}
+    
+} // End pickerView: widthForComponent
 
 @end

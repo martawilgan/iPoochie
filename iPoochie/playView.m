@@ -188,8 +188,8 @@
         petYVelocity = petYVelocity + -(acceleration.y*secondsSinceLastDraw);
         petXVelocity = petXVelocity + acceleration.x*secondsSinceLastDraw;
         
-        CGFloat xAcceleration = secondsSinceLastDraw*petXVelocity*800;
-        CGFloat yAcceleration = secondsSinceLastDraw*petYVelocity*800;
+        CGFloat xAcceleration = secondsSinceLastDraw*petXVelocity*1000;
+        CGFloat yAcceleration = secondsSinceLastDraw*petYVelocity*1000;
         
         self.currentPoint = CGPointMake(self.currentPoint.x + xAcceleration, self.currentPoint.y + yAcceleration);
         
