@@ -194,8 +194,7 @@ BOOL match;
         // Match found
         if((cardArray[current_button] == (cardArray[previous_button] - 6))
            || (cardArray[current_button] == (cardArray[previous_button] + 6))){
-            
-            NSLog(@"match");
+
             match = YES;
             
             // Set both to matched
