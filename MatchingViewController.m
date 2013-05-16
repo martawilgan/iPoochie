@@ -17,9 +17,8 @@
 @synthesize points;
 @synthesize pointsLabel;
 
-int num_matches_left;
-/*int card1_pressed, card2_pressed, card3_pressed, card4_pressed, card5_pressed, card6_pressed,card7_pressed, card8_pressed, card9_pressed, card10_pressed, card11_pressed, card12_pressed;*/
-
+// Global variables
+int num_matches_left;   
 int num_clicks, previous_button, current_button;
 NSArray *stringArray;
 NSMutableArray *numArray;
@@ -48,23 +47,23 @@ BOOL match;
 {
     [super viewDidAppear:animated];
     
-    // set to defaults
+    // Set to defaults
     num_clicks = 0;
     previous_button = 0;
     current_button = 0;
     match = NO;
 
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     
     // Update the points label text
-    pointsLabel.text =
-    [NSString stringWithFormat:@"Points: %@", points];
+    pointsLabel.text = [NSString stringWithFormat:@"Points: %@", points];
     
-    //Setting tags of buttons
+    // Setting tags of buttons
     [_card1 setTag:100];
     [_card2 setTag:101];
     [_card3 setTag:102];
@@ -78,13 +77,14 @@ BOOL match;
     [_card11 setTag:110];
     [_card12 setTag:111];
     
-    //Array of image names
+    // Array of image names
     stringArray = [NSArray arrayWithObjects: @"card1.png", @"card2.png", @"card3.png", @"card4.png", @"card5.png", @"card6.png", @"card7.png", @"card8.png", @"card9.png",@"card10.png", @"card11.png", @"card12.png", nil];
     
-    //Initializing numArray, which holds indeces of images that are left to randomly choose from to distribute among the cards
+    // Initializing numArray, which holds indeces of images that are left to randomly choose from to distribute among the cards
     numArray = [[NSMutableArray alloc]init];
     matched = [[NSMutableArray alloc]init];
     
+    // Creating the arrays
     for(int i = 0; i < 12; i++)
     {
         [numArray addObject: [NSNumber numberWithInt: i]];
@@ -94,6 +94,7 @@ BOOL match;
     int random;
     int arrayLength = 12;
     
+    // Shuffling the cards
     for(int j = 0; j < 12; j++){
         random = arc4random() % arrayLength;
         cardArray[j] = [[numArray objectAtIndex: random]intValue];
@@ -101,7 +102,7 @@ BOOL match;
         arrayLength--;
     }
     
-    num_matches_left = 6;
+    num_matches_left = 6;   // Number of matches
     
     // Play card shuffle sound
     NSString *path = [ [NSBundle mainBundle] pathForResource:@"card_shuffle" ofType:@"wav"];
@@ -118,22 +119,24 @@ BOOL match;
     // Dispose of any resources that can be recreated.
 }
 
+/*
+ * cardPressed - check for matches in pairs of clicks
+ * when all matches have been made game is won
+ */
 - (IBAction)cardPressed:(UIButton *)sender {
     
     // Set default image
     UIImage *defaultButtonImage = [UIImage imageNamed: @"back_card.png"];
     
     // Clear buttons from previous two clicks if no match
-    if(num_clicks == 2)
-    {
-        if(match == NO)
-        {
+    if(num_clicks == 2){
+        if(match == NO){
+            
+            // Find the tags of last two buttons clicked
             int previous_tag = (int)(previous_button + 100);
             int current_tag = (int)(current_button + 100);
             
-            NSLog(@"Clearing buttons");
-            NSLog(@"Previous tag: %i", previous_tag);
-             NSLog(@"Current tag: %i", current_tag);
+            // Setting button images back to default
             UIButton *firstClick = (UIButton *)[self.view viewWithTag:previous_tag];
             [firstClick setImage: defaultButtonImage forState:UIControlStateNormal];
             
@@ -147,16 +150,15 @@ BOOL match;
     }
     
     num_clicks++; // update for this click
-    int tag = [sender tag]; // find button's tag
-    int tagIndex = (int)(tag - 100);
+    
+    int tag = [sender tag];             // button's tag
+    int tagIndex = (int)(tag - 100);    // index in cardArray
     
     // Update the indices
-    if(num_clicks == 1)
-    {
+    if(num_clicks == 1){
         previous_button = tagIndex;
     }
-    if(num_clicks == 2)
-    {
+    if(num_clicks == 2){
         current_button = tagIndex;
     }
     
@@ -173,27 +175,25 @@ BOOL match;
     [sender setImage: buttonImage forState: UIControlStateNormal];
     
     // Create the app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     // Get current data
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     
     // Do not rematch
-    if(num_clicks == 2 && previousMatched == 1 && currentMatched == 1)
-    {
+    if(num_clicks == 2 && previousMatched == 1 && currentMatched == 1){
         num_clicks = 0;
     }
     
     // On second click check for matches
-    if(num_clicks == 2)
-    {
+    if(num_clicks == 2){
         NSString *path; // Will hold path for sound
         
         // Match found
         if((cardArray[current_button] == (cardArray[previous_button] - 6))
-           || (cardArray[current_button] == (cardArray[previous_button] + 6)))
-        {
+           || (cardArray[current_button] == (cardArray[previous_button] + 6))){
             
             NSLog(@"match");
             match = YES;
@@ -204,6 +204,7 @@ BOOL match;
             [matched replaceObjectAtIndex:cardArray[current_button]
                                withObject:[NSNumber numberWithInt:1]];
             
+            // Find the buttons' tags
             int previous_tag = (int)(previous_button + 100);
             int current_tag = (int)(current_button + 100);
             
@@ -214,6 +215,7 @@ BOOL match;
             UIButton *secondClick = (UIButton *)[self.view viewWithTag:current_tag];
             secondClick.enabled = NO;
             
+            // Decrease number of matches
             if(num_matches_left > 0)
                 num_matches_left--;
             
@@ -222,16 +224,17 @@ BOOL match;
             
         }
         // No match
-        else if((cardArray[current_button] != (cardArray[previous_button] - 6)) && (cardArray[current_button] != (cardArray[previous_button] + 6)))
-        {
-            NSLog(@"no match");
+        else if((cardArray[current_button] != (cardArray[previous_button] - 6)) && (cardArray[current_button] != (cardArray[previous_button] + 6))){
+            
             match = NO;
             
             // Set path for down sound
             path = [ [NSBundle mainBundle] pathForResource:@"down" ofType:@"wav"];
         }
         
+        // Game is won!
         if(num_matches_left == 0){
+            
             NSString *message = @"CONGRATULATIONS!";
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"YOU WON 100 POINTS!!!"
@@ -244,15 +247,13 @@ BOOL match;
             // Path for drumroll sound
             path = [[NSBundle mainBundle] pathForResource:@"tada" ofType:@"wav"];
             
-            //Set points
+            // Update the points and write back to plist
             points = [NSNumber numberWithInt: [points intValue] + 100];
             [gameData setObject:points
                          forKey:@"points"];
             [gameData writeToFile:[appDelegate gameDataPath] atomically:NO];
             pointsLabel.text =
-            [NSString stringWithFormat:@"Points: %@", points];
-
-            
+            [NSString stringWithFormat:@"Points: %@", points];            
         }
         
         // Play the sound for path
@@ -260,10 +261,15 @@ BOOL match;
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &theSound);
         AudioServicesPlaySystemSound (theSound);
     }
-}
+} // End cardPressed
 
+/*
+ * goBack - Goes back to the previous viewcontroller
+ */
 - (IBAction)goBack:(id)sender {
+    
     [self dismissViewControllerAnimated:YES completion:NULL];
-}
+    
+} // End goBack
 
 @end

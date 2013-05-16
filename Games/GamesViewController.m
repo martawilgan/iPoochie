@@ -39,9 +39,10 @@
     [super viewDidAppear:animated];
     
     // Grab points from plist through app delegate
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate =
+        (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *gameData = [[NSMutableDictionary alloc]
-                                     initWithContentsOfFile: [appDelegate gameDataPath]];
+        initWithContentsOfFile: [appDelegate gameDataPath]];
     points = [gameData objectForKey:@"points"];
     
     // Update the points label text
@@ -55,13 +56,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+ * matchingGame - Makes the MatchingViewController the presentViewController
+ */
 - (IBAction)matchingGame:(UIButton *)sender {
-    MatchingViewController *matchingViewController = [[MatchingViewController alloc] init];
+    
+    MatchingViewController *matchingViewController =
+        [[MatchingViewController alloc] init];
     [self presentViewController:matchingViewController animated:YES completion:NULL];
-}
+    
+} // End matchingGame
 
+/*
+ * chanceGame - Makes the ChanceViewController the presentViewController
+ */
 - (IBAction)chanceGame:(UIButton *)sender {
+    
     ChanceViewController *chanceViewController = [[ChanceViewController alloc] init];
     [self presentViewController:chanceViewController animated:YES completion:NULL];
-}
+    
+} // End chanceGame
 @end

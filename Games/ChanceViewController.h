@@ -11,11 +11,11 @@
 
 @interface ChanceViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
 @property (strong, nonatomic) NSNumber *points;
+@property (weak, nonatomic) IBOutlet UILabel *pointsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *chanceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *chanceCard;
 @property (weak, nonatomic) IBOutlet UIImageView *chanceImage;
-@property (weak, nonatomic) IBOutlet UILabel *chanceLabel;
 
 - (IBAction)viewCard:(UIButton *)sender;
 - (IBAction)goBack:(id)sender;
